@@ -1,0 +1,21 @@
+CoreBundle\Entity\ReferenceModePayment:
+    mode_payment_cash:
+        label: Espèce
+        code: 0
+    mode_payment_check:
+        label: Chèque
+        code: 1
+    mode_payment_bank_transfer:
+        label: Virement bancaire
+        code: 2
+    mode_payment_credit_card:
+        label: Carte de crédit
+        code: 3
+
+CoreBundle\Entity\ReferencePhoneType:
+    reference_phone_type_{PHONE, MOBILE_PHONE}:
+        label: reference.phone_type.<current()>
+
+CoreBundle\Entity\ReferenceEmailType:
+    reference_email_type_{personal_email, professional_email}:
+        label: reference.email_type.<current()>
