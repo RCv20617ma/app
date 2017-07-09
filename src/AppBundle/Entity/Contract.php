@@ -99,4 +99,28 @@ class Contract
         return $this->endDate;
     }
 
+
+    /**
+     * Set customer
+     *
+     * @param \CustomerBundle\Entity\AbstractCustomer $customer
+     *
+     * @return Contract
+     */
+    public function setCustomer(\CustomerBundle\Entity\AbstractCustomer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \CustomerBundle\Entity\AbstractCustomer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
 }
