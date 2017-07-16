@@ -1,0 +1,10 @@
+CustomerBundle\Entity\CustomerEmail:
+    customer_email_moral_{1..200}:
+        customer: '@moral_customer_*'
+        email: <email()>
+        type: '@reference_email_type_*'
+
+    customer_email_physical_{1..200}:
+        customer: '@physical_customer_*'
+        email: <email()>
+        type: '@reference_email_type_*'

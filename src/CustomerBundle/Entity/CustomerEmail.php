@@ -15,8 +15,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class CustomerEmail
 {
-    use TimestampableEntity;
-
     /**
      * @var int
      *

@@ -5,6 +5,7 @@ namespace CarBundle\Entity;
 use CoreBundle\Entity\Traits\AgencyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Class AbstractCar
@@ -12,12 +13,17 @@ use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
  * @ORM\Entity(repositoryClass="CarBundle\Repository\AbstractCarRepository")
  * @ORM\Table(name="abstract_car")
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap(
+ *   {
+ *     Car::DISCRIMINATOR = Car::class,
+ *     SlCar::DISCRIMINATOR = SlCar::class,
+ *   }
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
-class AbstractCar
+Abstract class AbstractCar
 {
-    use AgencyTrait;
+    use AgencyTrait,TimestampableEntity;
 
     /**
      * @var int
@@ -35,7 +41,7 @@ class AbstractCar
 
     /**
      * @ORM\ManyToMany(targetEntity="ReferenceCarOption")
-     *  @ORM\JoinTable(name="abstract_car_option",
+     * @ORM\JoinTable(name="abstract_car_option",
      *      joinColumns={@JoinColumn(name="car_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="option_id", referencedColumnName="id")}
      *      )
@@ -61,6 +67,7 @@ class AbstractCar
     {
         return $this->id;
     }
+
     /**
      * Constructor
      */

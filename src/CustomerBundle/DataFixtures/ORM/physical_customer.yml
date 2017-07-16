@@ -1,5 +1,5 @@
 CustomerBundle\Entity\PhysicalCustomer:
-    moralCustomer_{1..200}:
+    physical_customer_{1..200}:
         agency: '@agency_*'
         firstname: <firstname()>
         lastName: <lastname()>
