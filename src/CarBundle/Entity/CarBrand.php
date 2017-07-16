@@ -1,18 +1,16 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace CarBundle\Entity;
 
 use CoreBundle\Entity\MappedSuperClass\AbstractReference;
-use CoreBundle\Entity\Traits\AgencyTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CarBrand
  *
  * @ORM\Table(name="car_brand")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\CarBrandRepository")
+ * @ORM\Entity()
  */
 class CarBrand extends AbstractReference
 {
-    use AgencyTrait;
 }
