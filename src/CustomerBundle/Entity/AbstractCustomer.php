@@ -15,7 +15,6 @@ use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumbe
  * @ORM\Entity()
  * @ORM\Table(name="abstract_customer")
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap(
  *   {
  *     PhysicalCustomer::DISCRIMINATOR = PhysicalCustomer::class,
@@ -38,6 +37,11 @@ abstract class AbstractCustomer
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ReferenceGender")
+     */
+    protected $gender;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="CustomerPhone", mappedBy="customer", cascade={"persist", "remove"})
@@ -57,6 +61,11 @@ abstract class AbstractCustomer
      * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
      */
     protected $archived;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CustomerDocument", mappedBy="customer")
+     */
+    protected $documents;
 
     /**
      * Constructor
@@ -173,5 +182,63 @@ abstract class AbstractCustomer
     protected function getEmails()
     {
         return $this->emails;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param \CustomerBundle\Entity\ReferenceGender $gender
+     *
+     * @return AbstractCustomer
+     */
+    public function setGender(\CustomerBundle\Entity\ReferenceGender $gender = null)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return \CustomerBundle\Entity\ReferenceGender
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Add document
+     *
+     * @param \CustomerBundle\Entity\CustomerDocument $document
+     *
+     * @return AbstractCustomer
+     */
+    public function addDocument(\CustomerBundle\Entity\CustomerDocument $document)
+    {
+        $this->documents[] = $document;
+
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \CustomerBundle\Entity\CustomerDocument $document
+     */
+    public function removeDocument(\CustomerBundle\Entity\CustomerDocument $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

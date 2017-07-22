@@ -116,4 +116,38 @@ class SlCar extends AbstractCar
     {
         return $this->ownerAgency;
     }
+
+    /**
+     * Add document
+     *
+     * @param \CarBundle\Entity\CarDocument $document
+     *
+     * @return SlCar
+     */
+    public function addDocument(\CarBundle\Entity\CarDocument $document)
+    {
+        $this->documents[] = $document;
+
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \CarBundle\Entity\CarDocument $document
+     */
+    public function removeDocument(\CarBundle\Entity\CarDocument $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
 }
