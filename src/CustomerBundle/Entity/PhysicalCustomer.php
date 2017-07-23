@@ -132,38 +132,4 @@ class PhysicalCustomer extends AbstractCustomer
     {
         return $this->gender;
     }
-
-    /**
-     * Add document
-     *
-     * @param \CustomerBundle\Entity\CustomerDocument $document
-     *
-     * @return PhysicalCustomer
-     */
-    public function addDocument(\CustomerBundle\Entity\CustomerDocument $document)
-    {
-        $this->documents[] = $document;
-
-        return $this;
-    }
-
-    /**
-     * Remove document
-     *
-     * @param \CustomerBundle\Entity\CustomerDocument $document
-     */
-    public function removeDocument(\CustomerBundle\Entity\CustomerDocument $document)
-    {
-        $this->documents->removeElement($document);
-    }
-
-    /**
-     * Get documents
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDocuments()
-    {
-        return $this->documents;
-    }
 }

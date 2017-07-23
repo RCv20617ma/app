@@ -156,7 +156,8 @@ class File
      */
     public function removeUpload()
     {
-        if ($file = $this->getAbsolutePath()) {
+        $file = $this->getAbsolutePath();
+        if ($file) {
             unlink($file);
         }
     }

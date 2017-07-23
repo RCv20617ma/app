@@ -81,7 +81,7 @@ abstract class AbstractCustomer
      *
      * @return integer
      */
-    protected function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -93,7 +93,7 @@ abstract class AbstractCustomer
      *
      * @return AbstractCustomer
      */
-    protected function setArchived($archived)
+    public function setArchived($archived)
     {
         $this->archived = $archived;
 
@@ -105,7 +105,7 @@ abstract class AbstractCustomer
      *
      * @return boolean
      */
-    protected function getArchived()
+    public function getArchived()
     {
         return $this->archived;
     }
@@ -117,7 +117,7 @@ abstract class AbstractCustomer
      *
      * @return AbstractCustomer
      */
-    protected function addPhone(\CustomerBundle\Entity\CustomerPhone $phone)
+    public function addPhone(\CustomerBundle\Entity\CustomerPhone $phone)
     {
         if (!$this->phones->contains($phone)) {
             $phone->setCustomer($this);
@@ -132,7 +132,7 @@ abstract class AbstractCustomer
      *
      * @param \CustomerBundle\Entity\CustomerPhone $phone
      */
-    protected function removePhone(\CustomerBundle\Entity\CustomerPhone $phone)
+    public function removePhone(\CustomerBundle\Entity\CustomerPhone $phone)
     {
         $this->phones->removeElement($phone);
     }
@@ -142,7 +142,7 @@ abstract class AbstractCustomer
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    protected function getPhones()
+    public function getPhones()
     {
         return $this->phones;
     }
@@ -154,7 +154,7 @@ abstract class AbstractCustomer
      *
      * @return AbstractCustomer
      */
-    protected function addEmail(\CustomerBundle\Entity\CustomerEmail $email)
+    public function addEmail(\CustomerBundle\Entity\CustomerEmail $email)
     {
         if (!$this->emails->contains($email)) {
             $email->setCustomer($this);
@@ -169,7 +169,7 @@ abstract class AbstractCustomer
      *
      * @param \CustomerBundle\Entity\CustomerEmail $email
      */
-    protected function removeEmail(\CustomerBundle\Entity\CustomerEmail $email)
+    public function removeEmail(\CustomerBundle\Entity\CustomerEmail $email)
     {
         $this->emails->removeElement($email);
     }
@@ -179,7 +179,7 @@ abstract class AbstractCustomer
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    protected function getEmails()
+    public function getEmails()
     {
         return $this->emails;
     }
