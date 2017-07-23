@@ -4239,18 +4239,3 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 .dataTables_wrapper > .row{
   overflow:auto !important; /*prevent datatables overflowing its container*/
 }
-
-/* Abdelhak CSS */
-
-span.developer-name{
-    color: #2A3F54;
-    font-weight: bold;
-}
-
-ol.breadcrumb>span{
-    font-weight: bold;
-}
-
-/* End CSS Abdelhak*/
-
-

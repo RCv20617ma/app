@@ -1,4 +1,9 @@
-symfony3
+RC App V2
 ========
 
-A Symfony project created on March 13, 2017, 7:38 pm.
+Gestion des agences de location des voitures
+
+## Lancement des fixtures
+```
+php bin/console hautelook:fixtures:load -b CoreBundle -b CustomerBundle -b CarBundle -b AppBundle
+```

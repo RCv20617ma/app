@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new CoreBundle\CoreBundle(),
             new CustomerBundle\CustomerBundle(),
             new CarBundle\CarBundle(),
