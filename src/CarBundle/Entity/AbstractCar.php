@@ -32,12 +32,12 @@ Abstract class AbstractCar
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="CarModel")
      */
-    private $model;
+    protected $model;
 
     /**
      * @ORM\ManyToMany(targetEntity="ReferenceCarOption")
@@ -46,17 +46,22 @@ Abstract class AbstractCar
      *      inverseJoinColumns={@JoinColumn(name="option_id", referencedColumnName="id")}
      *      )
      */
-    private $options;
+    protected $options;
 
     /**
      * @ORM\ManyToOne(targetEntity="ReferenceFuelType")
      */
-    private $fuelType;
+    protected $fuelType;
 
     /**
      * @ORM\ManyToOne(targetEntity="ReferenceGearBox")
      */
-    private $gearBox;
+    protected $gearBox;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CarDocument", mappedBy="car")
+     */
+    protected $documents;
 
     /**
      * Get id
@@ -180,5 +185,39 @@ Abstract class AbstractCar
     public function getGearBox()
     {
         return $this->gearBox;
+    }
+
+    /**
+     * Add document
+     *
+     * @param \CarBundle\Entity\CarDocument $document
+     *
+     * @return AbstractCar
+     */
+    public function addDocument(\CarBundle\Entity\CarDocument $document)
+    {
+        $this->documents[] = $document;
+
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \CarBundle\Entity\CarDocument $document
+     */
+    public function removeDocument(\CarBundle\Entity\CarDocument $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

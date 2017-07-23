@@ -34,17 +34,6 @@ class SlCar extends AbstractCar
      */
     private $originalPriceDay;
 
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Set carNumber
      *

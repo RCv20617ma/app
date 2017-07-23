@@ -108,4 +108,28 @@ class PhysicalCustomer extends AbstractCustomer
     {
         return $this->birthDate;
     }
+
+    /**
+     * Set gender
+     *
+     * @param \CustomerBundle\Entity\ReferenceGender $gender
+     *
+     * @return PhysicalCustomer
+     */
+    public function setGender(\CustomerBundle\Entity\ReferenceGender $gender = null)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return \CustomerBundle\Entity\ReferenceGender
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
 }

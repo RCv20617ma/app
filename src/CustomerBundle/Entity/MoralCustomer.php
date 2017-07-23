@@ -106,4 +106,28 @@ class MoralCustomer extends AbstractCustomer
     {
         return $this->webSite;
     }
+
+    /**
+     * Set gender
+     *
+     * @param \CustomerBundle\Entity\ReferenceGender $gender
+     *
+     * @return MoralCustomer
+     */
+    public function setGender(\CustomerBundle\Entity\ReferenceGender $gender = null)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return \CustomerBundle\Entity\ReferenceGender
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
 }
