@@ -7,3 +7,8 @@ Gestion des agences de location des voitures
 ```
 php bin/console hautelook:fixtures:load -b CoreBundle -b CustomerBundle -b CarBundle -b AppBundle
 ```
+
+## assets:install
+```
+php bin/console assets:install
+```

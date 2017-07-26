@@ -1,6 +1,7 @@
 <?php
 
 namespace CustomerBundle\Repository;
+use CoreBundle\Entity\Agency;
 
 /**
  * PhysicalCustomerRepository
@@ -10,4 +11,25 @@ namespace CustomerBundle\Repository;
  */
 class PhysicalCustomerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param Agency $agency
+     * @return array
+     */
+    public function findAllByAgency(Agency $agency) {
+        return $this->filterByAgency($agency)->getQuery()->getResult();
+    }
+
+    /**
+     * @param Agency $agency
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function filterByAgency(Agency $agency)
+    {
+        $qb = $this->createQueryBuilder('pc')
+            ->join('pc.agency', 'ag', 'WITH', 'ag.id = :agencyId')
+            ->setParameter('agencyId', $agency->getId());
+
+        return $qb;
+    }
 }

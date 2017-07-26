@@ -1,0 +1,5 @@
+# Customer
+customer_physical_customer_list:
+    path: /physical
+    defaults: { _controller: CustomerBundle:Customer:list }
+    methods: [GET]

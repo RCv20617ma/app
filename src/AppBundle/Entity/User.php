@@ -131,4 +131,11 @@ class User extends BaseUser
     {
         return $this->avatar;
     }
+
+    /**
+     * @return string
+     */
+    public function getFullName() {
+        return ucfirst($this->getFirstName()).' '.strtoupper($this->getLastName());
+    }
 }

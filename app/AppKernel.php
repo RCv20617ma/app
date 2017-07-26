@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new Misd\PhoneNumberBundle\MisdPhoneNumberBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new CoreBundle\CoreBundle(),
             new CustomerBundle\CustomerBundle(),
             new CarBundle\CarBundle(),

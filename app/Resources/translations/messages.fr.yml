@@ -1,8 +1,9 @@
-app.welcome: Bienvenue
-app.dashboard: Tableau de bord
-app.settings: Paramètres
-app.profile: Profil
-app.logout: Déconnexion
-app.help: Aide
-app.by: Par
-app.breadcrumb: Vous êtes ici
+app:
+    welcome: Bienvenue
+    dashboard: Tableau de bord
+    settings: Paramètres
+    profile: Profil
+    logout: Déconnexion
+    help: Aide
+    by: Par
+    breadcrumb: Vous êtes ici

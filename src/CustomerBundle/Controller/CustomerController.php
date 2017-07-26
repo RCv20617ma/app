@@ -2,7 +2,9 @@
 
 namespace CustomerBundle\Controller;
 
+use AppBundle\Entity\User;
 use CustomerBundle\Entity\MoralCustomer;
+use CustomerBundle\Manager\PhysicalCustomerManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,8 +15,21 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("customer")
  */
-class MoralCustomerController extends Controller
+class CustomerController extends Controller
 {
+
+    /**
+     *
+     */
+    public function listAction() {
+        /** @var User $userConnected */
+        $userConnected = $this->getUser();
+        $allPhysicalCustomer = $this->getPhysicalCustomerManager()->getAllByAgency($userConnected->getAgency());
+
+        var_dump(count($allPhysicalCustomer));
+        die;
+    }
+
     /**
      * Lists all moralCustomer entities.
      *
@@ -133,5 +148,12 @@ class MoralCustomerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @return PhysicalCustomerManager
+     */
+    private function getPhysicalCustomerManager() {
+        return $this->get('customer.manager.physical_customer');
     }
 }
