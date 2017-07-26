@@ -1,8 +1,10 @@
 customer:
-    resource: "@CustomerBundle/Controller/"
-    type:     annotation
-    prefix:   /
+    resource: "@CustomerBundle/Resources/config/routing.yml"
 
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+# app/config/routing.yml
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -1,0 +1,40 @@
+AppBundle\Entity\User:
+    user_root_1:
+        email: 'abdelali.majri@gmail.com'
+        username: 'abdelali.majri@gmail.com'
+        firstName: Abdlelali
+        lastName: MAJRI
+        plainPassword: abdelali
+        enabled: true
+        roles: [ROLE_IT]
+        agency: '@agency_*'
+
+    user_root_2:
+        email: 'abdelhak.ouaddi@gmail.com'
+        username: 'abdelhak.ouaddi@gmail.com'
+        firstName: Abdlelhak
+        lastName: Ouaddi
+        plainPassword: abdelhak
+        enabled: true
+        roles: [ROLE_IT]
+        agency: '@agency_*'
+        
+    user_admin_agency:
+        email: 'admin@rentauto.ma'
+        username: 'admin@rentauto.ma'
+        firstName: Admin
+        lastName: ADMIN
+        plainPassword: admin
+        enabled: true
+        roles: [ROLE_ADMIN]
+        agency: '@agency_*'
+
+    user_user_agency:
+        email: 'user@rentauto.ma'
+        username: 'user@rentauto.ma'
+        firstName: User
+        lastName: USER
+        plainPassword: user
+        enabled: true
+        roles: [ROLE_USER]
+        agency: '@agency_*'

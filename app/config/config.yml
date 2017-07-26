@@ -2,8 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@CoreBundle/Resources/config/services.yml" }
-    - { resource: "@CustomerBundle/Resources/config/services.yml" }
+    - { resource: "@CoreBundle/Resources/config/services.xml" }
+    - { resource: "@CustomerBundle/Resources/config/services.xml" }
     - { resource: "@CarBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -73,6 +73,21 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address:        abdelali.majri@gmail.com
+        sender_name:    rentauto.ma
+
+# pour les fichiers .min et la gestion des css et js
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
 
 # ElsasticSearch with default service: fos_elastica.index.app
 fos_elastica:

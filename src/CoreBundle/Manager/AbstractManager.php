@@ -27,7 +27,10 @@ abstract class AbstractManager
      *
      * @return \Doctrine\ORM\EntityRepository
      */
-    abstract public function getRepository();
+    public function getRepository()
+    {
+        return $this->entityManager->getRepository($this->getClass());
+    }
 
     /**
      * @param EntityManagerInterface $entityManager
