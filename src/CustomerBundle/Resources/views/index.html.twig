@@ -1,0 +1,83 @@
+{% extends "layout.html.twig" %}
+{% block title %}{{ 'customer.customers_list'|trans }}{% endblock %}
+
+
+
+ {% block breadcrumb %}
+     <li><a href="{{ path('app_dashboard') }}">{{ 'app.dashboard'|trans }}</a></li><li class="active">{{ 'customer.customers_list'|trans }}</li>
+ {% endblock %}
+
+{% block content %}
+
+
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><i class="fa fa-list" aria-hidden="true"></i> {{ 'customer.customers_list'|trans }}</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <form method="get">
+                        <div style="max-width: 250px;" class="input-group">
+                            <input value="{{ app.request.query.get('key',null) }}" name="key" type="text" class="form-control" placeholder="{{ 'app.search'|trans }}">
+                            <span class="input-group-btn">
+                      <button title="{{ 'app.search'|trans }}" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </span>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <p>{{ "app.list_info"|trans({'%START%': pagination.paginationData.firstItemNumber,'%END%': pagination.paginationData.lastItemNumber,'%TOTAL%': pagination.paginationData.totalCount}) }}</p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr class="headings">
+                        <th>{{ 'customer.full_name'|trans }}</th>
+                        <th>{{ 'customer.email'|trans }}</th>
+                        <th>{{ 'customer.phone'|trans }}</th>
+                        <th>{{ 'customer.gender'|trans }}</th>
+                        <th>{{ 'customer.web_site'|trans }}</th>
+                        <th>{{ 'app.created_at'|trans }}</th>
+                        <th>{{ 'app.updated_at'|trans }}</th>
+                        <th>{{ 'app.action'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if pagination is not empty %}
+                        {% for c in pagination %}
+                            <tr>
+                                <td {% if c.socialReason is defined %}data-toggle="tooltip" data-placement="top" data-original-title="{{ 'customer.manager'|trans }} : {{ c.socialReason }}"{% endif %}>{{ c.fullName }}</td>
+                                <td>{{ c.mainEmail }}</td>
+                                <td>{{ c.mainPhone }}</td>
+                                <td>{{ c.gender ? c.gender.label|trans : '' }}</td>
+                                <td>{{ c.webSite is defined ? c.webSite : '' }}</td>
+                                <td>{{ c.createdAt|date() }}</td>
+                                <td>{{ c.updatedAt|date() }}</td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td class="msg" colspan="8">
+                                {{ 'customer.msg.no_customers'|trans }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customJavascript %}
+    <script type="text/javascript" src="{{ asset('customer/js/list.js') }}"></script>
+{% endblock %}
+
+
+
+

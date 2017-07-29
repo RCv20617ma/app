@@ -132,4 +132,9 @@ class PhysicalCustomer extends AbstractCustomer
     {
         return $this->gender;
     }
+
+    public function fullName()
+    {
+        return $this->getLastName().' '.$this->getFirstName();
+    }
 }

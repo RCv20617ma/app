@@ -22,6 +22,7 @@ use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumbe
  *   }
  * )
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="CustomerBundle\Repository\AbstractCustomerRepository")
  */
 abstract class AbstractCustomer
 {
@@ -70,7 +71,7 @@ abstract class AbstractCustomer
     /**
      * Constructor
      */
-    protected function __construct()
+    public function __construct()
     {
         $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
         $this->emails = new \Doctrine\Common\Collections\ArrayCollection();
@@ -240,5 +241,31 @@ abstract class AbstractCustomer
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    abstract public function fullName();
+
+    /**
+     * @return null|string
+     */
+    public function getMainEmail(){
+        $mainEmail = $this->getEmails()->isEmpty() ? null : $this->getEmails()->first()->getEmail();
+        foreach ($this->getEmails() as $ec){
+            if($ec->isMain())
+                $mainEmail = $ec->getEmail();
+        }
+        return $mainEmail;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getMainPhone(){
+        $mainPhone = $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();
+        foreach ($this->getPhones() as $pc){
+            if($pc->isMain())
+                $mainPhone = $pc->getPhone();
+        }
+        return $mainPhone;
     }
 }

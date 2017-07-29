@@ -6,5 +6,6 @@
 
     <services>
         <service id="customer.manager.physical_customer" class="CustomerBundle\Manager\PhysicalCustomerManager" parent="core.manager.abstract"/>
+        <service id="customer.manager.abstract_customer" class="CustomerBundle\Manager\AbstractCustomerManager" parent="core.manager.abstract"/>
     </services>
 </container>

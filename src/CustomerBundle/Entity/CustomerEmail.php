@@ -2,6 +2,7 @@
 
 namespace CustomerBundle\Entity;
 
+use CoreBundle\Entity\ReferenceEmailType;
 use CustomerBundle\Entity\AbstractCustomer;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -39,7 +40,7 @@ class CustomerEmail
     protected $email;
 
     /**
-     * @var ReferencePhoneType
+     * @var ReferenceEmailType
      *
      * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\ReferenceEmailType")
      * @ORM\JoinColumn(name="ref_email_type_id", referencedColumnName="id")
@@ -102,11 +103,11 @@ class CustomerEmail
     }
 
     /**
-     * Get main
+     * Is main
      *
      * @return boolean
      */
-    public function getMain()
+    public function isMain()
     {
         return $this->main;
     }
