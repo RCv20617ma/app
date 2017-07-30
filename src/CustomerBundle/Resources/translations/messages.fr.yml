@@ -1,0 +1,11 @@
+customer:
+    customers_list: Liste des clients
+    full_name: Nom Complet
+    gender: Sexe
+    email: Email
+    phone: Téléphone
+    birth_date: Date Naissance
+    web_site: Site Web
+    manager: Directeur
+    msg:
+        no_customers: Aucun client enregistré !!

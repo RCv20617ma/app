@@ -7,3 +7,11 @@ app:
     help: Aide
     by: Par
     breadcrumb: Vous êtes ici
+    customers: Clients
+    created_at: Créé le
+    updated_at: Modifié le
+    action: Action
+    list_info: Affichage de l'élément %START% à %END% sur %TOTAL% éléments
+    search: Recherche
+reference_gender_.MALE: Masculin
+reference_gender_.FEMALE: Féminin

@@ -16,10 +16,15 @@
     <!-- NProgress -->
     <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
 
-    {% block stylesheets %}{% endblock %}
+    {% block pluginsStylesheets %}{% endblock %}
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('build/css/custom.css') }}" rel="stylesheet">
+
+    <!-- Custom RC2018 Style -->
+    <link href="{{ asset('build/css/rc2018.css') }}" rel="stylesheet">
+
+    {% block customStylesheets %}{% endblock %}
 </head>
 
 <body class="nav-md">
@@ -52,7 +57,8 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li {% if item is defined and item == 'dashboard' %} class="active" {% endif %}><a href="{{ path('app_dashboard') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> {{ "app.dashboard"|trans }}</a></li>
+                            <li><a href="{{ path('app_dashboard') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> {{ "app.dashboard"|trans }}</a></li>
+                            <li><a href="{{ path('customer_list') }}"><i class="fa fa-users" aria-hidden="true"></i> {{ "app.customers"|trans }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,8 +217,12 @@
 <script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
 <!-- NProgress -->
 <script src="{{ asset('vendors/nprogress/nprogress.js') }}"></script>
-{% block javascript %}{% endblock %}
+{% block pluginsJS %}{% endblock %}
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('build/js/custom.js') }}"></script>
+
+<!-- Custom RC2018 Scripts -->
+<script src="{{ asset('build/js/rc2018.js') }}"></script>
+{% block customJS %}{% endblock %}
 </body>
 </html>
