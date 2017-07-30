@@ -2,29 +2,28 @@
 
 namespace CoreBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+
 use CoreBundle\Entity\Agency;
 
 /**
- * AbstractRepository
- *
- * This class was created by Abdelhak. Add your own custom
- * repository methods below.
+ * Class AbstractRepository
+ * @package CoreBundle\Repository
  */
-Abstract class AbstractRepository extends \Doctrine\ORM\EntityRepository
+abstract class AbstractRepository extends EntityRepository
 {
-
     /**
      * @param Agency $agency
      * @param $alias
+     * @param null $indexBy
      * @return \Doctrine\ORM\QueryBuilder
      */
-    protected function filterByAgency(Agency $agency,$alias)
+    public function filterByAgency(Agency $agency,$alias, $indexBy = null)
     {
-        $qb = $this->createQueryBuilder($alias)
+        $qb = $this->createQueryBuilder($alias,$indexBy)
             ->join($alias.'.agency', 'ag', 'WITH', 'ag.id = :agencyId')
             ->setParameter('agencyId', $agency->getId());
 
         return $qb;
     }
-
 }

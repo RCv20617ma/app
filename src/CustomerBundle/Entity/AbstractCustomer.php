@@ -3,6 +3,8 @@
 namespace CustomerBundle\Entity;
 
 use CoreBundle\Entity\Traits\AgencyTrait;
+use CoreBundle\Entity\Traits\CreatedByTrait;
+use CoreBundle\Entity\Traits\UpdatedByTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -26,7 +28,7 @@ use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumbe
  */
 abstract class AbstractCustomer
 {
-    use TimestampableEntity, AgencyTrait;
+    use TimestampableEntity, AgencyTrait, CreatedByTrait, UpdatedByTrait;
 
     /**
      * @var int
@@ -35,38 +37,38 @@ abstract class AbstractCustomer
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    public $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="ReferenceGender")
      */
-    protected $gender;
+    public $gender;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="CustomerPhone", mappedBy="customer", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="CustomerPhone", mappedBy="customer", cascade={"all"})
      */
-    protected $phones;
+    public $phones;
 
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="CustomerEmail", mappedBy="customer", cascade={"persist", "remove"})
      */
-    protected $emails;
+    public $emails;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
      */
-    protected $archived;
+    public $archived = false;
 
     /**
      * @ORM\OneToMany(targetEntity="CustomerDocument", mappedBy="customer")
      */
-    protected $documents;
+    public $documents;
 
     /**
      * Constructor
@@ -243,6 +245,9 @@ abstract class AbstractCustomer
         return $this->documents;
     }
 
+    /**
+     * @return string
+     */
     abstract public function getFullName();
 
     /**
@@ -260,8 +265,9 @@ abstract class AbstractCustomer
      * @return null|string
      */
     public function getMainPhone(){
+        /** @var CustomerPhone $pc */
         foreach ($this->getPhones() as $pc){
-            if($pc->isMain())
+            if($pc->getMain())
                return $pc->getPhone();
         }
         return $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();

@@ -1,6 +1,7 @@
 CustomerBundle\Entity\PhysicalCustomer:
     physical_customer_{1..200}:
         agency: '@agency_*'
+        gender: '@reference_gender_*'
         firstname: <firstname()>
         lastName: <lastname()>
         birthDate: <dateTime()>

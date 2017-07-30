@@ -2,6 +2,7 @@
 
 namespace CustomerBundle\Entity;
 
+use CoreBundle\Entity\ReferencePhoneType;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -27,7 +28,7 @@ class CustomerPhone
     private $id;
 
     /**
-     * @var AbstractContact
+     * @var AbstractCustomer
      *
      * @ORM\ManyToOne(targetEntity="AbstractCustomer", inversedBy="phones")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", nullable=false)
@@ -51,7 +52,7 @@ class CustomerPhone
     /**
      * @var bool
      *
-     * @ORM\Column(name="main", type="boolean", nullable=false, options={"default" : false})
+     * @ORM\Column(name="is_main", type="boolean", nullable=false, options={"default" : false})
      */
     private $main = false;
 
@@ -70,7 +71,7 @@ class CustomerPhone
      *
      * @param phone_number $phone
      *
-     * @return AbstractCustomerPhone
+     * @return AbstractCustomer
      */
     public function setPhone($phone)
     {
@@ -104,11 +105,11 @@ class CustomerPhone
     }
 
     /**
-     * Get main
+     * Is Main
      *
-     * @return boolean
+     * @return bool
      */
-    public function getMain()
+    public function isMain()
     {
         return $this->main;
     }

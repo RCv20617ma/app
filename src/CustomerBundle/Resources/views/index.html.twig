@@ -48,8 +48,8 @@
                             <tr>
                                 <td {% if c.socialReason is defined %}data-toggle="tooltip" data-placement="top" data-original-title="{{ 'customer.manager'|trans }} : {{ c.socialReason }}"{% endif %}>{{ c.fullName }}</td>
                                 <td>{{ c.mainEmail }}</td>
-                                <td>{{ c.mainPhone }}</td>
-                                <td>{{ c.gender ? c.gender.label|trans : '' }}</td>
+                                <td>{% if c.mainPhone is not empty %} {{ c.mainPhone|phone_number_format('NATIONAL') }} {% endif %}</td>
+                                <td>{{ c.gender|trans }}</td>
                                 <td>{{ c.webSite is defined ? c.webSite : '' }}</td>
                                 <td>{{ c.createdAt|date() }}</td>
                                 <td>{{ c.updatedAt|date() }}</td>
@@ -59,7 +59,7 @@
                     {% else %}
                         <tr>
                             <td class="msg" colspan="8">
-                                {{ 'customer.msg.no_customers'|trans }}
+                                {{ 'msg.no_data'|trans|format('customer.label'|trans) }}
                             </td>
                         </tr>
                     {% endif %}
@@ -68,10 +68,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <p>{{ "app.list_info"|trans({'%START%': pagination.paginationData.firstItemNumber,'%END%': pagination.paginationData.lastItemNumber,'%TOTAL%': pagination.paginationData.totalCount}) }}</p>
+                    <p>{{ "app.list_info"|trans|format(pagination.paginationData.firstItemNumber, pagination.paginationData.lastItemNumber, pagination.paginationData.totalCount) }}</p>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div style="margin-top: -25px;" class="text-center">
+                    <div style="margin-top: -25px;" class="pull-right" >
                         {{ knp_pagination_render(pagination) }}
                     </div>
                 </div>
@@ -81,7 +81,7 @@
 {% endblock %}
 
 {% block customJS %}
-    <script type="text/javascript" src="{{ asset('customer/js/list.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/customer/js/list.js') }}"></script>
 {% endblock %}
 
 

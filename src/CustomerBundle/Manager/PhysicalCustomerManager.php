@@ -1,8 +1,10 @@
 <?php
 namespace CustomerBundle\Manager;
 
+use AppBundle\Entity\User;
 use CoreBundle\Entity\Agency;
 use CoreBundle\Manager\AbstractManager;
+use CustomerBundle\Entity\CustomerPhone;
 use CustomerBundle\Entity\PhysicalCustomer;
 
 /**
@@ -25,6 +27,23 @@ class PhysicalCustomerManager extends AbstractManager
      */
     public function getAllByAgency(Agency $agency) {
         return $this->getRepository()->findAllByAgency($agency);
+    }
+
+    /**
+     * @param User $userConnected
+     * @return PhysicalCustomer
+     */
+    public function createByUser(User $userConnected)
+    {
+        /** @var PhysicalCustomer $physicalCustomer */
+        $physicalCustomer = parent::create();
+        $physicalCustomer->setAgency($userConnected->getAgency());
+        $physicalCustomer->setCreatedBy($userConnected);
+        $physicalCustomer->setUpdatedBy($userConnected);
+
+        $physicalCustomer->addPhone(new CustomerPhone());
+
+        return $physicalCustomer;
     }
 
 
