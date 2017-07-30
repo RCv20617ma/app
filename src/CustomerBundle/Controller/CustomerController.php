@@ -2,12 +2,12 @@
 
 namespace CustomerBundle\Controller;
 
-use AppBundle\Entity\User;
-use CustomerBundle\Entity\MoralCustomer;
-use CustomerBundle\Manager\AbstractCustomerManager;
-use Knp\Component\Pager\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\Paginator;
+
+use AppBundle\Entity\User;
+use CustomerBundle\Manager\AbstractCustomerManager;
 
 /**
  * customer controller.
