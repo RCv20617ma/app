@@ -131,7 +131,7 @@ class MoralCustomer extends AbstractCustomer
         return $this->gender;
     }
 
-    public function fullName()
+    public function getFullName()
     {
         return $this->getSocialReason();
     }

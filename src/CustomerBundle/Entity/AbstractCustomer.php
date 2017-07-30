@@ -243,29 +243,28 @@ abstract class AbstractCustomer
         return $this->documents;
     }
 
-    abstract public function fullName();
+    abstract public function getFullName();
 
     /**
      * @return null|string
      */
     public function getMainEmail(){
-        $mainEmail = $this->getEmails()->isEmpty() ? null : $this->getEmails()->first()->getEmail();
         foreach ($this->getEmails() as $ec){
             if($ec->isMain())
-                $mainEmail = $ec->getEmail();
+                return $ec->getEmail();
         }
-        return $mainEmail;
+       return $this->getEmails()->isEmpty() ? null : $this->getEmails()->first()->getEmail();
     }
 
     /**
      * @return null|string
      */
     public function getMainPhone(){
-        $mainPhone = $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();
         foreach ($this->getPhones() as $pc){
             if($pc->isMain())
-                $mainPhone = $pc->getPhone();
+               return $pc->getPhone();
         }
-        return $mainPhone;
+        return $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();
+
     }
 }
