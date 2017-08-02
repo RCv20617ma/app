@@ -70,6 +70,7 @@ class PhysicalCustomerType extends AbstractType
                 'label' => 'customer.phone',
                 'entry_type' => CustomerPhoneType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
             ])
@@ -94,7 +95,7 @@ class PhysicalCustomerType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'physical_customer';
+        return 'customer';
     }
 
 

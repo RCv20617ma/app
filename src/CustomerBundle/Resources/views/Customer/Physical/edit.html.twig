@@ -1,8 +1,19 @@
 {% extends 'form.html.twig' %}
+{% block pluginsCss %}
+    {{ parent() }}
+    <link href="{{ asset('vendors/intlTelInput/css/intlTelInput.css') }}" rel="stylesheet">
+{% endblock %}
+    {% form_theme form _self %}
+    {% block _customer_phones_entry_row %}
+            <div class="form-group">
+                <div class="col-sm-3">{{ form_widget(form.type) }}</div>
+                <div class="col-sm-6">{{ form_widget(form.phone, { 'attr': {'class': 'form-control' }}) }}</div>
+                <div class="col-sm-3">{{ form_widget(form.main) }}{{ form_label(form.main) }}</div>
+            </div>
+        <span class="help-block">{{ form_errors(form.phone) }}</span>
+    {% endblock %}
 
 {% block content %}
-    {{ parent() }}
-
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -74,10 +85,21 @@
                     <div class="row" >
                         <div class="col-md-6">
                             <div class="form-group">
-                                {{ form_label(form.phones) }}
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ form_widget(form.phones) }}
-                                </div>
+                                <fieldset>
+                                    <legend>{{ form_label(form.phones) }}</legend>
+                                    <div class="col-md-12">
+                                        {{ form_widget(form.phones) }}
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>Adresses mail</legend>
+                                    <div class="col-md-12">
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
                     </div>
@@ -95,4 +117,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block pluginsJS %}
+    {{ parent() }}
+    <script src="{{ asset('vendors/intlTelInput/js/intlTelInput.min.js') }}"></script>
+{% endblock %}
+
+{% block customJS %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/customer/js/edit.js') }}"></script>
 {% endblock %}
