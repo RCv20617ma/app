@@ -5,20 +5,36 @@
 {% endblock %}
     {% form_theme form _self %}
     {% block _customer_phones_entry_row %}
+            <div class="customer-phone-block">
             <div class="form-group">
-                <div class="col-sm-3">{{ form_widget(form.type) }}</div>
-                <div class="col-sm-6">{{ form_widget(form.phone, { 'attr': {'class': 'form-control' }}) }}</div>
-                <div class="col-sm-3">{{ form_widget(form.main) }}{{ form_label(form.main) }}</div>
+                <div class="col-sm-7">{{ form_widget(form.phone, { 'attr': {'class': 'form-control' }}) }}</div>
+                <div class="col-sm-4" style="padding-top: 4px;" >
+                <label>{{ form_widget(form.main) }} {{ 'customer.main_phone'|trans }}</label>
+                </div>
+                <div class="col-sm-1 button-container"  style="padding-top: 4px;" ></div>
             </div>
-        <span class="help-block">{{ form_errors(form.phone) }}</span>
+            </div>
+    {% endblock %}
+
+
+{% block _customer_emails_entry_row %}
+            <div class="form-group">
+                <div class="col-sm-7">{{ form_widget(form.email, { 'attr': {'class': 'form-control' }}) }}</div>
+                <div class="col-sm-4" style="padding-top: 4px;" >
+                <label>{{ form_widget(form.main) }} {{ 'customer.main_email'|trans }}</label>
+                </div>
+                <div class="col-sm-1 button-container"  style="padding-top: 4px;" ></div>
+            </div>
     {% endblock %}
 
 {% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form._token) }}
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Nouveau client</h2>
+                    <h2>Identité</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -39,84 +55,89 @@
                 </div>
                 <div class="x_content">
                     <br>
-                    {#<form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">#}
-                    {{ form_start(form) }}
-                    {{ form_widget(form._token) }}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {{ form_label(form.lastName) }}
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ form_widget(form.lastName) }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {{ form_label(form.firstName) }}
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ form_widget(form.firstName) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {{ form_label(form.gender) }}
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ form_widget(form.gender) }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {{ form_label(form.birthDate) }}
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ form_widget(form.birthDate) }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" >
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <fieldset>
-                                    <legend>{{ form_label(form.phones) }}</legend>
-                                    <div class="col-md-12">
-                                        {{ form_widget(form.phones) }}
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <fieldset>
-                                    <legend>Adresses mail</legend>
-                                    <div class="col-md-12">
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="ln_solid"></div>
                     <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button type="submit" class="btn btn-success">{{ 'btn.save'|trans }}</button>
+                        {{ form_label(form.gender) }}
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            {{ form_widget(form.gender) }}
                         </div>
                     </div>
 
-                    {{ form_end(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.lastName) }}
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            {{ form_widget(form.lastName) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.firstName) }}
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            {{ form_widget(form.firstName) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.birthDate) }}
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            {{ form_widget(form.birthDate) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Contact & Adresse</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+                        {{ form_label(form.phones) }}
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            {{ form_widget(form.phones) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.emails) }}
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            {{ form_widget(form.emails) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="buttons">
+                        <button type="reset" class="btn btn-lg btn-danger pull-left"><i class="fa fa-times" ></i> {{ 'btn.cancel_post'|trans }}</button>
+                        <button type="submit" class="btn btn-lg btn-success pull-right"><i class="fa fa-save" ></i> {{ 'btn.save'|trans }}</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {{ form_end(form) }}
 {% endblock %}
 
 

@@ -3,6 +3,7 @@ customer:
     customers_list: Liste des clients
     full_name: Nom Complet
     gender: Sexe
+    civility: Civilité
     email: Email
     phone: Téléphone
     web_site: Site web
@@ -12,6 +13,7 @@ customer:
     birth_date: Date de naissance
     phone_number: N° de téléphone
     main_phone: Principal
+    main_email: Principal
 
 # Data translation
 reference_gender.MALE: Homme

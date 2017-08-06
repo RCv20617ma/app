@@ -2,6 +2,7 @@
 
 namespace CustomerBundle\Controller;
 
+use CustomerBundle\Entity\CustomerEmail;
 use CustomerBundle\Entity\CustomerPhone;
 use CustomerBundle\Entity\MoralCustomer;
 use CustomerBundle\Entity\PhysicalCustomer;
@@ -62,7 +63,6 @@ class CustomerController extends Controller
         if (empty($physicalCustomer)) {
             $physicalCustomer = $this->getPhysicalCustomerManager()->createByUser($this->getUser());
         }
-
         $form = $this->createForm(PhysicalCustomerType::class, $physicalCustomer);
         $form->handleRequest($request);
 

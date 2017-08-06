@@ -31,6 +31,7 @@ btn:
     remove: Supprimer
     edit: Modifier
     cancel: Annuler
+    cancel_post: Annuler la création
     yes: Oui
     no: Non
     continue: Continuer

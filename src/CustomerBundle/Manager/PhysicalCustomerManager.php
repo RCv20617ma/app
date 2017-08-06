@@ -4,6 +4,7 @@ namespace CustomerBundle\Manager;
 use AppBundle\Entity\User;
 use CoreBundle\Entity\Agency;
 use CoreBundle\Manager\AbstractManager;
+use CustomerBundle\Entity\CustomerEmail;
 use CustomerBundle\Entity\CustomerPhone;
 use CustomerBundle\Entity\PhysicalCustomer;
 
@@ -42,6 +43,7 @@ class PhysicalCustomerManager extends AbstractManager
         $physicalCustomer->setUpdatedBy($userConnected);
 
         $physicalCustomer->addPhone(new CustomerPhone());
+        $physicalCustomer->addEmail(new CustomerEmail());
 
         return $physicalCustomer;
     }

@@ -14,9 +14,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PhysicalCustomerType extends AbstractType
 {
-    const INPUT_TEXT_CLASS = 'form-control col-md-7 col-xs-12';
+    const INPUT_TEXT_CLASS = 'form-control';
     const LABEL_CLASS = 'control-label col-md-4 col-sm-4 col-xs-12';
+    const LABEL_CLASS_CONTACT = 'control-label col-md-2 col-sm-2 col-xs-12';
     const FORM_CLASS = 'form-horizontal form-label-left';
+    const RADIO_CLASS = 'flat';
 
     /**
      * {@inheritdoc}
@@ -26,10 +28,10 @@ class PhysicalCustomerType extends AbstractType
         $builder
             ->add('gender', EntityType::class, [
                 'class' => ReferenceGender::class,
-                'label' => 'customer.gender',
+                'label' => 'customer.civility',
                 'expanded' => true,
                 'attr' => [
-//                    'class' => self::INPUT_TEXT_CLASS,
+                    'class' => self::RADIO_CLASS,
                 ],
                 'label_attr' => [
                     'class' => self::LABEL_CLASS,
@@ -73,6 +75,19 @@ class PhysicalCustomerType extends AbstractType
                 'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
+                'label_attr' => [
+                    'class' => self::LABEL_CLASS_CONTACT,
+                ],
+            ])->add('emails', CollectionType::class, [
+                'label' => 'customer.email',
+                'entry_type' => CustomerEmailType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'label_attr' => [
+                    'class' => self::LABEL_CLASS_CONTACT,
+                ],
             ])
         ;
     }

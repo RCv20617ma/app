@@ -1,5 +1,15 @@
 {% extends 'layout.html.twig' %}
+{% block pluginsJS %}
+    {{ parent() }}
+    <script src="{{ asset('vendors/switchery/dist/switchery.min.js') }}"></script>
+    {#<script src="{{ asset('vendors/iCheck/icheck.min.js') }}"></script>#}
+{% endblock %}
 
+{% block pluginsCss %}
+    {{ parent() }}
+    <link href="{{ asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
+    {#<link href="{{ asset('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">#}
+{% endblock %}
 {% block content %}
     {% if not form.vars.valid %}
         <div class="alert alert-danger" >
@@ -13,3 +23,4 @@
         </div>
     {%endif%}
 {% endblock %}
+
