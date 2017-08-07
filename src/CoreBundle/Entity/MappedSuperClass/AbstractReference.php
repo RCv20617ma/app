@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  *
  * @ORM\MappedSuperclass
+ * @ORM\EntityListeners({ "CoreBundle\Entity\Listener\ReferenceListener" })
  */
 abstract class AbstractReference
 {
@@ -50,5 +51,10 @@ abstract class AbstractReference
     {
         $this->label = $label;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->label;
     }
 }

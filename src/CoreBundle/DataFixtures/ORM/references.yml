@@ -13,9 +13,9 @@ CoreBundle\Entity\ReferenceModePayment:
         code: 3
 
 CoreBundle\Entity\ReferencePhoneType:
-    reference_phone_type_{PHONE, MOBILE_PHONE}:
+    reference_phone_type_{PERSONAL_PHONE,HOME_PHONE,WORK_PHONE,PERSONAL_FAX,WORK_FAX}:
         label: reference.phone_type.<current()>
 
 CoreBundle\Entity\ReferenceEmailType:
-    reference_email_type_{personal_email, professional_email}:
+    reference_email_type_{PERSONAL_EMAIL, PROFESSIONAL_EMAIL}:
         label: reference.email_type.<current()>

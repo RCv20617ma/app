@@ -11,7 +11,27 @@ app:
     created_at: Créé le
     updated_at: Modifié le
     action: Action
-    list_info: Affichage de l'élément %START% à %END% sur %TOTAL% éléments
+    list_info: Affichage de lélément %d à %d sur %d éléments
     search: Recherche
 reference_gender_.MALE: Masculin
 reference_gender_.FEMALE: Féminin
+
+# General translation
+msg:
+    no_data: Aucun %s trouvés
+    deleted: %s a été supprimé avec succès
+    no_deleted: Impossible de supprimer ce %s
+    delete_confirm: Êtes-vous sûr de vouloir supprimer ce %s
+    added: Votre %d a été ajouté avec succès
+    updated: Votre $s a été modifé avec succès
+    notFound: $s non trouvé
+
+btn:
+    save: Enregistrer
+    remove: Supprimer
+    edit: Modifier
+    cancel: Annuler
+    cancel_post: Annuler la création
+    yes: Oui
+    no: Non
+    continue: Continuer

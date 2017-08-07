@@ -3,8 +3,10 @@ CustomerBundle\Entity\CustomerEmail:
         customer: '@moral_customer_*'
         email: <email()>
         type: '@reference_email_type_*'
+        main: <boolean()>
 
     customer_email_physical_{1..200}:
         customer: '@physical_customer_*'
         email: <email()>
         type: '@reference_email_type_*'
+        main: <boolean()>

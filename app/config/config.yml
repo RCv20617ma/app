@@ -64,7 +64,12 @@ doctrine:
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        auto_mapping: false
+        mappings:
+            CoreBundle: ~
+            AppBundle: ~
+            CarBundle: ~
+            CustomerBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -89,6 +94,13 @@ assetic:
     filters:
         cssrewrite: ~
 
+stof_doctrine_extensions:
+    default_locale: %locale%
+    translation_fallback: true
+    orm:
+        default:
+            timestampable: true
+
 # ElsasticSearch with default service: fos_elastica.index.app
 fos_elastica:
     clients:
@@ -107,5 +119,3 @@ knp_paginator:
     template:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
         sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' # sort link template
-
-

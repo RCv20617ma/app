@@ -1,11 +1,22 @@
 customer:
+    label: client
     customers_list: Liste des clients
     full_name: Nom Complet
     gender: Sexe
+    civility: Civilité
     email: Email
     phone: Téléphone
-    birth_date: Date Naissance
-    web_site: Site Web
-    manager: Directeur
-    msg:
-        no_customers: Aucun client enregistré !!
+    web_site: Site web
+    manager: Gérant
+    first_name: Prénom
+    last_name: Nom
+    birth_date: Date de naissance
+    phone_number: N° de téléphone
+    main_phone: Principal
+    main_email: Principal
+
+# Data translation
+reference_gender.MALE: Homme
+reference_gender.FEMALE: Femme
+
+# General translation

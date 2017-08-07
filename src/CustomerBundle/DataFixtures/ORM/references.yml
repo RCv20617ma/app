@@ -1,6 +1,6 @@
 CustomerBundle\Entity\ReferenceGender:
     reference_gender_{MALE,FEMALE}:
-        label: reference_gender_.<current()>
+        label: reference_gender.<current()>
 
 CustomerBundle\Entity\CustomerDocumentType:
     customer_docuement_type_{CIN,DRIVING_LICENCE,PASSPORT}:

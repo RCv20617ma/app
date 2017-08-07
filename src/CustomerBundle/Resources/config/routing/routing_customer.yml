@@ -3,3 +3,11 @@ customer_list:
     path: /
     defaults: { _controller: CustomerBundle:Customer:list }
     methods: [GET]
+
+# Customer
+customer_physical_customer_edit:
+    path: /physical/edit/{id}
+    defaults: { _controller: CustomerBundle:Customer:edit, id: default }
+    methods: [GET,POST]
+    requirements:
+        id: '\d+'
