@@ -13,8 +13,10 @@ app:
     action: Action
     list_info: Affichage de lélément %d à %d sur %d éléments
     search: Recherche
-reference_gender_.MALE: Masculin
-reference_gender_.FEMALE: Féminin
+    cars: Voitures
+
+reference_gender.MALE: Masculin
+reference_gender.FEMALE: Féminin
 
 # General translation
 msg:
@@ -35,3 +37,7 @@ btn:
     yes: Oui
     no: Non
     continue: Continuer
+
+menu:
+    list: Liste
+    new: Nouveau

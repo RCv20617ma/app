@@ -6,6 +6,7 @@ use CoreBundle\Entity\Traits\AgencyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Class AbstractCar
@@ -59,6 +60,7 @@ Abstract class AbstractCar
     protected $gearBox;
 
     /**
+     * @Exclude
      * @ORM\OneToMany(targetEntity="CarDocument", mappedBy="car")
      */
     protected $documents;

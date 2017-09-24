@@ -1,0 +1,202 @@
+{% extends 'form.html.twig' %}
+{% block pluginsCss %}
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css') }}" type="text/css" />
+{% endblock %}
+    {% form_theme form _self %}
+   {# {% block _customer_phones_entry_row %}
+            <div class="customer-phone-block">
+            <div class="form-group">
+                <div class="col-sm-7">{{ form_widget(form.phone, { 'attr': {'class': 'form-control' }}) }}</div>
+                <div class="col-sm-4" style="padding-top: 4px;" >
+                <label>{{ form_widget(form.main) }} {{ 'customer.main_phone'|trans }}</label>
+                </div>
+                <div class="col-sm-1 button-container"  style="padding-top: 4px;" ></div>
+            </div>
+            </div>
+    {% endblock %}
+
+
+{% block _customer_emails_entry_row %}
+            <div class="form-group">
+                <div class="col-sm-7">{{ form_widget(form.email, { 'attr': {'class': 'form-control' }}) }}</div>
+                <div class="col-sm-4" style="padding-top: 4px;" >
+                <label>{{ form_widget(form.main) }} {{ 'customer.main_email'|trans }}</label>
+                </div>
+                <div class="col-sm-1 button-container"  style="padding-top: 4px;" ></div>
+            </div>
+    {% endblock %}#}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form._token) }}
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Information général</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="brand">Marque</label>
+                                <select id="brand" class="form-control">
+                                    {% for brand in brands %}
+                                        <option value="{{ brand.id }}">{{ brand.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.model) }}
+                                <select required id="carbundle_car_model" name="carbundle_car[model]" class="form-control">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.carNumber) }}
+                                {{ form_widget(form.carNumber) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.carNumberWW) }}
+                                {{ form_widget(form.carNumberWW) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.fuelType) }}
+                                {{ form_widget(form.fuelType) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.gearBox) }}
+                                {{ form_widget(form.gearBox) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.priceDay) }}
+                                {{ form_widget(form.priceDay) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.horsePower) }}
+                                {{ form_widget(form.horsePower) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.currentKm) }}
+                                {{ form_widget(form.currentKm) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.purchaseDate) }}
+                                {{ form_widget(form.purchaseDate) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.saleDate) }}
+                                {{ form_widget(form.saleDate) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_label(form.options) }}
+                                {{ form_widget(form.options) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Documents</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="buttons">
+                        <button type="reset" class="btn btn-lg btn-danger pull-left"><i class="fa fa-times" ></i> {{ 'btn.cancel_post'|trans }}</button>
+                        <button type="submit" class="btn btn-lg btn-success pull-right"><i class="fa fa-save" ></i> {{ 'btn.save'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+
+{% block pluginsJS %}
+    <script type="text/javascript" src="{{ asset('vendors/bootstrap-datetimepicker/js/moment-with-locales.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+{% endblock %}
+
+{% block customJS %}
+    <script src="{{ asset('bundles/car/js/edit.js') }}"></script>
+{% endblock %}

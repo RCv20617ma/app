@@ -1,0 +1,23 @@
+car:
+    label: voiture
+    cars_list: Liste des voitures
+    model: Modèle
+    brand: Marque
+    options: Options
+    gear_box: Boîte de vitesse
+    fuel_type: Carburant
+    car_number: Matricule
+    car_number_ww: Matricule WW
+    current_km: Kilométrage
+    purchase_date: Date achat
+    sale_date: Date vente
+    horse_power: Chevaux
+    price_day: Prix/jour
+
+# Data translation
+reference.car_option.GPS_NAVIGATOR: Navigateur GPS
+reference.car_option.AIR_CONDITIONING: Climatisation
+reference.car_option.GPS_LOCATION: Localisation GPS
+reference.fuel_type.GASOLINE: Essence
+reference.fuel_type.DIESEL: Diesel
+

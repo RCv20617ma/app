@@ -1,6 +1,9 @@
 customer:
     resource: "@CustomerBundle/Resources/config/routing.yml"
 
+car:
+    resource: "@CarBundle/Resources/config/routing.yml"
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
@@ -8,3 +11,7 @@ app:
 # app/config/routing.yml
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+# app/config/routing.yml
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

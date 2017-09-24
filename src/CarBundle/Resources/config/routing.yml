@@ -1,0 +1,3 @@
+routing_car:
+    prefix: /car
+    resource: "routing/routing_car.yml"

@@ -9,13 +9,18 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <title> {{ app.user.agency.name }} | {% block title %} {% endblock %}</title>
 
+    <!-- Jquery UI -->
+    <link href="{{ asset('vendors/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css') }}" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- NProgress -->
     <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
-
+    <!-- jQuery sweetAlert -->
+    <link href="{{ asset('vendors/bootstrap-sweetalert-master/dist/sweetalert.css') }}" rel="stylesheet"/>
     {% block pluginsCss %}{% endblock %}
 
     <!-- Custom Theme Style -->
@@ -58,9 +63,17 @@
                     <div class="menu_section">
                         <ul class="nav side-menu">
                             {#<li><a href="{{ path('app_dashboard') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> {{ "app.dashboard"|trans }}</a></li>#}
-                            <li><a href="{{ path('customer_list') }}" ><i class="fa fa-users"></i> {{ 'app.customers'|trans }} <span class="fa fa-chevron-down"></span></a>
+
+                            <li><a href="#" ><i class="fa fa-users"></i> {{ 'app.customers'|trans }} <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="display: none;">
-                                    <li><a href="{{ path('customer_physical_customer_edit') }}">Nouveau</a></li>
+                                    <li><a href="{{ path('customer_list') }}">{{ "menu.list"|trans }}</a></li>
+                                    <li><a href="{{ path('customer_physical_customer_edit') }}">{{ "menu.new"|trans }}</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" ><i class="fa fa-car"></i> {{ 'app.cars'|trans }} <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: none;">
+                                    <li><a href="{{ path('car_list') }}">{{ "menu.list"|trans }}</a></li>
+                                    <li><a href="{{ path('car_car_edit') }}">{{ "menu.new"|trans }}</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -215,15 +228,22 @@
 
 <!-- jQuery -->
 <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ asset('vendors/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
 <!-- Bootstrap -->
 <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
 <!-- NProgress -->
 <script src="{{ asset('vendors/nprogress/nprogress.js') }}"></script>
+<!-- jQuery sweetAlert -->
+<script src="{{ asset('vendors/bootstrap-sweetalert-master/dist/sweetalert.min.js') }}"></script>
 {% block pluginsJS %}{% endblock %}
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('build/js/custom.js') }}"></script>
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
 <!-- Custom RC2018 Scripts -->
 <script src="{{ asset('build/js/rc2018.js') }}"></script>

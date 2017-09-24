@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="car.manager.car" class="CarBundle\Manager\CarManager" parent="core.manager.abstract"/>
+        <service id="car.manager.car_brand" class="CarBundle\Manager\CarBrandManager" parent="core.manager.abstract"/>
+        <service id="car.manager.car_document" class="CarBundle\Manager\CarDocumentManager" parent="core.manager.abstract"/>
+        <service id="car.manager.car_document_type" class="CarBundle\Manager\CarDocumentTypeManager" parent="core.manager.abstract"/>
+        <service id="car.manager.car_model" class="CarBundle\Manager\CarModelManager" parent="core.manager.abstract"/>
+        <service id="car.manager.reference_car_option" class="CarBundle\Manager\ReferenceCarOptionManager" parent="core.manager.abstract"/>
+        <service id="car.manager.reference_fuel_type" class="CarBundle\Manager\ReferenceFuelTypeManager" parent="core.manager.abstract"/>
+        <service id="car.manager.reference_gear_box" class="CarBundle\Manager\ReferenceGearBoxManager" parent="core.manager.abstract"/>
+        <service id="car.manager.sl_car" class="CarBundle\Manager\SlCarManager" parent="core.manager.abstract"/>
+    </services>
+</container>

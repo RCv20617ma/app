@@ -1,10 +1,10 @@
 {% extends "layout.html.twig" %}
-{% block title %}{{ 'customer.customers_list'|trans }}{% endblock %}
+{% block title %}{{ 'car.cars_list'|trans }}{% endblock %}
 
 
 
  {% block breadcrumb %}
-     <li><a href="{{ path('app_dashboard') }}">{{ 'app.dashboard'|trans }}</a></li><li class="active">{{ 'customer.customers_list'|trans }}</li>
+     <li><a href="{{ path('app_dashboard') }}">{{ 'app.dashboard'|trans }}</a></li><li class="active">{{ 'car.cars_list'|trans }}</li>
  {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
 
     <div class="x_panel">
         <div class="x_title">
-            <h2><i class="fa fa-list" aria-hidden="true"></i> {{ 'customer.customers_list'|trans }}</h2>
+            <h2><i class="fa fa-list" aria-hidden="true"></i> {{ 'car.cars_list'|trans }}</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <form method="get">
@@ -32,13 +32,13 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr class="headings">
-                        <th>{{ 'customer.full_name'|trans }}</th>
-                        <th>{{ 'customer.email'|trans }}</th>
-                        <th>{{ 'customer.phone'|trans }}</th>
-                        <th>{{ 'customer.gender'|trans }}</th>
-                        <th>{{ 'customer.web_site'|trans }}</th>
-                        <th>{{ 'app.created_at'|trans }}</th>
-                        <th>{{ 'app.updated_at'|trans }}</th>
+                        <th>{{ 'car.brand'|trans }}</th>
+                        <th>{{ 'car.model'|trans }}</th>
+                        <th>{{ 'car.car_number'|trans }}</th>
+                        <th>{{ 'car.car_number_ww'|trans }}</th>
+                        <th>{{ 'car.fuel_type'|trans }}</th>
+                        <th>{{ 'car.price_day'|trans }}</th>
+                        <th>{{ 'car.current_km'|trans }}</th>
                         <th>{{ 'app.action'|trans }}</th>
                     </tr>
                     </thead>
@@ -46,20 +46,20 @@
                     {% if pagination is not empty %}
                         {% for c in pagination %}
                             <tr>
-                                <td {% if c.socialReason is defined %}data-toggle="tooltip" data-placement="top" data-original-title="{{ 'customer.manager'|trans }} : {{ c.socialReason }}"{% endif %}>{{ c.fullName }}</td>
-                                <td>{{ c.mainEmail }}</td>
-                                <td>{% if c.mainPhone is not empty %} {{ c.mainPhone|phone_number_format('NATIONAL') }} {% endif %}</td>
-                                <td>{{ c.gender|trans }}</td>
-                                <td>{{ c.webSite is defined ? c.webSite : '' }}</td>
-                                <td>{{ c.createdAt|date() }}</td>
-                                <td>{{ c.updatedAt|date() }}</td>
+                                <td>{{ c.model.brand.label}}</td>
+                                <td>{{ c.model.label }}</td>
+                                <td>{{ c.carNumber }}</td>
+                                <td>{{ c.carNumberWW }}</td>
+                                <td>{{ c.fuelType.label|trans }}</td>
+                                <td>{{ c.priceDay }}</td>
+                                <td>{{ c.currentKm }}</td>
                                 <td></td>
                             </tr>
                         {% endfor %}
                     {% else %}
                         <tr>
                             <td class="msg" colspan="8">
-                                {{ 'msg.no_data'|trans|format('customer.label'|trans) }}
+                                {{ 'msg.no_data'|trans|format('car.label'|trans) }}
                             </td>
                         </tr>
                     {% endif %}

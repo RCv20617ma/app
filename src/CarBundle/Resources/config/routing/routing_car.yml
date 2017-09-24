@@ -1,0 +1,21 @@
+# car
+car_list:
+    path: /
+    defaults: { _controller: CarBundle:Car:list }
+    methods: [GET]
+
+car_list_models:
+    path: /models/{brand_id}
+    defaults: { _controller: CarBundle:Car:models }
+    methods: [GET]
+    requirements:
+        id: '\d+'
+    options:
+        expose: true
+
+car_car_edit:
+    path: /edit/{id}
+    defaults: { _controller: CarBundle:Car:edit, id: default }
+    methods: [GET,POST]
+    requirements:
+        id: '\d+'
