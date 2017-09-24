@@ -15,7 +15,7 @@ use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 class CustomerPhoneType extends AbstractType
 {
     const INPUT_TEXT_CLASS = 'form-control';
-    const INPUT_CHECKBOX_CLASS = 'js-switch';
+    const INPUT_CHECKBOX_CLASS = 'customer-phone-main';
 
     /**
      * {@inheritdoc}
@@ -35,7 +35,9 @@ class CustomerPhoneType extends AbstractType
                 'preferred_country_choices' => array('MA')
             ])
             ->add('main',CheckboxType::class,[
-                'label' => 'customer.main_phone','attr' => [
+                'label' => 'customer.main_phone',
+                'required' => false,
+                'attr' => [
                     'class' => self::INPUT_CHECKBOX_CLASS,
                 ]
             ]);

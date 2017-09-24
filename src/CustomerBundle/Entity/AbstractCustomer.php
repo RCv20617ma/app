@@ -2,6 +2,8 @@
 
 namespace CustomerBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use CoreBundle\Entity\Traits\AgencyTrait;
 use CoreBundle\Entity\Traits\CreatedByTrait;
 use CoreBundle\Entity\Traits\UpdatedByTrait;
@@ -9,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
+
 
 /**
  * Class AbstractContact
@@ -41,6 +44,7 @@ abstract class AbstractCustomer
 
     /**
      * @ORM\ManyToOne(targetEntity="ReferenceGender")
+     * @Assert\NotNull()
      */
     public $gender;
 
@@ -48,6 +52,10 @@ abstract class AbstractCustomer
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="CustomerPhone", mappedBy="customer", cascade={"all"})
+     * @Assert\Count(
+     *      min = 1,
+     *      max = 5,
+     * )
      */
     public $phones;
 
@@ -64,6 +72,13 @@ abstract class AbstractCustomer
      * @ORM\Column(name="archived", type="boolean", nullable=false, options={"default": false})
      */
     public $archived = false;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", nullable=true, options={"default": null})
+     */
+    public $address;
 
     /**
      * @ORM\OneToMany(targetEntity="CustomerDocument", mappedBy="customer")
@@ -220,6 +235,7 @@ abstract class AbstractCustomer
      */
     public function addDocument(\CustomerBundle\Entity\CustomerDocument $document)
     {
+        $document->setCustomer($this);
         $this->documents[] = $document;
 
         return $this;
@@ -243,6 +259,25 @@ abstract class AbstractCustomer
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return AbstractCustomer
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
     }
 
     /**

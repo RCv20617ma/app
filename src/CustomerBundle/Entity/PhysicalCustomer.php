@@ -3,6 +3,7 @@
 namespace CustomerBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,22 +11,33 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="physical_customer")
  * @ORM\Entity(repositoryClass="CustomerBundle\Repository\PhysicalCustomerRepository")
+ * @UniqueEntity(
+ *     fields={"firstName", "lastName", "agency"},
+ *     errorPath="lastName",
+ *     message="customer.name_already_used"
+ * )
  */
 class PhysicalCustomer extends AbstractCustomer
 {
     const DISCRIMINATOR = 'physical';
+    const DEFAULT_NATIONALITY = 'MA';
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=20)
+     * @ORM\Column(name="first_name", type="string", length=32)
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 2, max = 30)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=20)
+     * @ORM\Column(name="last_name", type="string", length=32)
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 2, max = 30)
      */
     private $lastName;
 
@@ -33,9 +45,17 @@ class PhysicalCustomer extends AbstractCustomer
      * @var \DateTime
      *
      * @ORM\Column(name="birth_date", type="date", nullable=true)
-     * @Assert\Date
+     * @Assert\Date()
      */
     private $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nationality", type="string", length=4,  nullable=false)
+     * @Assert\Country()
+     */
+    private $nationality;
 
     /**
      * Set firstName
@@ -131,6 +151,25 @@ class PhysicalCustomer extends AbstractCustomer
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param string $nationality
+     * @return PhysicalCustomer
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+
+        return $this;
     }
 
     public function getFullName()

@@ -5,27 +5,32 @@
 {% endblock %}
     {% form_theme form _self %}
     {% block _customer_phones_entry_row %}
-            <div class="customer-phone-block">
+        <div class="customer-phone-block">
             <div class="form-group">
                 <div class="col-sm-7">{{ form_widget(form.phone, { 'attr': {'class': 'form-control' }}) }}</div>
-                <div class="col-sm-4" style="padding-top: 4px;" >
-                <label>{{ form_widget(form.main) }} {{ 'customer.main_phone'|trans }}</label>
+                <div class="col-sm-4" style="padding-top: 4px;">
+                    <label>{{ form_widget(form.main) }} {{ 'customer.main_phone'|trans }}</label>
                 </div>
-                <div class="col-sm-1 button-container"  style="padding-top: 4px;" ></div>
+                <div class="col-sm-1 button-container" style="padding-top: 4px;"></div>
             </div>
-            </div>
+        </div>
     {% endblock %}
 
 
 {% block _customer_emails_entry_row %}
-            <div class="form-group">
-                <div class="col-sm-7">{{ form_widget(form.email, { 'attr': {'class': 'form-control' }}) }}</div>
-                <div class="col-sm-4" style="padding-top: 4px;" >
-                <label>{{ form_widget(form.main) }} {{ 'customer.main_email'|trans }}</label>
-                </div>
-                <div class="col-sm-1 button-container"  style="padding-top: 4px;" ></div>
+    <div class="customer-email-block">
+        <div class="form-group">
+            <div class="col-sm-7">
+                {{ form_widget(form.email, { 'attr': {'class': 'form-control' }}) }}
+                {{ form_errors(form.email) }}
             </div>
-    {% endblock %}
+            <div class="col-sm-4" style="padding-top: 4px;">
+                <label>{{ form_widget(form.main) }} {{ 'customer.main_email'|trans }}</label>
+            </div>
+            <div class="col-sm-1 button-container" style="padding-top: 4px;"></div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
     {{ form_start(form) }}
@@ -59,6 +64,7 @@
                         {{ form_label(form.gender) }}
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             {{ form_widget(form.gender) }}
+                            {{ form_errors(form.gender) }}
                         </div>
                     </div>
 
@@ -66,6 +72,7 @@
                         {{ form_label(form.lastName) }}
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             {{ form_widget(form.lastName) }}
+                            {{ form_errors(form.lastName) }}
                         </div>
                     </div>
 
@@ -73,6 +80,7 @@
                         {{ form_label(form.firstName) }}
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             {{ form_widget(form.firstName) }}
+                            {{ form_errors(form.firstName) }}
                         </div>
                     </div>
 
@@ -80,8 +88,18 @@
                         {{ form_label(form.birthDate) }}
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             {{ form_widget(form.birthDate) }}
+                            {{ form_errors(form.birthDate) }}
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.nationality) }}
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            {{ form_widget(form.nationality) }}
+                            {{ form_errors(form.nationality) }}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -114,12 +132,28 @@
                         <div class="col-md-10 col-sm-10 col-xs-12">
                             {{ form_widget(form.phones) }}
                         </div>
+                        {{ form_errors(form.phones) }}
                     </div>
+
+                    <hr>
 
                     <div class="form-group">
                         {{ form_label(form.emails) }}
                         <div class="col-md-10 col-sm-10 col-xs-12">
                             {{ form_widget(form.emails) }}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        {{ form_label(form.address) }}
+                        <div class="form-group">
+                            <div class="col-md-10 col-sm-10 col-xs-12 ">
+                                <div class="col-md-12">
+                                    {{ form_widget(form.address) }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,10 +162,40 @@
 
         <div class="col-md-12">
             <div class="x_panel">
+                <div class="x_title">
+                    <h2>Documents d'identité</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="x_panel">
                 <div class="x_content">
                     <div class="buttons">
-                        <button type="reset" class="btn btn-lg btn-danger pull-left"><i class="fa fa-times" ></i> {{ 'btn.cancel_post'|trans }}</button>
-                        <button type="submit" class="btn btn-lg btn-success pull-right"><i class="fa fa-save" ></i> {{ 'btn.save'|trans }}</button>
+                        <button type="reset" class="btn btn-lg btn-danger pull-left"><i
+                                    class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
+                        <button type="submit" class="btn btn-lg btn-success pull-right"><i
+                                    class="fa fa-save"></i> {{ 'btn.save'|trans }}</button>
                     </div>
                 </div>
             </div>

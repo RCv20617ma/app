@@ -14,4 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class CustomerDocumentType extends AbstractDocumentType
 {
     const DISCRIMINATOR = 'customer';
+
+    const CIN_LABEL = 'customer_document_type.CIN';
+    const DRIVING_LICENCE_LABEL = 'customer_document_type.DRIVING_LICENCE';
+    const PASSPORT_LABEL = 'customer_document_type.PASSPORT';
 }

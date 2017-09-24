@@ -161,4 +161,13 @@ class CustomerPhone
     {
         return $this->type;
     }
+
+    /**
+     * CustomerPhone constructor.
+     * @param bool $main
+     */
+    public function __construct($main = false)
+    {
+        $this->main = $main;
+    }
 }

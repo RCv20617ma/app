@@ -6,6 +6,7 @@ customer:
     civility: Civilité
     email: Email
     phone: Téléphone
+    address: Adresse
     web_site: Site web
     manager: Gérant
     first_name: Prénom
@@ -14,6 +15,7 @@ customer:
     phone_number: N° de téléphone
     main_phone: Principal
     main_email: Principal
+    nationality: Nationalité
 
 # Data translation
 reference_gender.MALE: Homme

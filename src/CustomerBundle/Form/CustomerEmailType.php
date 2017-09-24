@@ -17,7 +17,7 @@ use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 class CustomerEmailType extends AbstractType
 {
     const INPUT_TEXT_CLASS = 'form-control';
-    const INPUT_CHECKBOX_CLASS = 'js-switch';
+    const INPUT_CHECKBOX_CLASS = 'customer-email-main';
 
     /**
      * {@inheritdoc}
@@ -25,9 +25,13 @@ class CustomerEmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class,[
+                'required' => false,
+            ])
             ->add('main',CheckboxType::class,[
-                'label' => 'customer.main_email','attr' => [
+                'label' => 'customer.main_email',
+                'required' => false,
+                'attr' => [
                     'class' => self::INPUT_CHECKBOX_CLASS,
                 ]
             ]);

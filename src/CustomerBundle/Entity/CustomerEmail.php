@@ -2,8 +2,9 @@
 
 namespace CustomerBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use CoreBundle\Entity\ReferenceEmailType;
-use CustomerBundle\Entity\AbstractCustomer;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -36,6 +37,7 @@ class CustomerEmail
     /**
      * @var string
      * @ORM\Column(name="email", type="string", length=128)
+     * @Assert\Email()
      */
     protected $email;
 
@@ -158,5 +160,14 @@ class CustomerEmail
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * CustomerPhone constructor.
+     * @param bool $main
+     */
+    public function __construct($main = false)
+    {
+        $this->main = $main;
     }
 }

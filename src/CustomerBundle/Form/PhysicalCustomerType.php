@@ -7,7 +7,9 @@ use CustomerBundle\Entity\ReferenceGender;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -55,6 +57,17 @@ class PhysicalCustomerType extends AbstractType
                     'class' => self::LABEL_CLASS,
                 ],
             ])
+            ->add('nationality', CountryType::class, [
+                'label' => 'customer.nationality',
+                'attr' => [
+                    'class' => self::INPUT_TEXT_CLASS,
+                ],
+                'label_attr' => [
+                    'class' => self::LABEL_CLASS,
+                ],
+                'preferred_choices' => ['FR', 'MA', 'IT', 'ES', 'CA', 'US'],
+                'empty_data' => 'votre nationalité',
+            ])
             ->add('birthDate', DateType::class, [
                 'label' => 'customer.birth_date',
                 'widget' => 'single_text',
@@ -85,6 +98,29 @@ class PhysicalCustomerType extends AbstractType
                 'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
+                'label_attr' => [
+                    'class' => self::LABEL_CLASS_CONTACT,
+                ],
+            ])
+           /* ->add('documents', CollectionType::class, [
+                'label' => 'customer.email',
+                'entry_type' => CustomerDocumentType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'label_attr' => [
+                    'class' => self::LABEL_CLASS_CONTACT,
+                ],
+            ])
+           */
+            ->add('address', TextareaType::class, [
+                'label' => 'customer.address',
+                'required' => false,
+                'attr' => [
+                    'class' => self::INPUT_TEXT_CLASS,
+                    'style' => 'resize : vertical',
+                ],
                 'label_attr' => [
                     'class' => self::LABEL_CLASS_CONTACT,
                 ],

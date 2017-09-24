@@ -5,7 +5,13 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="customer.manager.physical_customer" class="CustomerBundle\Manager\PhysicalCustomerManager" parent="core.manager.abstract"/>
+        <service id="customer.manager.customer_document_type" class="CustomerBundle\Manager\CustomerDocumentTypeManager" parent="core.manager.abstract"/>
+        <service id="customer.manager.customer_document" class="CustomerBundle\Manager\CustomerDocumentManager" parent="core.manager.abstract">
+            <argument type="service" id="customer.manager.customer_document_type"/>
+        </service>
+        <service id="customer.manager.physical_customer" class="CustomerBundle\Manager\PhysicalCustomerManager" parent="core.manager.abstract">
+            <argument type="service" id="customer.manager.customer_document"/>
+        </service>
         <service id="customer.manager.abstract_customer" class="CustomerBundle\Manager\AbstractCustomerManager" parent="core.manager.abstract"/>
     </services>
 </container>
