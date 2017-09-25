@@ -1,0 +1,6 @@
+brand_list:
+    path: /
+    defaults: { _controller: CarBundle:ModelBrand:brands }
+    methods: [GET]
+    options:
+        expose: true

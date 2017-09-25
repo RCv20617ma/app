@@ -15,10 +15,10 @@ class CarRepository extends AbstractRepository
     /**
      * @param Agency $agency
      * @param null $key
-     * @param bool $getResult
+     * @param bool $withResult
      * @return array|\Doctrine\ORM\QueryBuilder
      */
-    public function findAllByAgency(Agency $agency,$key = null,$getResult = true){
+    public function findAllByAgency(Agency $agency, $key = null, $withResult = true){
         $qb = $this->filterByAgency($agency,'c');
         if($key){
             $qb->leftJoin('c.model','m')
@@ -36,7 +36,7 @@ class CarRepository extends AbstractRepository
 
             $qb->setParameter('key',"%" . $key . "%");
         }
-        return $getResult ? $qb->getQuery()->getResult() : $qb;
+        return $withResult ? $qb->getQuery()->getResult() : $qb;
     }
 
 }

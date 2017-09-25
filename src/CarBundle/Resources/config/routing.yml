@@ -1,3 +1,11 @@
 routing_car:
     prefix: /car
     resource: "routing/routing_car.yml"
+
+routing_model:
+    prefix: /model
+    resource: "routing/routing_model.yml"
+
+routing_brand:
+    prefix: /brand
+    resource: "routing/routing_brand.yml"

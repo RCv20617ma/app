@@ -10,28 +10,5 @@ namespace CarBundle\Repository;
  */
 class CarModelRepository extends \Doctrine\ORM\EntityRepository
 {
-    /**
-     * @param array $criteria
-     * @param bool $getResult
-     * @return array|\Doctrine\ORM\QueryBuilder
-     */
-    public function findCustom($criteria = [],$getResult = true){
-        $qb = $this->_em->createQueryBuilder();
-        $qb
-            ->select('m')
-            ->from($this->getEntityName(),'m')
-        ;
 
-        $operator =  'where';
-
-        if(isset($criteria['brand']) and !empty($criteria['brand'])){
-            $qb
-                ->join('m.brand','b')
-                ->$operator('b.id = :brand')
-                ->setParameter('brand',$criteria['brand'])
-            ;
-            $operator = 'andWhere';
-        }
-        return $getResult ? $qb->getQuery()->getResult() : $qb;
-    }
 }

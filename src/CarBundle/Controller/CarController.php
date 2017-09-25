@@ -20,10 +20,11 @@ use AppBundle\Entity\User;
 class CarController extends Controller
 {
 
-    public function listAction(Request $request) {
+    public function listAction(Request $request)
+    {
         /** @var User $userConnected */
         $userConnected = $this->getUser();
-        $allCars = $this->getCarManager()->getAllByAgency($userConnected->getAgency(),$request->query->get('key',null));
+        $allCars = $this->getCarManager()->getAllByAgency($userConnected->getAgency(), $request->query->get('key', null), false);
 
         /**
          * @var $paginator Paginator
@@ -35,12 +36,12 @@ class CarController extends Controller
             $request->query->getInt('limit', 10)
         );
 
-        return $this->render('CarBundle::index.html.twig',array(
+        return $this->render('CarBundle::index.html.twig', array(
             'pagination' => $pagination
         ));
     }
 
-     public function editAction(Request $request, Car $car = null)
+    public function editAction(Request $request, Car $car = null)
     {
         if (empty($car)) {
             $car = $this->getCarManager()->createByUser($this->getUser());
@@ -55,16 +56,7 @@ class CarController extends Controller
 
         return $this->render('CarBundle:car:edit.html.twig', [
             'car' => $car,
-            'form' => $form->createView(),
-            'brands' => $this->get('car.manager.car_brand')->findAll()
-        ]);
-    }
-
-    public function modelsAction(Request $request, CarBrand $brand)
-    {
-        $models = $this->get('car.manager.car_model')->findCustom(['brand'=>$brand->getId()]);
-        return new JsonResponse([
-            'models' => $this->get('jms_serializer')->serialize($models,'json')
+            'form' => $form->createView()
         ]);
     }
 

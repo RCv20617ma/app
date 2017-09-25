@@ -23,11 +23,11 @@ class CarManager extends AbstractManager
     /**
      * @param Agency $agency
      * @param null $key
-     * @param bool $getResult
+     * @param bool $withResult
      * @return mixed
      */
-    public function getAllByAgency(Agency $agency,$key = null,$getResult = true) {
-        return $this->getRepository()->findAllByAgency($agency,$key,$getResult);
+    public function getAllByAgency(Agency $agency,$key = null,$withResult = true) {
+        return $this->getRepository()->findAllByAgency($agency,$key,$withResult);
     }
 
     /**

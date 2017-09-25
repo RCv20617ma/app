@@ -1,0 +1,8 @@
+model_list:
+    path: /{brand}
+    defaults: { _controller: CarBundle:ModelBrand:models }
+    methods: [GET]
+    requirements:
+        id: '\d+'
+    options:
+        expose: true

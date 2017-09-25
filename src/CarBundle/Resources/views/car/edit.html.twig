@@ -57,34 +57,28 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="brand">Marque</label>
-                                <select id="brand" class="form-control">
-                                    {% for brand in brands %}
-                                        <option value="{{ brand.id }}">{{ brand.label }}</option>
-                                    {% endfor %}
-                                </select>
+                                <label for="brand">{{ "car.label"|trans }}</label>
+                                <select id="brand" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 {{ form_label(form.model) }}
-                                <select required id="carbundle_car_model" name="carbundle_car[model]" class="form-control">
-
-                                </select>
+                                <select required id="carbundle_car_model" name="carbundle_car[model]" class="form-control"></select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                {{ form_label(form.carNumber) }}
-                                {{ form_widget(form.carNumber) }}
+                                {{ form_label(form.carNumberWW) }}
+                                {{ form_widget(form.carNumberWW) }}
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                {{ form_label(form.carNumberWW) }}
-                                {{ form_widget(form.carNumberWW) }}
+                                {{ form_label(form.carNumber) }}
+                                {{ form_widget(form.carNumber) }}
                             </div>
                         </div>
                     </div>
@@ -104,9 +98,10 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="form-group">
+                            <div class="form-group has-feedback">
                                 {{ form_label(form.priceDay) }}
                                 {{ form_widget(form.priceDay) }}
+                                <span class="form-control-feedback right" aria-hidden="true">DH</span>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -116,9 +111,10 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="form-group">
+                            <div class="form-group has-feedback">
                                 {{ form_label(form.currentKm) }}
                                 {{ form_widget(form.currentKm) }}
+                                <span class="form-control-feedback right" aria-hidden="true">KM</span>
                             </div>
                         </div>
                     </div>
@@ -188,6 +184,10 @@
             </div>
         </div>
     </div>
+    {% if car.model %}
+        <input id="car_info" type="hidden" data-model="{{ car.model.id }}" data-brand="{{ car.model.brand.id }}" />
+    {% endif %}
+    {% do form.model.setRendered %}
     {{ form_end(form) }}
 {% endblock %}
 

@@ -97,7 +97,6 @@ class CarType extends AbstractType
             ->add('fuelType', EntityType::class, [
                 'class' => ReferenceFuelType::class,
                 'label' => 'car.fuel_type',
-                //'expanded' => true,
                 'attr' => [
                    'class' => self::SELECT_CLASS,
                 ],
@@ -105,7 +104,6 @@ class CarType extends AbstractType
             ->add('gearBox', EntityType::class, [
                 'class' => ReferenceGearBox::class,
                 'label' => 'car.gear_box',
-                //'expanded' => true,
                 'attr' => [
                      'class' => self::SELECT_CLASS,
                 ],
