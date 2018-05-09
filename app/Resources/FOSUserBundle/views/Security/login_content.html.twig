@@ -1,8 +1,7 @@
-{% extends "layout.html.twig" %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
-{% block container %}
-    <body>
-    <div class="container">
+
+{% block fos_user_content %}
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -51,5 +50,4 @@
             </div>
         </div>
     </div>
-    </body>
-{% endblock container %}
+{% endblock fos_user_content %}
