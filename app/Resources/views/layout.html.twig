@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +45,7 @@
                     <h1 class="page-header"> {% block header %}{% endblock %}</h1>
                 </div>
             </div>
-            {% include "BenDoctorsBundle:Default:flashes.html.twig" %}
+            {% include "AppBundle::flashes.html.twig" %}
             {% block content %}{% endblock %}
         </div>
     </div>
