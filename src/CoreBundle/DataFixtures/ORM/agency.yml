@@ -5,7 +5,7 @@ CoreBundle\Entity\Agency:
         locale: fr
         email: <email()>
         tva: 20
-        website: <url()>
+        website: <url(60)>
         address: <text(200)>
         tradeRegisterNumber: <numberBetween(9999999, 99999999)>
         cnssNumber: <numberBetween(9999, 999999)>
