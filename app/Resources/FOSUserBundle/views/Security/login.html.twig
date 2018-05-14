@@ -1,9 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,41 +42,45 @@
                 </div>
                 <div class="panel-body">
                     <form id="login_form" action="{{ path("fos_user_security_check") }}" role="form"
-                       method="post" data-toggle="validator" data-disable="false">
+                          method="post" data-toggle="validator" data-disable="false">
                         <fieldset>
-                               
-<input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.message|trans }}</div>
-                    {% endif %}
-                    <div class="form-group">
-                   
-                        <input type="text" class="form-control input-lg"
-                               placeholder="{{ 'security.login.username'|trans }}" id="username" name="_username"
-                               value="{{ last_username }}" required/>
-                           </div>
-                    
-                    <div class="form-group">
-                        <input type="password" class="form-control input-lg"
-                               placeholder="{{ 'security.login.password'|trans }}" id="password" name="_password"
-                               required/>
-                    
-                   </div>
+
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.message|trans }}</div>
+                            {% endif %}
+                            <div class="form-group">
+
+                                <input type="text" class="form-control input-lg"
+                                       placeholder="{{ 'security.login.username'|trans }}" id="username"
+                                       name="_username"
+                                       value="{{ last_username }}" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control input-lg"
+                                       placeholder="{{ 'security.login.password'|trans }}" id="password"
+                                       name="_password"
+                                       required/>
+
+                            </div>
 
 
                             <div class="checkbox">
-                                
-                                                <label class="content-color">
-                                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"  class="le-checbox auto-width inline" />
-                                                    <span class="bold">{{ 'security.login.remember_me'|trans }}</span>
-                                                </label>
-                                
-                               
+
+                                <label class="content-color">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"
+                                           class="le-checbox auto-width inline"/>
+                                    <span class="bold">{{ 'security.login.remember_me'|trans }}</span>
+                                </label>
+
+
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                             
-                        <button type="submit" class="btn btn-lg btn-success btn-block" >{{ 'security.login.submit'|trans }}</button>
-                     
+
+                            <button type="submit"
+                                    class="btn btn-lg btn-success btn-block">{{ 'security.login.submit'|trans }}</button>
+
                         </fieldset>
                     </form>
                 </div>

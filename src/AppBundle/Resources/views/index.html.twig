@@ -1,8 +1,43 @@
 {% extends "layout.html.twig" %}
 {% block title %}{{ 'app.dashboard'|trans }}{% endblock %}
 
- {% block breadcrumb %}
-     <li class="active">{{ 'app.dashboard'|trans }}</li>
+ {% block header %}
+     {{ 'app.dashboard'|trans }}
  {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-car fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>Voitures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 
