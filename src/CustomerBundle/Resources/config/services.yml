@@ -1,0 +1,11 @@
+services:
+
+    CustomerBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity,Repository,Tests,DataFixtures}'
+        autowire: true
+
+    CustomerBundle\Controller\:
+        resource: '../../Controller'
+        public: true
+        tags: ['controller.service_arguments']

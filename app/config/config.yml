@@ -2,8 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@CoreBundle/Resources/config/services.xml" }
-    - { resource: "@CustomerBundle/Resources/config/services.xml" }
+    - { resource: "@CoreBundle/Resources/config/services.yml" }
+    - { resource: "@CustomerBundle/Resources/config/services.yml" }
     - { resource: "@CarBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed

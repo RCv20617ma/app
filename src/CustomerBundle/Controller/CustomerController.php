@@ -50,7 +50,7 @@ class CustomerController extends Controller
      */
     private function getAbstractCustomerManager()
     {
-        return $this->get('customer.manager.abstract_customer');
+        return $this->get(AbstractCustomerManager::class);
     }
 
     /**
@@ -82,6 +82,6 @@ class CustomerController extends Controller
      */
     private function getPhysicalCustomerManager()
     {
-        return $this->get('customer.manager.physical_customer');
+        return $this->get(PhysicalCustomerManager::class);
     }
 }
