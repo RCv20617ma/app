@@ -1,5 +1,9 @@
 services:
-    CarBundle\:
-        resource: '../../*'
-        exclude: '../../{Entity,Repository,Tests,DataFixtures}'
+    _defaults:
         autowire: true
+        autoconfigure: true
+        public: true
+
+    #------------Mangers
+
+    #------------Controllers
