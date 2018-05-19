@@ -23,12 +23,14 @@ class CustomerController extends Controller
 {
 
     /**
-     *
+     * @param Request $request
+     * @param AbstractCustomerManager $abstractCustomerManager
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request) {
+    public function listAction(Request $request, AbstractCustomerManager $abstractCustomerManager) {
         /** @var User $userConnected */
         $userConnected = $this->getUser();
-        $allCustomers = $this->getAbstractCustomerManager()->getAllByAgency($userConnected->getAgency(),$request->query->get('key',null));
+        $allCustomers = $abstractCustomerManager->getAllByAgency($userConnected->getAgency(),$request->query->get('key',null));
 
         /**
          * @var $paginator Paginator
@@ -43,14 +45,6 @@ class CustomerController extends Controller
         return $this->render('CustomerBundle::index.html.twig',array(
             'pagination' => $pagination
         ));
-    }
-
-    /**
-     * @return AbstractCustomerManager
-     */
-    private function getAbstractCustomerManager()
-    {
-        return $this->get(AbstractCustomerManager::class);
     }
 
     /**
