@@ -2,9 +2,9 @@
 
 namespace CustomerBundle\Controller;
 
-use CustomerBundle\Entity\CustomerEmail;
-use CustomerBundle\Entity\CustomerPhone;
-use CustomerBundle\Entity\MoralCustomer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 use CustomerBundle\Entity\PhysicalCustomer;
 use CustomerBundle\Form\PhysicalCustomerType;
 use CustomerBundle\Manager\PhysicalCustomerManager;
@@ -16,8 +16,8 @@ use AppBundle\Entity\User;
 use CustomerBundle\Manager\AbstractCustomerManager;
 
 /**
- * customer controller.
- *
+ * Class CustomerController
+ * @Route("/customer")
  */
 class CustomerController extends Controller
 {
@@ -26,15 +26,16 @@ class CustomerController extends Controller
      * @param Request $request
      * @param AbstractCustomerManager $abstractCustomerManager
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/", name="customer_list")
      */
-    public function listAction(Request $request, AbstractCustomerManager $abstractCustomerManager) {
+    public function indexAction(Request $request, AbstractCustomerManager $abstractCustomerManager)
+    {
         /** @var User $userConnected */
         $userConnected = $this->getUser();
-        $allCustomers = $abstractCustomerManager->getAllByAgency($userConnected->getAgency(),$request->query->get('key',null));
+        $allCustomers = $abstractCustomerManager->getAllByAgency($userConnected->getAgency(), $request->query->get('key', null));
 
-        /**
-         * @var $paginator Paginator
-         */
+        /** @var $paginator Paginator */
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $allCustomers,
@@ -42,7 +43,7 @@ class CustomerController extends Controller
             $request->query->getInt('limit', 10)
         );
 
-        return $this->render('CustomerBundle::index.html.twig',array(
+        return $this->render('CustomerBundle::index.html.twig', array(
             'pagination' => $pagination
         ));
     }
@@ -53,8 +54,15 @@ class CustomerController extends Controller
      * @param PhysicalCustomer|null $physicalCustomer
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \CoreBundle\Exception\UnsupportedObjectException
+     *
+     * @Route("/edit", name="customer_edit", requirements={"id"="\d+"})
+     * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, PhysicalCustomerManager $physicalCustomerManager, PhysicalCustomer $physicalCustomer = null)
+    public function editAction(
+        Request $request,
+        PhysicalCustomerManager $physicalCustomerManager,
+        PhysicalCustomer $physicalCustomer = null
+    )
     {
         if (empty($physicalCustomer)) {
             $physicalCustomer = $physicalCustomerManager->createByUser($this->getUser());
@@ -64,7 +72,7 @@ class CustomerController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $physicalCustomerManager->persist($physicalCustomer, true);
-            return $this->redirectToRoute('customer_physical_customer_edit', array('id' => $physicalCustomer->getId()));
+            return $this->redirectToRoute('customer_edit', array('id' => $physicalCustomer->getId()));
         }
 
         return $this->render('CustomerBundle:Customer:Physical/edit.html.twig', [
