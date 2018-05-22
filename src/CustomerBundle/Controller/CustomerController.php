@@ -27,7 +27,7 @@ class CustomerController extends Controller
      * @param AbstractCustomerManager $abstractCustomerManager
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/", name="customer_list")
+     * @Route("/", name="customer_index")
      */
     public function indexAction(Request $request, AbstractCustomerManager $abstractCustomerManager)
     {
@@ -55,7 +55,7 @@ class CustomerController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \CoreBundle\Exception\UnsupportedObjectException
      *
-     * @Route("/edit", name="customer_edit", requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="customer_edit", requirements={"id"="\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(
