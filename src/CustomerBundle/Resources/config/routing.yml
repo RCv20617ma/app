@@ -1,3 +1,0 @@
-routing_customer:
-    prefix: /customer
-    resource: "routing/routing_customer.yml"
