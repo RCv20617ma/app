@@ -5,15 +5,15 @@ namespace CustomerBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-use CustomerBundle\Entity\PhysicalCustomer;
-use CustomerBundle\Form\PhysicalCustomerType;
-use CustomerBundle\Manager\PhysicalCustomerManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\Paginator;
 
 use AppBundle\Entity\User;
 use CustomerBundle\Manager\AbstractCustomerManager;
+use CustomerBundle\Entity\PhysicalCustomer;
+use CustomerBundle\Form\PhysicalCustomerType;
+use CustomerBundle\Manager\PhysicalCustomerManager;
 
 /**
  * Class CustomerController
@@ -55,7 +55,7 @@ class CustomerController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \CoreBundle\Exception\UnsupportedObjectException
      *
-     * @Route("/edit/{id}", name="customer_edit", requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="customer_edit", defaults={"id" = null }, requirements={"id"="\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(
