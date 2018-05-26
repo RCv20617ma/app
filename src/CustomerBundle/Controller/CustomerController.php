@@ -11,9 +11,6 @@ use Knp\Component\Pager\Paginator;
 
 use AppBundle\Entity\User;
 use CustomerBundle\Manager\AbstractCustomerManager;
-use CustomerBundle\Entity\PhysicalCustomer;
-use CustomerBundle\Form\PhysicalCustomerType;
-use CustomerBundle\Manager\PhysicalCustomerManager;
 
 /**
  * Class CustomerController
@@ -48,36 +45,5 @@ class CustomerController extends Controller
         ));
     }
 
-    /**
-     * @param Request $request
-     * @param PhysicalCustomerManager $physicalCustomerManager
-     * @param PhysicalCustomer|null $physicalCustomer
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \CoreBundle\Exception\UnsupportedObjectException
-     *
-     * @Route("/edit/{id}", name="customer_edit", defaults={"id" = null }, requirements={"id"="\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(
-        Request $request,
-        PhysicalCustomerManager $physicalCustomerManager,
-        PhysicalCustomer $physicalCustomer = null
-    )
-    {
-        if (empty($physicalCustomer)) {
-            $physicalCustomer = $physicalCustomerManager->createByUser($this->getUser());
-        }
-        $form = $this->createForm(PhysicalCustomerType::class, $physicalCustomer);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $physicalCustomerManager->persist($physicalCustomer, true);
-            return $this->redirectToRoute('customer_edit', array('id' => $physicalCustomer->getId()));
-        }
-
-        return $this->render('CustomerBundle:Customer:Physical/edit.html.twig', [
-            'customer' => $physicalCustomer,
-            'form' => $form->createView(),
-        ]);
-    }
 }
+

@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@AppBundle/Resources/config/services.yml" }
     - { resource: "@CoreBundle/Resources/config/services.yml" }
     - { resource: "@CustomerBundle/Resources/config/services.yml" }
     - { resource: "@CarBundle/Resources/config/services.yml" }
@@ -41,6 +42,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes: ['bootstrap_3_layout.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -100,6 +102,10 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+            timestampable: true
+            softdeleteable: true
+            sluggable: true
+            blameable: true
 
 # Knp Paginator Bundle
 knp_paginator:

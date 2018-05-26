@@ -2,6 +2,9 @@
 
 namespace CustomerBundle\Entity;
 
+use CoreBundle\Entity\EntityCrudInterface;
+use CustomerBundle\Form\PhysicalCustomerType;
+use CustomerBundle\Manager\PhysicalCustomerManager;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="physical_customer")
  * @ORM\Entity(repositoryClass="CustomerBundle\Repository\PhysicalCustomerRepository")
  */
-class PhysicalCustomer extends AbstractCustomer
+class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
 {
     const DISCRIMINATOR = 'physical';
 
@@ -136,5 +139,36 @@ class PhysicalCustomer extends AbstractCustomer
     public function getFullName()
     {
         return $this->getLastName().' '.$this->getFirstName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFormType() {
+        return PhysicalCustomerType::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSlug()
+    {
+        return 'customer';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEntityManager()
+    {
+        return PhysicalCustomerManager::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreFixView()
+    {
+        return 'CustomerBundle:Customer:Physical';
     }
 }

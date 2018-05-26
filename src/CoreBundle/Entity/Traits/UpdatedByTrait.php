@@ -2,6 +2,8 @@
 
 namespace CoreBundle\Entity\Traits;
 
+
+use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\User;
 
 /**
@@ -15,6 +17,7 @@ trait UpdatedByTrait
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="updated_by_id", referencedColumnName="id", nullable=true)
+     * @Gedmo\Blameable(on="update")
      */
     private $updatedBy;
 

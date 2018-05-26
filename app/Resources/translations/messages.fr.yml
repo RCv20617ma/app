@@ -19,7 +19,7 @@ reference_gender_.FEMALE: Féminin
 # General translation
 msg:
     no_data: Aucun %s trouvés
-    deleted: %s a été supprimé avec succès
+    deleted: '%s a été supprimé avec succès'
     no_deleted: Impossible de supprimer ce %s
     delete_confirm: Êtes-vous sûr de vouloir supprimer ce %s
     added: Votre %d a été ajouté avec succès

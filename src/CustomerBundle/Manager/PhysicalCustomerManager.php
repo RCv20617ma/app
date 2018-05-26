@@ -25,6 +25,7 @@ class PhysicalCustomerManager extends AbstractManager
     /**
      * @param Agency $agency
      * @return mixed
+     * @throws \Doctrine\ORM\ORMException
      */
     public function getAllByAgency(Agency $agency) {
         return $this->getRepository()->findAllByAgency($agency);
@@ -39,8 +40,6 @@ class PhysicalCustomerManager extends AbstractManager
         /** @var PhysicalCustomer $physicalCustomer */
         $physicalCustomer = parent::create();
         $physicalCustomer->setAgency($userConnected->getAgency());
-        $physicalCustomer->setCreatedBy($userConnected);
-        $physicalCustomer->setUpdatedBy($userConnected);
 
         $physicalCustomer->addPhone(new CustomerPhone());
         $physicalCustomer->addEmail(new CustomerEmail());
