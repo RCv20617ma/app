@@ -31,7 +31,7 @@ class MoralCustomer extends AbstractCustomer
     /**
      * @var string
      *
-     * @ORM\Column(name="web_site", type="string", length=64, nullable=true)
+     * @ORM\Column(name="web_site", type="string", length=255, nullable=true)
      */
     private $webSite;
 

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * MaintenanceType
  *
  * @ORM\Table(name="maintenance_type")
- * @ORM\Entity(repositoryClass="CarBundle\Repository\MaintenanceTypeRepository")
+ * @ORM\Entity()
  */
 class TypeMaintenance
 {
@@ -24,9 +24,9 @@ class TypeMaintenance
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=255)
+     * @ORM\Column(name="Label", type="string", length=255)
      */
-    private $libelle;
+    private $label ;
 
 
     /**
@@ -40,32 +40,32 @@ class TypeMaintenance
     }
 
     /**
-     * Set libelle
+     * Set label
      *
-     * @param string $libelle
+     * @param string $label
      *
      * @return TypeMaintenance
      */
-    public function setLibelle($libelle)
+    public function setLabel($label)
     {
-        $this->libelle = $libelle;
+        $this->label  = $label;
 
         return $this;
     }
 
     /**
-     * Get libelle
+     * Get label
      *
      * @return string
      */
-    public function getLibelle()
+    public function getLabel ()
     {
-        return $this->libelle;
+        return $this->label ;
     }
 
     public function __toString()
     {
-        return sprintf('%s', $this->getLibelle());
+        return sprintf('%s', $this->getLabel());
     }
 }
 

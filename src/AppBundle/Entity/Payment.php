@@ -28,34 +28,6 @@ class Payment extends  AbstractPayment
     private $detail;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="amount", type="decimal", precision=10, scale=2)
-     */
-    private $amount;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
-     */
-    private $date;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="number", type="string", length=64, nullable=true)
-     */
-    private $number;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="note", type="string", length=255, nullable=true)
-     */
-    private $note;
-
-    /**
      * Get id
      *
      * @return int
@@ -63,102 +35,6 @@ class Payment extends  AbstractPayment
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set amount
-     *
-     * @param string $amount
-     *
-     * @return Payment
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Get amount
-     *
-     * @return string
-     */
-    public function getAmount()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Payment
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * Set number
-     *
-     * @param string $number
-     *
-     * @return Payment
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
-
-        return $this;
-    }
-
-    /**
-     * Get number
-     *
-     * @return string
-     */
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    /**
-     * Set note
-     *
-     * @param string $note
-     *
-     * @return Payment
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    /**
-     * Get note
-     *
-     * @return string
-     */
-    public function getNote()
-    {
-        return $this->note;
     }
 
     /**
@@ -171,7 +47,6 @@ class Payment extends  AbstractPayment
     public function setModePayment(\CoreBundle\Entity\ReferenceModePayment $modePayment = null)
     {
         $this->modePayment = $modePayment;
-
         return $this;
     }
 
@@ -195,7 +70,6 @@ class Payment extends  AbstractPayment
     public function setDetail(\AppBundle\Entity\PaymentDetail $detail = null)
     {
         $this->detail = $detail;
-
         return $this;
     }
 

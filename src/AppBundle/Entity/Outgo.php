@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Outgo
  *
  *
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OutgoRepository")
+ * @ORM\Entity()
  */
 class Outgo extends AbstractPayment
 {

@@ -6,7 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use AppBundle\Entity\Outgo;
 
 
 class CarMaintenanceType extends AbstractType
@@ -16,12 +18,7 @@ class CarMaintenanceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numberPayment', null, [
-                        'attr' => [
-                            'placeholder' => '12345678'
-                        ]
-                    ])
-                ->add('comment')
+        $builder->add('comment')
                 ->add('dateMaintenance', DateType::class, [
                     'widget' => 'single_text',
                     'input' => 'datetime',
@@ -36,7 +33,11 @@ class CarMaintenanceType extends AbstractType
                         ]
                     ])
                 ->add('typeMaintenance')
-                ->add('car');
+                ->add('car')
+
+            ->add('outgo', EntityType::class, [
+                'class' => Outgo::class,
+            ]);
     }/**
      * {@inheritdoc}
      */

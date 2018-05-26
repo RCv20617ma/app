@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use CoreBundle\Entity\EntityCrudInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use CarBundle\Form\CarMaintenanceType;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * CarMaintenance
  *
  * @ORM\Table(name="car_maintenance")
- * @ORM\Entity(repositoryClass="CarBundle\Repository\CarMaintenanceRepository")
+ * @ORM\Entity()
  */
 class CarMaintenance implements EntityCrudInterface
 {
@@ -41,13 +41,11 @@ class CarMaintenance implements EntityCrudInterface
      */
     protected $file;
 
-    /**
-     * @var int
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(name="numberPayment", type="string", length=255)
-     */
-    private $numberPayment;
+
+    public function __construct()
+    {
+        $this->outgo = new ArrayCollection();
+    }
 
     /**
      * @var int
@@ -75,37 +73,11 @@ class CarMaintenance implements EntityCrudInterface
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Payment")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Outgo" , cascade={"persist"})
      */
-    private $payment;
+    private $outgo;
 
-
-    /**
-     * Set customer
-     *
-     * @param \AppBundle\Entity\AbstractPayment $customer
-     *
-     * @return CarMaintenance
-     */
-    public function setPayment(\AppBundle\Entity\Payment $payment = null)
-    {
-        $this->payment = $payment;
-
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \AppBundle\Entity\Payment
-     */
-    public function getPayment()
-    {
-        return $this->payment;
-    }
-
-
-
+    
 
     /**
      * Get id
@@ -115,30 +87,6 @@ class CarMaintenance implements EntityCrudInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set numberPayment
-     *
-     * @param integer $numberPayment
-     *
-     * @return CarMaintenance
-     */
-    public function setNumberPayment($numberPayment)
-    {
-        $this->numberPayment = $numberPayment;
-
-        return $this;
-    }
-
-    /**
-     * Get numberPayment
-     *
-     * @return integer
-     */
-    public function getNumberPayment()
-    {
-        return $this->numberPayment;
     }
 
     /**
@@ -284,6 +232,41 @@ class CarMaintenance implements EntityCrudInterface
     public function getCar()
     {
         return $this->car;
+    }
+
+
+    /**
+     * Add outgo
+     *
+     * @param \AppBundle\Entity\Outgo $outgo
+     * @return Consultation
+     */
+    public function addOutgo(\AppBundle\Entity\Outgo $outgo)
+    {
+        $outgo->setConsultation($this);
+        $this->outgo->add($outgo);
+
+        return $this;
+    }
+
+    /**
+     * Remove outgo
+     *
+     * @param \AppBundle\Entity\Outgo $outgo
+     */
+    public function removeOutgo(\AppBundle\Entity\Outgo $outgo)
+    {
+        $this->outgo->removeElement($outgo);
+    }
+
+    /**
+     * Get consultationmeds
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getOutgo()
+    {
+        return $this->outgo;
     }
 
     /**
