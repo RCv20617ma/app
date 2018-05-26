@@ -10,7 +10,6 @@ class EntityCrud {
 
     public function getEntityManagerClass() {
      return [
-         'car' => Car::class,
          'customer' => PhysicalCustomerManager::class,
      ];
     }
@@ -19,5 +18,4 @@ class EntityCrud {
 
         return $this->getEntityManagerClass()[$entity];
     }
-
 }
