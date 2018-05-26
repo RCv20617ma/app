@@ -3,7 +3,10 @@ services:
         autowire: true
         autoconfigure: true
         public: true
-
+    app.form.registration:
+        class: AppBundle\Form\RegistrationFormType
+        tags:
+            - { name: form.type, alias: app_user_registration }
 
     AppBundle\Service\EntityCrud: ~
     #------------Mangers
