@@ -6,6 +6,7 @@ services:
 
     #------------Mangers
     CarBundle\Manager\CarManager: ~
+    CarBundle\Manager\CarMaintenanceManager: ~
 
     #------------Controllers
     CarBundle\Controller\CarMaintenanceController: ~
