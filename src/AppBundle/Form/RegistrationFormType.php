@@ -15,33 +15,26 @@ class RegistrationFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName')
-                ->add('lastName')
+        $builder->add('firstName',Null,array('label' => 'user.firstName'))
+                ->add('lastName',Null,array('label' => 'user.lastName'))
                 ->add('agency', EntityType::class, array(
-
                  'class' => 'CoreBundle:Agency',
-                    'choice_label' => 'name'));
+                 'label' => 'user.agency',
+                 'choice_label' => 'name'));
     }
 
    public function getParent()
- 
    {
        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
    }
  
    public function getBlockPrefix()
- 
    {
        return 'app_user_registration';
    }
  
    public function getName()
- 
    {
        return $this->getBlockPrefix();
    }
-
-
-
-
 }

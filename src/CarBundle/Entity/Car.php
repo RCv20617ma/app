@@ -63,6 +63,9 @@ class Car extends AbstractCar
      */
     private $priceDay;
 
+
+     
+
     /**
      * Set carNumber
      *

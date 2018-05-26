@@ -6,6 +6,7 @@ use CoreBundle\Entity\Traits\AgencyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class AbstractCar
@@ -63,6 +64,12 @@ Abstract class AbstractCar
      */
     protected $documents;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="CarMaintenance", mappedBy="car")
+     */
+    protected $carMaintenance;
+
     /**
      * Get id
      *
@@ -78,7 +85,8 @@ Abstract class AbstractCar
      */
     public function __construct()
     {
-        $this->options = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->options = new ArrayCollection();
+        $this->carMaintenance = new ArrayCollection();
     }
 
     /**
@@ -219,5 +227,42 @@ Abstract class AbstractCar
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+
+    /**
+     * Add carMaintenance
+     *
+     * @param \CarBundle\Entity\CarMaintenance $CarMaintenance
+     *
+     * @return \CarBundle\Entity\CarMaintenance
+     */
+    public function addCarMaintenance(\CarBundle\Entity\CarMaintenance $CarMaintenance)
+    {
+        $this->CarMaintenance[] = $CarMaintenance;
+
+        return $this;
+    }
+
+    /**
+     * Remove CarMaintenance
+     *
+     * @param \CarBundle\Entity\CarDocument $CarMaintenance
+     */
+    public function removeCarMaintenance(\CarBundle\Entity\CarMaintenance $CarMaintenance)
+    {
+        $this->CarMaintenance->removeElement($CarMaintenance);
+    }
+
+
+
+    /**
+     * Get carMaintenance
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCarMaintenance()
+    {
+        return $this->carMaintenance;
     }
 }

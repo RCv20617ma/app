@@ -410,4 +410,9 @@ class Agency
     {
         return $this->phone;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
