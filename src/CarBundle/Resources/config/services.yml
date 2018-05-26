@@ -3,9 +3,3 @@ services:
         autowire: true
         autoconfigure: true
         public: true
-
-    #------------Mangers
-    CarBundle\Manager\CarMaintenanceManager: ~
-
-    #------------Controllers
-    CarBundle\Controller\CarMaintenanceController: ~

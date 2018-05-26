@@ -11,7 +11,6 @@ class EntityCrud {
     public function getEntityManagerClass() {
      return [
          'customer' => PhysicalCustomerManager::class,
-         'CarMaintenance' => CarMaintenanceManager::class,
      ];
     }
 

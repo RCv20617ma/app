@@ -66,11 +66,6 @@ Abstract class AbstractCar
 
 
     /**
-     * @ORM\OneToMany(targetEntity="CarMaintenance", mappedBy="car")
-     */
-    protected $carMaintenance;
-
-    /**
      * Get id
      *
      * @return int
@@ -227,42 +222,5 @@ Abstract class AbstractCar
     public function getDocuments()
     {
         return $this->documents;
-    }
-
-
-    /**
-     * Add carMaintenance
-     *
-     * @param \CarBundle\Entity\CarMaintenance $CarMaintenance
-     *
-     * @return \CarBundle\Entity\CarMaintenance
-     */
-    public function addCarMaintenance(\CarBundle\Entity\CarMaintenance $CarMaintenance)
-    {
-        $this->CarMaintenance[] = $CarMaintenance;
-
-        return $this;
-    }
-
-    /**
-     * Remove CarMaintenance
-     *
-     * @param \CarBundle\Entity\CarDocument $CarMaintenance
-     */
-    public function removeCarMaintenance(\CarBundle\Entity\CarMaintenance $CarMaintenance)
-    {
-        $this->CarMaintenance->removeElement($CarMaintenance);
-    }
-
-
-
-    /**
-     * Get carMaintenance
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCarMaintenance()
-    {
-        return $this->carMaintenance;
     }
 }
