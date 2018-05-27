@@ -1,4 +1,5 @@
 <?php
+
 namespace CoreBundle\Entity\MappedSuperClass;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -24,6 +25,11 @@ abstract class AbstractReference
      * @ORM\column(name="label", type="string", length=255)
      */
     protected $label;
+
+    /**
+     * @var string
+     */
+    protected $translatedLabel;
 
     /**
      * @return int
@@ -52,8 +58,30 @@ abstract class AbstractReference
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getTranslatedLabel()
+    {
+        return $this->translatedLabel;
+    }
+
+    /**
+     * @param string $translatedLabel
+     * @return AbstractReference
+     */
+    public function setTranslatedLabel($translatedLabel)
+    {
+        $this->translatedLabel = $translatedLabel;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return $this->label;
+        return !empty($this->getTranslatedLabel()) ? $this->getTranslatedLabel() : $this->getLabel();
     }
 }
