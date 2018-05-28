@@ -2,6 +2,7 @@
 
 namespace CoreBundle\Entity\Traits;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Entity\User;
 
 /**
@@ -15,6 +16,7 @@ trait CreatedByTrait
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by_id", referencedColumnName="id", nullable=true)
+     * @Gedmo\Blameable(on="create")
      */
     private $createdBy;
 

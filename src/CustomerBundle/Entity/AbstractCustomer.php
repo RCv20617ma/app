@@ -71,6 +71,14 @@ abstract class AbstractCustomer
     public $documents;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    public $address;
+
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -272,5 +280,29 @@ abstract class AbstractCustomer
         }
         return $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();
 
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return AbstractCustomer
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

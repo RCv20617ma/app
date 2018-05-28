@@ -6,6 +6,7 @@ customer:
     civility: Civilité
     email: Email
     phone: Téléphone
+    address: Adresse postale
     web_site: Site web
     manager: Gérant
     first_name: Prénom

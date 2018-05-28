@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+
+    AppBundle\Service\EntityCrud: ~
+    #------------Mangers
+
+    #------------Controllers
+
+    AppBundle\Controller\AppController: ~
