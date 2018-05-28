@@ -2,7 +2,12 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: true
+        public: false
+
+    #------------Listeners
+    CoreBundle\EventListener\ReferenceTranslatorListener:
+        tags:
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
 
     #------------Mangers
     CoreBundle\Manager\AbstractManager: ~
