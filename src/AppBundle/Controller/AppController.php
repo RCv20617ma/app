@@ -41,6 +41,10 @@ class AppController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($entity, true);
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', 'Welcome to the Death Star, have a magical day!')
+            ;
             return $this->redirectToRoute('entity_edit', ['id' => $entity->getId(), 'entity' => $entity->getSlug()]);
         }
 

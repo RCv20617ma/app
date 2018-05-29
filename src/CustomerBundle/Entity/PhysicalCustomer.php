@@ -4,7 +4,7 @@ namespace CustomerBundle\Entity;
 
 use CoreBundle\Entity\EntityCrudInterface;
 use CustomerBundle\Form\PhysicalCustomerType;
-use CustomerBundle\Manager\PhysicalCustomerManager;
+use CustomerBundle\Manager\SLCarManager;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -161,7 +161,7 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
      */
     public function getEntityManager()
     {
-        return PhysicalCustomerManager::class;
+        return SLCarManager::class;
     }
 
     /**

@@ -5,5 +5,5 @@ services:
         public: true
 
     #------------Mangers
-
+    CarBundle\Manager\SLCarManager: ~
     #------------Controllers

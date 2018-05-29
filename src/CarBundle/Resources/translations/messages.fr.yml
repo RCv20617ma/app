@@ -1,0 +1,6 @@
+reference.fuel_type.GASOLINE: Essence
+reference.fuel_type.DIESEL: Diesel
+
+reference.car_option.GPS_NAVIGATOR: GPS de navigation
+reference.car_option.AIR_CONDITIONING: Climatisation
+reference.car_option.GPS_LOCATION: GPS de localisation

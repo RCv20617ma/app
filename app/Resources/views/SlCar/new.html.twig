@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Slcar creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('slcar_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    var $sport = $('#slcar_brand');
+    alert('hello');
+    $('#slcar_brand').change(function() {
+        alert(44);
+        var $form = $(this).closest('form');
+        var data = {};
+        data[$sport.attr('name')] = $sport.val();
+        $.ajax({
+            url : $form.attr('action'),
+            type: $form.attr('method'),
+            data : data,
+            success: function(html) {
+                $('#slcar_model').replaceWith(
+                    $(html).find('#slcar_model')
+                );
+            }
+        });
+    });
+</script>
+{% endblock javascripts %}

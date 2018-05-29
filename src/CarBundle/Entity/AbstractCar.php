@@ -40,6 +40,11 @@ Abstract class AbstractCar
     protected $model;
 
     /**
+     * @ORM\ManyToOne(targetEntity="CarBrand")
+     */
+    protected $brand;
+
+    /**
      * @ORM\ManyToMany(targetEntity="ReferenceCarOption")
      * @ORM\JoinTable(name="abstract_car_option",
      *      joinColumns={@JoinColumn(name="car_id", referencedColumnName="id")},
@@ -219,5 +224,29 @@ Abstract class AbstractCar
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \CarBundle\Entity\CarBrand $brand
+     *
+     * @return AbstractCar
+     */
+    public function setBrand(\CarBundle\Entity\CarBrand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \CarBundle\Entity\CarBrand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }

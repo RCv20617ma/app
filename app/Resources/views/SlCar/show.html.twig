@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Slcar</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Carnumber</th>
+                <td>{{ slCar.carNumber }}</td>
+            </tr>
+            <tr>
+                <th>Originalpriceday</th>
+                <td>{{ slCar.originalPriceDay }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ slCar.id }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if slCar.createdAt %}{{ slCar.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if slCar.updatedAt %}{{ slCar.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('slcar_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('slcar_edit', { 'id': slCar.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

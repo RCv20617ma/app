@@ -2,6 +2,8 @@
 
 namespace CarBundle\Entity;
 
+use CarBundle\Form\SlCarType;
+use CustomerBundle\Manager\SLCarManager;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -104,5 +106,60 @@ class SlCar extends AbstractCar
     public function getOwnerAgency()
     {
         return $this->ownerAgency;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \CarBundle\Entity\CarBrand $brand
+     *
+     * @return SlCar
+     */
+    public function setBrand(\CarBundle\Entity\CarBrand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \CarBundle\Entity\CarBrand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFormType() {
+        return SlCarType::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSlug()
+    {
+        return 'sl_car';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEntityManager()
+    {
+        return SLCarManager::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreFixView()
+    {
+        return 'SlCar';
     }
 }

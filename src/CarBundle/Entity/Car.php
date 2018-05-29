@@ -230,4 +230,28 @@ class Car extends AbstractCar
     {
         return $this->priceDay;
     }
+
+    /**
+     * Set brand
+     *
+     * @param \CarBundle\Entity\CarBrand $brand
+     *
+     * @return Car
+     */
+    public function setBrand(\CarBundle\Entity\CarBrand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \CarBundle\Entity\CarBrand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
 }
