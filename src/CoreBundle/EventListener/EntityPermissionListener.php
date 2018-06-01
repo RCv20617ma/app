@@ -4,8 +4,8 @@ namespace CoreBundle\EventListener;
 
 use AppBundle\Entity\User;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class EntityPermissionListener
 {
@@ -39,7 +39,7 @@ class EntityPermissionListener
             /** @var User $user */
             $user = $this->tokenStorage->getToken()->getUser();
             if ($user->getAgency()->getId() != $entity->getAgency()->getId()) {
-                throw new NotFoundHttpException();
+                throw new AccessDeniedException();
             }
         }
     }
