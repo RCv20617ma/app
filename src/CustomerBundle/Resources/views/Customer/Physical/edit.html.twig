@@ -1,7 +1,6 @@
 {% extends '::form.html.twig' %}
     {% form_theme form _self %}
     {% block _customer_phones_entry_row %}
-        {#{{ dump(form) }}#}
         <div class="form-group {% if not form.vars.valid %} has-error {% endif %}">
             <div class="customer-phone-block">
                 {{ form_widget(form.phone) }}

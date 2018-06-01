@@ -13,6 +13,10 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
 
+    CoreBundle\EventListener\EntityPermissionListener:
+        tags:
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
     #------------Mangers
     CoreBundle\Manager\AbstractManager: ~
 
