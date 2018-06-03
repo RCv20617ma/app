@@ -18,7 +18,10 @@
                 <a href="#"><i class="fa fa-users fa-fw"></i> Clients<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Liste des clients</a>
+                        <a href="{{ path("customer_index") }}">Liste des clients</a>
+                    </li>
+                    <li>
+                        <a href="{{ path("entity_edit", {"entity":"customer"}) }}">Nouveau client</a>
                     </li>
                 </ul>
             </li>

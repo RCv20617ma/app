@@ -32,14 +32,12 @@ class PhysicalCustomerManager extends AbstractManager
     }
 
     /**
-     * @param User $userConnected
-     * @return PhysicalCustomer
+     * @return PhysicalCustomer|mixed
      */
-    public function createByUser(User $userConnected)
+    public function create()
     {
         /** @var PhysicalCustomer $physicalCustomer */
         $physicalCustomer = parent::create();
-        $physicalCustomer->setAgency($userConnected->getAgency());
 
         $physicalCustomer->addPhone(new CustomerPhone());
         $physicalCustomer->addEmail(new CustomerEmail());

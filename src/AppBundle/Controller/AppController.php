@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class AppController extends Controller
 {
@@ -26,7 +27,7 @@ class AppController extends Controller
      * @Route("/{entity}/edit/{id}", name="entity_edit", defaults={"id" = null }, requirements={"id"="\d+"})
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, EntityCrud $entityCrud, $entity, $id = null)
+    public function editAction(Request $request,TranslatorInterface $translator, EntityCrud $entityCrud, $entity, $id = null)
     {
         /** @var AbstractManager $entityManager */
         $entityManager = $this->get($entityCrud->getEntityManager($entity));
@@ -34,13 +35,14 @@ class AppController extends Controller
         /** @var EntityCrudInterface $entity */
         $entity = $id != null ? $entityManager->find($id) : null;
         if (empty($entity)) {
-            $entity = $entityManager->createByUser($this->getUser());
+            $entity = $entityManager->create();
         }
         $form = $this->createForm($entity->getFormType(), $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($entity, true);
+            $this->addFlash('success', $translator->trans('msg.success_operation'));
             return $this->redirectToRoute('entity_edit', ['id' => $entity->getId(), 'entity' => $entity->getSlug()]);
         }
 
