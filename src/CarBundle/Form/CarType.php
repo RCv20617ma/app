@@ -27,7 +27,6 @@ class CarType extends AbstractType
 
             $form->add('model', EntityType::class, array(
                 'class' => 'CarBundle:CarModel',
-                'placeholder' => '',
                 'choices' => $models,
             ));
         };
@@ -76,9 +75,7 @@ class CarType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) use ($formModifier) {
-                    /** @var SlCar $data */
                     $data = $event->getData();
-
                     $formModifier($event->getForm(), $data->getBrand());
                 }
             );
@@ -86,7 +83,6 @@ class CarType extends AbstractType
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier) {
                 $sport = $event->getForm()->getData();
-
                 $formModifier($event->getForm()->getParent(), $sport);
             }
         );

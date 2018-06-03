@@ -87,7 +87,6 @@
         $brandSelect.change(function () {
             var $form = $(this).closest('form');
             var data = $form.serialize();
-            //data[$brandSelect.attr('name')] = $brandSelect.val();
             $.ajax({
                 url: $form.attr('action'),
                 type: $form.attr('method'),
