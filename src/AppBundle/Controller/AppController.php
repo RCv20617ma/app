@@ -29,14 +29,14 @@ class AppController extends Controller
     public function editAction(Request $request, EntityCrud $entityCrud, $entity, $id = null)
     {
         /** @var AbstractManager $entityManager */
-        $entityManager = $this->get($entityCrud->getEntityManager($entity));
+        $entityManager = $this->get($entityCrud->getEntityManagerClassName($entity));
 
         /** @var EntityCrudInterface $entity */
         $entity = $id != null ? $entityManager->find($id) : null;
         if (empty($entity)) {
-            $entity = $entityManager->createByUser($this->getUser());
+            $entity = $entityManager->create();
         }
-        $form = $this->createForm($entity->getFormType(), $entity);
+        $form = $this->createForm($entity->getFormTypeClassName(), $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +48,7 @@ class AppController extends Controller
             return $this->redirectToRoute('entity_edit', ['id' => $entity->getId(), 'entity' => $entity->getSlug()]);
         }
 
-        return $this->render($entity->getPreFixView() . '/edit.html.twig', [
+        return $this->render($entity->getPreFixView() . ':edit.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
         ]);

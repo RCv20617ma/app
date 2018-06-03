@@ -4,6 +4,7 @@ namespace CarBundle\Entity;
 
 use CarBundle\Form\SlCarType;
 use CustomerBundle\Manager\SLCarManager;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -146,20 +147,5 @@ class SlCar extends AbstractCar
     {
         return 'sl_car';
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEntityManager()
-    {
-        return SLCarManager::class;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPreFixView()
-    {
-        return 'SlCar';
-    }
 }
+

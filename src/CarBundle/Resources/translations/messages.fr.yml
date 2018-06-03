@@ -4,3 +4,15 @@ reference.fuel_type.DIESEL: Diesel
 reference.car_option.GPS_NAVIGATOR: GPS de navigation
 reference.car_option.AIR_CONDITIONING: Climatisation
 reference.car_option.GPS_LOCATION: GPS de localisation
+
+Purchase date: Date d'achat
+Car number: Numéro d'immatriculation
+Sale date planned: Date de vente prévue
+Horse power: Puissance
+Current Km: KM actuel
+Car number w w: Numéro d'immatriculation WW
+Price day: Prix de location par jour
+Brand: Marque
+Model: Modèle
+Fuel type: Type de carburant
+Gearbox: Boîte de vitesses

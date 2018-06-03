@@ -7,7 +7,7 @@ interface EntityCrudInterface
     /**
      * @return string
      */
-    public function getFormType();
+    public function getFormTypeClassName();
 
     /**
      * @return string
@@ -17,7 +17,7 @@ interface EntityCrudInterface
     /**
      * @return string
      */
-    public function getEntityManager();
+    public function getEntityManagerClassName();
 
     /**
      * @return string

@@ -61,7 +61,7 @@ Abstract class AbstractCar
     /**
      * @ORM\ManyToOne(targetEntity="ReferenceGearBox")
      */
-    protected $gearBox;
+    protected $gearbox;
 
     /**
      * @ORM\OneToMany(targetEntity="CarDocument", mappedBy="car")
@@ -169,27 +169,22 @@ Abstract class AbstractCar
     }
 
     /**
-     * Set gearBox
-     *
-     * @param ReferenceGearBox $gearBox
-     *
-     * @return AbstractCar
+     * @return mixed
      */
-    public function setGearBox(ReferenceGearBox $gearBox = null)
+    public function getGearbox()
     {
-        $this->gearBox = $gearBox;
-
-        return $this;
+        return $this->gearbox;
     }
 
     /**
-     * Get gearBox
-     *
-     * @return ReferenceGearBox
+     * @param $gearbox
+     * @return $this
      */
-    public function getGearBox()
+    public function setGearbox($gearbox)
     {
-        return $this->gearBox;
+        $this->gearbox = $gearbox;
+
+        return $this;
     }
 
     /**

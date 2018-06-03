@@ -2,9 +2,8 @@
 
 namespace AppBundle\Service;
 
-use CarBundle\Entity\Car;
 use CustomerBundle\Manager\PhysicalCustomerManager;
-use CarBundle\Manager\SLCarManager;
+use CarBundle\Manager\CarManager;
 
 class EntityCrud {
 
@@ -12,11 +11,11 @@ class EntityCrud {
     public function getEntityManagerClass() {
      return [
          'customer' => PhysicalCustomerManager::class,
-         'sl_car' => SLCarManager::class,
+         'car' => CarManager::class,
      ];
     }
 
-    public function getEntityManager($entity) {
+    public function getEntityManagerClassName($entity) {
 
         return $this->getEntityManagerClass()[$entity];
     }

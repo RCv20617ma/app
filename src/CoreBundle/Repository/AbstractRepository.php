@@ -20,9 +20,7 @@ abstract class AbstractRepository extends EntityRepository
      */
     public function filterByAgency(Agency $agency,$alias, $indexBy = null)
     {
-        $qb = $this->createQueryBuilder($alias,$indexBy)
-            ->join($alias.'.agency', 'ag', 'WITH', 'ag.id = :agencyId')
-            ->setParameter('agencyId', $agency->getId());
+        $qb = $this->createQueryBuilder($alias,$indexBy);
 
         return $qb;
     }
