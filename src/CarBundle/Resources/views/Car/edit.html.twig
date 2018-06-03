@@ -1,27 +1,99 @@
-{% extends 'form.html.twig' %}
+{% extends '::form.html.twig' %}
+
+ {% if form.vars.value.id is null %}
+    {% set title = 'Ajouter une nouvelle voiture' %}
+ {% else %}
+     {% set title = 'Modification : '~ form.vars.value %}
+ {% endif %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block header %}
+    {{ title }}
+{% endblock %}
+
 
 {% block content %}
-    <h1>Car edit</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Edit" />
+    {{ form_widget(form._token) }}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Information générale
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3">{{ form_row(form.brand) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.model) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.carNumber) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.carNumberWW) }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">{{ form_row(form.fuelType) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.gearbox) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.currentKm) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.horsePower) }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group {% if not form.purchaseDate.vars.valid %} has-error {% endif %}">
+                                {{ form_label(form.purchaseDate) }}
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    {{ form_widget(form.purchaseDate) }}
+                                </div>{{ form_errors(form.purchaseDate) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group {% if not form.saleDatePlanned.vars.valid %} has-error {% endif %}">
+                                {{ form_label(form.saleDatePlanned) }}
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    {{ form_widget(form.saleDatePlanned) }}
+                                </div>{{ form_errors(form.saleDatePlanned) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-3">{{ form_row(form.priceDay) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.options) }}</div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="reset" class="btn btn-danger"><i
+                                class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
+                    <button type="submit" class="btn btn-success pull-right"><i
+                                class="fa fa-save"></i> {{ 'btn.save'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script>
-        var $brandSelect = $('#slcar_brand');
-        $brandSelect.change(function() {
+        var $brandSelect = $('#car_brand');
+        $brandSelect.change(function () {
             var $form = $(this).closest('form');
             var data = $form.serialize();
             //data[$brandSelect.attr('name')] = $brandSelect.val();
             $.ajax({
-                url : $form.attr('action'),
+                url: $form.attr('action'),
                 type: $form.attr('method'),
-                data : data,
-                success: function(html) {
-                    $('#slcar_model').replaceWith($(html).find('#slcar_model'));
+                data: data,
+                success: function (html) {
+                    $('#car_model').replaceWith($(html).find('#car_model'));
                 }
             });
         });

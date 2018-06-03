@@ -2,9 +2,11 @@
 
 namespace CarBundle\Entity;
 
-use CoreBundle\Entity\Traits\AgencyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use CoreBundle\Entity\Traits\AgencyTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
@@ -35,6 +37,7 @@ Abstract class AbstractCar
     protected $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="CarModel")
      */
     protected $model;
@@ -54,11 +57,13 @@ Abstract class AbstractCar
     protected $options;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="ReferenceFuelType")
      */
     protected $fuelType;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="ReferenceGearBox")
      */
     protected $gearbox;

@@ -21,14 +21,14 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="first_name", type="string", length=20)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="last_name", type="string", length=20)
      */
     private $lastName;
@@ -150,6 +150,12 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
         return PhysicalCustomerType::class;
     }
 
+    public function __toString()
+    {
+        return $this->getFullName();
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -171,7 +177,7 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
      */
     public function getPreFixView()
     {
-        return 'CustomerBundle:Customer:Physical';
+        return 'CustomerBundle:Customer';
     }
 }
 

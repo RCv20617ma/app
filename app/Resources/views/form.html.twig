@@ -1,26 +1,25 @@
 {% extends 'layout.html.twig' %}
-{% block pluginsJS %}
+
+{% block stylesheet %}
     {{ parent() }}
-    <script src="{{ asset('vendors/switchery/dist/switchery.min.js') }}"></script>
-    {#<script src="{{ asset('vendors/iCheck/icheck.min.js') }}"></script>#}
+    <link href="{{ asset('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block pluginsCss %}
+{% block javascripts %}
     {{ parent() }}
-    <link href="{{ asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
-    {#<link href="{{ asset('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">#}
-{% endblock %}
-{% block content %}
-    {% if not form.vars.valid %}
-        <div class="alert alert-danger" >
-            <ul>
-                {% for child in form.children %}
-                    {%for error in child.vars.errors%}
-                        <li><b>{{ child.vars.label|trans }}</b>: {{error.message}}</li>
-                    {%endfor%}
-                {%endfor%}
-            </ul>
-        </div>
-    {%endif%}
-{% endblock %}
+    <script src="{{ asset('vendor/moment/min/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datetimepicker({
+                locale: '{{ app.request.locale }}',
+                format: 'DD/MM/YYYY'
+            });
 
+            $('.datetimepicker').datetimepicker({
+                locale: '{{ app.request.locale }}',
+                format: 'DD/MM/YYYY HH:mm'
+            });
+        });
+    </script>
+{% endblock %}

@@ -7,6 +7,7 @@ use CarBundle\Manager\CarManager;
 use CoreBundle\Entity\EntityCrudInterface;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Car
@@ -22,6 +23,7 @@ class Car extends AbstractCar implements EntityCrudInterface
      * @var string
      *
      * @ORM\Column(type="string", length=16, nullable=true)
+     * @Assert\NotBlank()
      */
     private $carNumber;
 
@@ -35,13 +37,15 @@ class Car extends AbstractCar implements EntityCrudInterface
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(type="integer")
      */
     private $currentKm;
 
     /**
      * @var \DateTime
      *
+     * @Assert\Date()
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $purchaseDate;
@@ -49,6 +53,7 @@ class Car extends AbstractCar implements EntityCrudInterface
     /**
      * @var \DateTime
      *
+     * @Assert\Date()
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $saleDatePlanned;
@@ -62,10 +67,19 @@ class Car extends AbstractCar implements EntityCrudInterface
 
     /**
      * @var string
-     *
+     * @Assert\Range(min = 0)
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $priceDay;
+
+    /**
+     * Car constructor.
+     */
+    public function __construct()
+    {
+        $this->purchaseDate = new \DateTime();
+    }
+
 
     /**
      * Set carNumber
@@ -256,6 +270,12 @@ class Car extends AbstractCar implements EntityCrudInterface
     {
         return $this->brand;
     }
+
+    public function __toString()
+    {
+        return sprintf('%s %s - %s', $this->getBrand(), $this->getModel(), $this->getCarNumber());
+    }
+
 
     /**
      * @return string

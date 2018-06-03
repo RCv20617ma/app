@@ -2,7 +2,7 @@ customer:
     label: client
     customers_list: Liste des clients
     full_name: Nom Complet
-    gender: Sexe
+    gender: Genre
     civility: Civilité
     email: Email
     phone: Téléphone

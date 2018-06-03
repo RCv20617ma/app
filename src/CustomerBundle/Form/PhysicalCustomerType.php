@@ -22,7 +22,7 @@ class PhysicalCustomerType extends AbstractType
         $builder
             ->add('gender', EntityType::class, [
                 'class' => ReferenceGender::class,
-                'label' => 'customer.civility',
+                'label' => 'customer.gender',
                 'expanded' => true,
             ])
             ->add('firstName', TextType::class, [
@@ -37,6 +37,7 @@ class PhysicalCustomerType extends AbstractType
                 'input' => 'datetime',
                 'format' => 'dd/MM/yyyy',
                 'required' => false,
+                'attr' => ['class' => 'datepicker']
             ])
             ->add('phones', CollectionType::class, [
                 'label' => 'customer.phone',

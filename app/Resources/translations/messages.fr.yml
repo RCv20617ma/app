@@ -25,6 +25,7 @@ msg:
     added: Votre %d a été ajouté avec succès
     updated: Votre $s a été modifé avec succès
     notFound: $s non trouvé
+    success_operation: Opération effectuée avec succés
 
 btn:
     save: Enregistrer

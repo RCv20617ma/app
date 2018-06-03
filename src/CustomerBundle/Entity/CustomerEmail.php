@@ -6,6 +6,7 @@ use CoreBundle\Entity\ReferenceEmailType;
 use CustomerBundle\Entity\AbstractCustomer;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class CustomerEmail
@@ -28,13 +29,15 @@ class CustomerEmail
     /**
      * @var AbstractCustomer
      *
-     * @ORM\ManyToOne(targetEntity="AbstractCustomer", inversedBy="phones")
+     * @ORM\ManyToOne(targetEntity="AbstractCustomer", inversedBy="emails")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", nullable=false)
      */
     protected $customer;
 
     /**
      * @var string
+     * @Assert\Email()
+     * @Assert\NotBlank()
      * @ORM\Column(name="email", type="string", length=128)
      */
     protected $email;

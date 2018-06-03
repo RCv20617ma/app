@@ -2,22 +2,15 @@
 
 namespace CustomerBundle\Form;
 
-use CoreBundle\Entity\ReferencePhoneType;
 use CustomerBundle\Entity\CustomerEmail;
-use CustomerBundle\Entity\CustomerPhone;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
 
 class CustomerEmailType extends AbstractType
 {
-    const INPUT_TEXT_CLASS = 'form-control';
-    const INPUT_CHECKBOX_CLASS = 'js-switch';
 
     /**
      * {@inheritdoc}
@@ -27,9 +20,7 @@ class CustomerEmailType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('main',CheckboxType::class,[
-                'label' => 'customer.main_email','attr' => [
-                    'class' => self::INPUT_CHECKBOX_CLASS,
-                ]
+                'label' => 'customer.main_email'
             ]);
     }
 
