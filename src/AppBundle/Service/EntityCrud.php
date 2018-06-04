@@ -20,3 +20,4 @@ class EntityCrud
             return $this->getEntityManagerClass()[$entity];
         }
     }
+}
