@@ -3,6 +3,13 @@
 {% block stylesheet %}
     {{ parent() }}
     <link href="{{ asset('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+
+    <style>
+        .radio {
+            display: inline;
+            margin-right: 10px;
+        }
+    </style>
 {% endblock %}
 
 {% block javascripts %}
