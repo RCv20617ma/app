@@ -18,7 +18,21 @@
                 <a href="#"><i class="fa fa-users fa-fw"></i> Clients<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Liste des clients</a>
+                        <a href="{{ path("customer_index") }}">Liste des clients</a>
+                    </li>
+                    <li>
+                        <a href="{{ path("entity_edit", {"entity":"customer"}) }}">Nouveau client</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-car fa-fw"></i> Voitures<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">Liste des voitures</a>
+                    </li>
+                    <li>
+                        <a href="{{ path("entity_edit", {"entity":"car"}) }}">Nouvelle voiture</a>
                     </li>
                 </ul>
             </li>

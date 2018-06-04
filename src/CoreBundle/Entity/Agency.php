@@ -411,8 +411,11 @@ class Agency
         return $this->phone;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return $this->name;
+        return $this->getName();
     }
 }

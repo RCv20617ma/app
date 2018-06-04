@@ -5,7 +5,7 @@ services:
         public: true
 
     #------------Mangers
-    CarBundle\Manager\CarMaintenanceManager: ~
+    CarBundle\Manager\CarManager: ~
 
     #------------Controllers
     CarBundle\Controller\CarMaintenanceController: ~

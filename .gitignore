@@ -14,5 +14,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/vendor/*
+/web/bower_components/*
 /web/bundles/
 /.idea/*

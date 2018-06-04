@@ -2,7 +2,12 @@
 
 namespace CarBundle\Entity;
 
+use CarBundle\Form\CarType;
+use CarBundle\Manager\CarManager;
+use CoreBundle\Entity\EntityCrudInterface;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Car
@@ -10,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="car")
  * @ORM\Entity(repositoryClass="CarBundle\Repository\CarRepository")
  */
-class Car extends AbstractCar
+class Car extends AbstractCar implements EntityCrudInterface
 {
     const DISCRIMINATOR = 'l';
 
@@ -18,6 +23,7 @@ class Car extends AbstractCar
      * @var string
      *
      * @ORM\Column(type="string", length=16, nullable=true)
+     * @Assert\NotBlank()
      */
     private $carNumber;
 
@@ -31,13 +37,15 @@ class Car extends AbstractCar
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank()
+     * @ORM\Column(type="integer")
      */
     private $currentKm;
 
     /**
      * @var \DateTime
      *
+     * @Assert\Date()
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $purchaseDate;
@@ -45,9 +53,10 @@ class Car extends AbstractCar
     /**
      * @var \DateTime
      *
+     * @Assert\Date()
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $saleDate;
+    private $saleDatePlanned;
 
     /**
      * @var int
@@ -58,13 +67,19 @@ class Car extends AbstractCar
 
     /**
      * @var string
-     *
+     * @Assert\Range(min = 0)
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $priceDay;
 
+    /**
+     * Car constructor.
+     */
+    public function __construct()
+    {
+        $this->purchaseDate = new \DateTime();
+    }
 
-     
 
     /**
      * Set carNumber
@@ -163,27 +178,25 @@ class Car extends AbstractCar
     }
 
     /**
-     * Set saleDate
+     * Set saleDatePlanned
      *
-     * @param \DateTime $saleDate
+     * @param \DateTime $saleDatePlanned
      *
      * @return Car
      */
-    public function setSaleDate($saleDate)
+    public function setSaleDatePlanned($saleDatePlanned)
     {
-        $this->saleDate = $saleDate;
+        $this->saleDatePlanned = $saleDatePlanned;
 
         return $this;
     }
 
     /**
-     * Get saleDate
-     *
      * @return \DateTime
      */
-    public function getSaleDate()
+    public function getSaleDatePlanned()
     {
-        return $this->saleDate;
+        return $this->saleDatePlanned;
     }
 
     /**
@@ -232,5 +245,67 @@ class Car extends AbstractCar
     public function getPriceDay()
     {
         return $this->priceDay;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \CarBundle\Entity\CarBrand $brand
+     *
+     * @return Car
+     */
+    public function setBrand(\CarBundle\Entity\CarBrand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \CarBundle\Entity\CarBrand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    public function __toString()
+    {
+        return sprintf('%s %s - %s', $this->getBrand(), $this->getModel(), $this->getCarNumber());
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getFormTypeClassName()
+    {
+        return CarType::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return 'car';
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerClassName()
+    {
+        return CarManager::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreFixView()
+    {
+        return 'CarBundle:Car';
     }
 }

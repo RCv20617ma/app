@@ -1,6 +1,3 @@
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
@@ -8,6 +5,11 @@ app:
 customer:
     resource: '@CustomerBundle/Controller/'
     type: annotation
+
+car:
+    resource: '@CarBundle/Controller/'
+    type: annotation
+
 ben_user:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /

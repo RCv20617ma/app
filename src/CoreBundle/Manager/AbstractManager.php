@@ -16,14 +16,14 @@ abstract class AbstractManager
     protected $entityManager;
 
     /**
-     * Retourne le nom complet de la classe gérée par le manager
+     * Returns the name of the class of an object managed by the manager
      *
      * @return string
      */
     abstract public function getClass();
 
     /**
-     * Retourne le repository doctrine de l'entité
+     * Returns the doctrine repository of the entity
      *
      * @return \Doctrine\ORM\EntityRepository
      */

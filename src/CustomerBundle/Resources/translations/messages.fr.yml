@@ -2,7 +2,7 @@ customer:
     label: client
     customers_list: Liste des clients
     full_name: Nom Complet
-    gender: Sexe
+    gender: Genre
     civility: Civilité
     email: Email
     phone: Téléphone
@@ -19,5 +19,12 @@ customer:
 # Data translation
 reference_gender.MALE: Homme
 reference_gender.FEMALE: Femme
+customer_document_type.CIN: C.I.N
+customer_document_type.PASSPORT: Passeport
 
 # General translation
+
+Identity document type: Type de document d'identité
+Driving licence number: Numéro de permis de conduire
+Nationality: Nationalité
+Identity number: Numéro d'identité
