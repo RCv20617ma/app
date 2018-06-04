@@ -2,10 +2,12 @@
 
 namespace CustomerBundle\Form;
 
+use CustomerBundle\Entity\CustomerDocumentType;
 use CustomerBundle\Entity\ReferenceGender;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,6 +33,15 @@ class PhysicalCustomerType extends AbstractType
             ->add('lastName', TextType::class, [
                 'label' => 'customer.last_name',
             ])
+            ->add('identityDocumentType', EntityType::class, [
+                'class' => CustomerDocumentType::class,
+                'expanded' => true,
+            ])
+            ->add('nationality', CountryType::class,[
+                'preferred_choices' => ['MA','CA','DZ','US', 'FR', 'TN', 'ES']
+            ])
+            ->add('identityNumber')
+            ->add('drivingLicenceNumber')
             ->add('birthDate', DateType::class, [
                 'label' => 'customer.birth_date',
                 'widget' => 'single_text',
