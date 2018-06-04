@@ -270,28 +270,4 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
     {
         return $this->identityDocumentType;
     }
-
-    /**
-     * Set nationality
-     *
-     * @param string $nationality
-     *
-     * @return PhysicalCustomer
-     */
-    public function setNationality($nationality)
-    {
-        $this->nationality = $nationality;
-
-        return $this;
-    }
-
-    /**
-     * Get nationality
-     *
-     * @return string
-     */
-    public function getNationality()
-    {
-        return $this->nationality;
-    }
 }

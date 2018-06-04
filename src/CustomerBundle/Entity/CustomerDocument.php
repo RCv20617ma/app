@@ -21,13 +21,6 @@ class CustomerDocument extends AbstractDocument
     private $customer;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="number", type="string", nullable=true)
-     */
-    protected $number;
-
-    /**
      * Set customer
      *
      * @param \CustomerBundle\Entity\AbstractCustomer $customer
@@ -49,29 +42,5 @@ class CustomerDocument extends AbstractDocument
     public function getCustomer()
     {
         return $this->customer;
-    }
-
-    /**
-     * Set number
-     *
-     * @param string $number
-     *
-     * @return CustomerDocument
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
-
-        return $this;
-    }
-
-    /**
-     * Get number
-     *
-     * @return string
-     */
-    public function getNumber()
-    {
-        return $this->number;
     }
 }
