@@ -76,11 +76,6 @@ Abstract class AbstractCar
 
 
     /**
-     * @ORM\OneToMany(targetEntity="CarMaintenance", mappedBy="car")
-     */
-    protected $carMaintenance;
-
-    /**
      * Get id
      *
      * @return int
@@ -96,7 +91,6 @@ Abstract class AbstractCar
     public function __construct()
     {
         $this->options = new ArrayCollection();
-        $this->carMaintenance = new ArrayCollection();
     }
 
     /**
@@ -234,19 +228,6 @@ Abstract class AbstractCar
         return $this->documents;
     }
 
-<<<<<<< HEAD
-
-    /**
-     * Add carMaintenance
-     *
-     * @param \CarBundle\Entity\CarMaintenance $CarMaintenance
-     *
-     * @return \CarBundle\Entity\CarMaintenance
-     */
-    public function addCarMaintenance(\CarBundle\Entity\CarMaintenance $CarMaintenance)
-    {
-        $this->CarMaintenance[] = $CarMaintenance;
-=======
     /**
      * Set brand
      *
@@ -257,33 +238,11 @@ Abstract class AbstractCar
     public function setBrand(\CarBundle\Entity\CarBrand $brand = null)
     {
         $this->brand = $brand;
->>>>>>> master
 
         return $this;
     }
 
     /**
-<<<<<<< HEAD
-     * Remove CarMaintenance
-     *
-     * @param \CarBundle\Entity\CarDocument $CarMaintenance
-     */
-    public function removeCarMaintenance(\CarBundle\Entity\CarMaintenance $CarMaintenance)
-    {
-        $this->CarMaintenance->removeElement($CarMaintenance);
-    }
-
-
-
-    /**
-     * Get carMaintenance
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCarMaintenance()
-    {
-        return $this->carMaintenance;
-=======
      * Get brand
      *
      * @return \CarBundle\Entity\CarBrand
@@ -291,6 +250,5 @@ Abstract class AbstractCar
     public function getBrand()
     {
         return $this->brand;
->>>>>>> master
     }
 }
