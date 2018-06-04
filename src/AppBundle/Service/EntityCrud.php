@@ -14,10 +14,10 @@ class EntityCrud
             'customer' => PhysicalCustomerManager::class,
             'car' => CarManager::class,
         ];
+    }
 
-        function getEntityManagerClassName($entity)
-        {
-            return $this->getEntityManagerClass()[$entity];
-        }
+    function getEntityManagerClassName($entity)
+    {
+        return $this->getEntityManagerClass()[$entity];
     }
 }
