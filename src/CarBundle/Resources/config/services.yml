@@ -3,12 +3,9 @@ services:
         autowire: true
         autoconfigure: true
         public: true
-<<<<<<< HEAD
 
     #------------Mangers
     CarBundle\Manager\CarManager: ~
 
     #------------Controllers
     CarBundle\Controller\CarMaintenanceController: ~
-=======
->>>>>>> origin/register_form_fosuserbundle
