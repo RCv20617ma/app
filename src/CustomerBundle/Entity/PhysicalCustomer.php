@@ -19,6 +19,32 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
     const DISCRIMINATOR = 'physical';
 
     /**
+     * @ORM\ManyToOne(targetEntity="CustomerDocumentType")
+     */
+    private $identityDocumentType;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=64)
+     */
+    private $identityNumber;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=64)
+     */
+    private $drivingLicenceNumber;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=64)
+     */
+    private $nationality;
+
+    /**
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="first_name", type="string", length=20)
@@ -138,13 +164,14 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
 
     public function getFullName()
     {
-        return $this->getLastName().' '.$this->getFirstName();
+        return $this->getLastName() . ' ' . $this->getFirstName();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getFormType() {
+    public function getFormType()
+    {
         return PhysicalCustomerType::class;
     }
 
@@ -170,5 +197,101 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
     public function getPreFixView()
     {
         return 'CustomerBundle:Customer:Physical';
+    }
+
+    /**
+     * Set identityNumber
+     *
+     * @param string $identityNumber
+     *
+     * @return PhysicalCustomer
+     */
+    public function setIdentityNumber($identityNumber)
+    {
+        $this->identityNumber = $identityNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get identityNumber
+     *
+     * @return string
+     */
+    public function getIdentityNumber()
+    {
+        return $this->identityNumber;
+    }
+
+    /**
+     * Set drivingLicenceNumber
+     *
+     * @param string $drivingLicenceNumber
+     *
+     * @return PhysicalCustomer
+     */
+    public function setDrivingLicenceNumber($drivingLicenceNumber)
+    {
+        $this->drivingLicenceNumber = $drivingLicenceNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get drivingLicenceNumber
+     *
+     * @return string
+     */
+    public function getDrivingLicenceNumber()
+    {
+        return $this->drivingLicenceNumber;
+    }
+
+    /**
+     * Set identityDocumentType
+     *
+     * @param \CustomerBundle\Entity\CustomerDocumentType $identityDocumentType
+     *
+     * @return PhysicalCustomer
+     */
+    public function setIdentityDocumentType(\CustomerBundle\Entity\CustomerDocumentType $identityDocumentType = null)
+    {
+        $this->identityDocumentType = $identityDocumentType;
+
+        return $this;
+    }
+
+    /**
+     * Get identityDocumentType
+     *
+     * @return \CustomerBundle\Entity\CustomerDocumentType
+     */
+    public function getIdentityDocumentType()
+    {
+        return $this->identityDocumentType;
+    }
+
+    /**
+     * Set nationality
+     *
+     * @param string $nationality
+     *
+     * @return PhysicalCustomer
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+
+    /**
+     * Get nationality
+     *
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
     }
 }

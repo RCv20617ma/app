@@ -41,6 +41,7 @@ class PhysicalCustomerManager extends AbstractManager
 
         $physicalCustomer->addPhone(new CustomerPhone());
         $physicalCustomer->addEmail(new CustomerEmail());
+        $physicalCustomer->setNationality('MA');
 
         return $physicalCustomer;
     }

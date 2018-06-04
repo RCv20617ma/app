@@ -1,14 +1,12 @@
 {% extends '::form.html.twig' %}
     {% form_theme form _self %}
     {% block _customer_phones_entry_row %}
-        <div class="form-group {% if not form.vars.valid %} has-error {% endif %}">
-            <div class="customer-phone-block">
-                {{ form_widget(form.phone) }}
-                {{ form_errors(form.phone) }}
-            </div>
+        <div class="form-group input-group {% if not form.vars.valid %} has-error {% endif %}">
+            <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+            {{ form_widget(form.phone) }}
+            {{ form_errors(form.phone) }}
         </div>
     {% endblock %}
-
 
 {% block _customer_emails_entry_row %}
     <div class="form-group input-group {% if not form.vars.valid %} has-error {% endif %}">
@@ -22,34 +20,32 @@
     {{ form_start(form) }}
     {{ form_widget(form._token) }}
     <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Ajouter un nouveau client
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {{ form_row(form.gender) }}
-                            {{ form_row(form.firstName) }}
-                            {{ form_row(form.lastName) }}
-                            {{ form_row(form.birthDate) }}
-                        </div>
-                        <div class="col-lg-6">
-                            {{ form_row(form.phones) }}
-                            {{ form_row(form.emails) }}
-                            {{ form_row(form.address) }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-                    <button type="reset" class="btn btn-danger"><i
-                                class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
-                    <button type="submit" class="btn btn-success pull-right"><i
-                                class="fa fa-save"></i> {{ 'btn.save'|trans }}</button>
-                </div>
+        <div class="well">
+            <div class="row">
+                <div class="col-lg-3">{{ form_row(form.nationality) }}</div>
+                <div class="col-lg-3">{{ form_row(form.gender) }}</div>
+                <div class="col-lg-3">{{ form_row(form.firstName) }}</div>
+                <div class="col-lg-3">{{ form_row(form.lastName) }}</div>
             </div>
+            <div class="row">
+                <div class="col-lg-3">{{ form_row(form.identityDocumentType) }}</div>
+                <div class="col-lg-3">{{ form_row(form.identityNumber) }}</div>
+                <div class="col-lg-3">{{ form_row(form.drivingLicenceNumber) }}</div>
+                <div class="col-lg-3">{{ form_row(form.birthDate) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">{{ form_row(form.phones) }}</div>
+                <div class="col-lg-3">{{ form_row(form.emails) }}</div>
+                <div class="col-lg-6">{{ form_row(form.address) }}</div>
+            </div>
+            <fieldset>
+                <legend>Pièce d'identité</legend>
+            </fieldset>
+            <hr>
+            <button type="reset" class="btn btn-danger"><i
+                        class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
+            <button type="submit" class="btn btn-success pull-right"><i
+                        class="fa fa-save"></i> {{ 'btn.save'|trans }}</button>
         </div>
     </div>
     {{ form_end(form) }}
