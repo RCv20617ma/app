@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use CoreBundle\Entity\Traits\AgencyTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class AbstractCar
@@ -73,6 +74,7 @@ Abstract class AbstractCar
      */
     protected $documents;
 
+
     /**
      * Get id
      *
@@ -88,7 +90,7 @@ Abstract class AbstractCar
      */
     public function __construct()
     {
-        $this->options = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->options = new ArrayCollection();
     }
 
     /**

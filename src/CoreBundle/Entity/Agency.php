@@ -411,7 +411,6 @@ class Agency
         return $this->phone;
     }
 
-
     /**
      * @return string
      */
@@ -419,6 +418,4 @@ class Agency
     {
         return $this->getName();
     }
-
-
 }
