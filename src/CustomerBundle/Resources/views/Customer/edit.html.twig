@@ -16,6 +16,16 @@
     </div>
 {% endblock %}
 
+ {% if form.vars.value.id is null %}
+     {% set title = 'Ajouter un nouveau client' %}
+ {% else %}
+     {% set title = 'Modification du client : '~ form.vars.value %}
+ {% endif %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %} {{ title }} {% endblock %}
+
 {% block content %}
     {{ form_start(form) }}
     {{ form_widget(form._token) }}

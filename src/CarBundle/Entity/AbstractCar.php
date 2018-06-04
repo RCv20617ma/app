@@ -2,9 +2,11 @@
 
 namespace CarBundle\Entity;
 
-use CoreBundle\Entity\Traits\AgencyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use CoreBundle\Entity\Traits\AgencyTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
@@ -35,9 +37,15 @@ Abstract class AbstractCar
     protected $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="CarModel")
      */
     protected $model;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CarBrand")
+     */
+    protected $brand;
 
     /**
      * @ORM\ManyToMany(targetEntity="ReferenceCarOption")
@@ -49,14 +57,16 @@ Abstract class AbstractCar
     protected $options;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="ReferenceFuelType")
      */
     protected $fuelType;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="ReferenceGearBox")
      */
-    protected $gearBox;
+    protected $gearbox;
 
     /**
      * @ORM\OneToMany(targetEntity="CarDocument", mappedBy="car")
@@ -164,27 +174,22 @@ Abstract class AbstractCar
     }
 
     /**
-     * Set gearBox
-     *
-     * @param ReferenceGearBox $gearBox
-     *
-     * @return AbstractCar
+     * @return mixed
      */
-    public function setGearBox(ReferenceGearBox $gearBox = null)
+    public function getGearbox()
     {
-        $this->gearBox = $gearBox;
-
-        return $this;
+        return $this->gearbox;
     }
 
     /**
-     * Get gearBox
-     *
-     * @return ReferenceGearBox
+     * @param $gearbox
+     * @return $this
      */
-    public function getGearBox()
+    public function setGearbox($gearbox)
     {
-        return $this->gearBox;
+        $this->gearbox = $gearbox;
+
+        return $this;
     }
 
     /**
@@ -219,5 +224,29 @@ Abstract class AbstractCar
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \CarBundle\Entity\CarBrand $brand
+     *
+     * @return AbstractCar
+     */
+    public function setBrand(\CarBundle\Entity\CarBrand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \CarBundle\Entity\CarBrand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }

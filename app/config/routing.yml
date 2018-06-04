@@ -8,3 +8,7 @@ app:
 customer:
     resource: '@CustomerBundle/Controller/'
     type: annotation
+
+car:
+    resource: '@CarBundle/Controller/'
+    type: annotation
