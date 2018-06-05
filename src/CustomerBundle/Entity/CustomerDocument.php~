@@ -3,7 +3,6 @@
 namespace CustomerBundle\Entity;
 
 use CoreBundle\Entity\AbstractDocument;
-use CoreBundle\Entity\File;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,23 +30,14 @@ class CustomerDocument
     private $customer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerDocumentType")
+     * @ORM\ManyToOne(targetEntity="AbstractDocumentType")
      */
     private $documentType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\File", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="File")
      */
     private $file;
-
-    /**
-     * CustomerDocument constructor.
-     * @param CustomerDocumentType|null $documentType
-     */
-    public function __construct(CustomerDocumentType $documentType = null)
-    {
-        $this->documentType = $documentType;
-    }
 
     /**
      * Set customer
@@ -100,11 +90,11 @@ class CustomerDocument
     /**
      * Set file
      *
-     * @param \CoreBundle\Entity\File $file
+     * @param \CustomerBundle\Entity\File $file
      *
      * @return CustomerDocument
      */
-    public function setFile(File $file = null)
+    public function setFile(\CustomerBundle\Entity\File $file = null)
     {
         $this->file = $file;
 
@@ -119,15 +109,5 @@ class CustomerDocument
     public function getFile()
     {
         return $this->file;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

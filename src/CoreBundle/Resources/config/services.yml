@@ -4,6 +4,11 @@ services:
         autoconfigure: true
         public: false
 
+    #------------Services
+    CoreBundle\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%upload_directory%'
+
     #------------Listeners
     CoreBundle\EventListener\ReferenceTranslatorListener:
         tags:
@@ -16,6 +21,11 @@ services:
     CoreBundle\EventListener\EntityPermissionListener:
         tags:
             - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
+    CoreBundle\EventListener\FileUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
 
     #------------Mangers
     CoreBundle\Manager\AbstractManager: ~

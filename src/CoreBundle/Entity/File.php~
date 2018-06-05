@@ -2,9 +2,7 @@
 
 namespace CoreBundle\Entity;
 
-use CoreBundle\Entity\Traits\CreatedByTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,8 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class File
 {
-    use TimestampableEntity, CreatedByTrait;
-
     /** @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -52,7 +48,6 @@ class File
      * @ORM\Column(type="integer", name="size")
      */
     private $size;
-
     /**
      * @Assert\File(
      *     maxSize = "1024k",
@@ -60,7 +55,7 @@ class File
      *     mimeTypesMessage = "Please upload a valid PDF"
      * )
      */
-    public $file;
+    private $file;
 
     /**
      * Set originalName
@@ -204,15 +199,5 @@ class File
     public function getSize()
     {
         return $this->size;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }
