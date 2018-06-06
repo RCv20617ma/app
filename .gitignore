@@ -16,4 +16,5 @@
 /web/vendor/*
 /web/bower_components/*
 /web/bundles/
+/web/uploads/*
 /.idea/*
