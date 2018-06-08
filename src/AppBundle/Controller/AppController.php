@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Payment;
 use AppBundle\Service\EntityCrud;
 use CoreBundle\Entity\EntityCrudInterface;
+use CoreBundle\Entity\ReferenceModePayment;
 use CoreBundle\Manager\AbstractManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

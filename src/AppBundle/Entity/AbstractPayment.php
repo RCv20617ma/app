@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * Class AbstractPayment
  *
@@ -36,23 +35,19 @@ abstract class AbstractPayment
     protected $id;
 
     /**
-     * @var int
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(name="numberPayment", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\ReferenceModePayment")
      */
-    protected $numberPayment;
-
+    protected $modePayment;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\CoreBundle\Entity\File")
+     * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File")
      */
     protected $file;
 
     /**
      * @ORM\Column(name="date", type="datetime")
      */
-     protected $date;
+    protected $date;
 
     /**
      * @var string
@@ -61,7 +56,7 @@ abstract class AbstractPayment
      */
     protected $amount;
 
-     /**
+    /**
      * @var string
      *
      * @ORM\Column(name="number", type="string", length=64, nullable=true)
@@ -76,27 +71,27 @@ abstract class AbstractPayment
     protected $note;
 
     /**
-     * Set numberPayment
+     * Set modePayment
      *
-     * @param integer $numberPayment
+     * @param \CoreBundle\Entity\ReferenceModePayment $modePayment
      *
-     * @return AbstractPayment
+     * @return Payment
      */
-    public function setNumberPayment($numberPayment)
+    public function setModePayment(\CoreBundle\Entity\ReferenceModePayment $modePayment = null)
     {
-        $this->numberPayment = $numberPayment;
+        $this->modePayment = $modePayment;
 
         return $this;
     }
 
     /**
-     * Get numberPayment
+     * Get modePayment
      *
-     * @return integer
+     * @return \CoreBundle\Entity\ReferenceModePayment
      */
-    public function getNumberPayment()
+    public function getModePayment()
     {
-        return $this->numberPayment;
+        return $this->modePayment;
     }
 
     /**
@@ -157,6 +152,7 @@ abstract class AbstractPayment
     public function setNumber($number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -180,6 +176,7 @@ abstract class AbstractPayment
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
