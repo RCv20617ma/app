@@ -29,11 +29,8 @@ class CarMaintenanceManager extends  AbstractManager
      */
     public function create()
     {
-
         $carmaintenance= parent::create();
-
-        $carmaintenance->addOutgo(new Outgo);
-
+        $carmaintenance->addOutgo(new Outgo());
         return $carmaintenance;
     }
 

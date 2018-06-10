@@ -21,17 +21,18 @@ class CarMaintenanceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('comment')
-                ->add('dateMaintenance', DateType::class, [
+                ->add('date', DateType::class, [
                     'widget' => 'single_text',
                     'input' => 'datetime',
                     'format' => 'dd/MM/yyyy',
                     'required' => false,
+                    'placeholder' => 'Date d\'entretien',
                     'attr' => ['class' => 'datepicker', 'autocomplete' => 'off']
                 ])
                 ->add('amount', MoneyType::class, [
                         'currency' => 'MAD',
                         'attr' => [
-                            'placeholder' => '500.00'
+                            'placeholder' => 'Montant'
                         ]
                     ])
                 ->add('typeMaintenance')

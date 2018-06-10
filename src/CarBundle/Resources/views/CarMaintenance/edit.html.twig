@@ -33,16 +33,22 @@
                         <div class="col-lg-3">{{ form_row(form.amount) }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3">{{ form_row(form.dateMaintenance) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.date) }}</div>
                         <div class="col-lg-3">{{ form_row(form.comment) }}</div>
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-3"> {{ form_row(form.outgo) }}</div>
-                    </div>
-                    </div>
-            </div>
-                <div class="panel-footer">
+                        <div class="col-lg-3">
+                            {{ form_row(form.outgo) }}
+                        </div>
+                        </div>
+
+
+
+
+                        <a href="#" id="add_outgo" class="btn btn-default">Ajouter pyament outgo</a>
+
+                        <div class="panel-footer">
                     <button type="reset" class="btn btn-danger"><i
                                 class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
                     <button type="submit" class="btn btn-success pull-right"><i
@@ -50,10 +56,49 @@
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+
     {{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <!-- je voudrais afficher une alert ici; -->
+    <script>
+
+        $(document).ready(function() {
+
+        var $container = $('div#carbundle_carmaintenance_outgo');
+        var index = $container.find(':input').length;
+        $('#add_outgo').click(function(e) {
+            addPaymentOutgo($container);
+            e.preventDefault();
+            return false;
+        });
+
+        function addPaymentOutgo($container) {
+            var template = $container.attr('data-prototype')
+                .replace(/__name__label__/g, 'Payment Outgo n°' + (index+1))
+                .replace(/__name__/g,        index)
+            ;
+            var $prototype = $(template);
+            addDeleteLink($prototype);
+            $container.append($prototype);
+            index++;
+        }
+
+            function addDeleteLink($prototype) {
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                $prototype.append($deleteLink);
+                $deleteLink.click(function(e) {
+                    $prototype.remove();
+                    e.preventDefault();
+                    return false;
+                });
+            }
+        });
+
+
+
+    </script>
 {% endblock %}

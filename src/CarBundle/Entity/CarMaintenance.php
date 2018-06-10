@@ -61,9 +61,9 @@ class CarMaintenance implements EntityCrudInterface
      * @var \DateTime
      *
      * @Assert\Date()
-     * @ORM\Column(name="dateMaintenance", type="datetime")
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $dateMaintenance;
+    private $date;
 
 
     /**
@@ -138,27 +138,27 @@ class CarMaintenance implements EntityCrudInterface
     }
 
     /**
-     * Set dateMaintenance
+     * Set date
      *
-     * @param \DateTime $dateMaintenance
+     * @param \DateTime $date
      *
      * @return CarMaintenance
      */
-    public function setDateMaintenance($dateMaintenance)
+    public function setDate($date)
     {
-        $this->dateMaintenance = $dateMaintenance;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get dateMaintenance
+     * Get date
      *
      * @return \DateTime
      */
-    public function getDateMaintenance()
+    public function getDate()
     {
-        return $this->dateMaintenance;
+        return $this->date;
     }
 
 
