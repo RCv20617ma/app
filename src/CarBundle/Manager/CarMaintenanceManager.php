@@ -12,6 +12,7 @@ namespace CarBundle\Manager;
 
 use CoreBundle\Manager\AbstractManager;
 use CarBundle\Entity\CarMaintenance;
+use AppBundle\Entity\Outgo;
 
 class CarMaintenanceManager extends  AbstractManager
 {
@@ -22,4 +23,20 @@ class CarMaintenanceManager extends  AbstractManager
     {
         return CarMaintenance::class;
     }
+
+    /**
+     * @return PhysicalCustomer|mixed
+     */
+    public function create()
+    {
+
+        $carmaintenance= parent::create();
+
+        $carmaintenance->addOutgo(new Outgo);
+
+        return $carmaintenance;
+    }
+
+
+
 }

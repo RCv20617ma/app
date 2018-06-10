@@ -2,13 +2,15 @@
 
 namespace CarBundle\Form;
 
+use AppBundle\Form\OutgoType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use AppBundle\Entity\Outgo;
+
 
 
 class CarMaintenanceType extends AbstractType
@@ -35,10 +37,19 @@ class CarMaintenanceType extends AbstractType
                 ->add('typeMaintenance')
                 ->add('car')
 
-            ->add('outgo', EntityType::class, [
-                'class' => Outgo::class,
-            ]);
-    }/**
+
+
+        ->add('outgo', CollectionType::class, [
+        'label' => 'Outgo',
+        'entry_type' => OutgoType::class,
+        'allow_add' => true,
+        'allow_delete' => true,
+        'prototype' => true,
+        'by_reference' => false,
+    ]);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

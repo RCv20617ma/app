@@ -41,12 +41,6 @@ class CarMaintenance implements EntityCrudInterface
      */
     protected $file;
 
-
-    public function __construct()
-    {
-        $this->outgo = new ArrayCollection();
-    }
-
     /**
      * @var int
      *
@@ -73,11 +67,17 @@ class CarMaintenance implements EntityCrudInterface
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Outgo" , cascade={"persist"})
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Outgo", cascade={"persist"} )
+     * @ORM\JoinTable(name="carmaintenance_outgo")
      */
     private $outgo;
 
-    
+    public function __construct()
+    {
+        $this->outgo = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -234,18 +234,15 @@ class CarMaintenance implements EntityCrudInterface
         return $this->car;
     }
 
-
     /**
      * Add outgo
      *
      * @param \AppBundle\Entity\Outgo $outgo
-     * @return Consultation
+     * @return CarMaintenance
      */
     public function addOutgo(\AppBundle\Entity\Outgo $outgo)
     {
-        $outgo->setConsultation($this);
         $this->outgo->add($outgo);
-
         return $this;
     }
 
@@ -260,9 +257,9 @@ class CarMaintenance implements EntityCrudInterface
     }
 
     /**
-     * Get consultationmeds
+     * Get CarMaintenance
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return
      */
     public function getOutgo()
     {

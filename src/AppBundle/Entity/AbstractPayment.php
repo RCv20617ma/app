@@ -125,7 +125,7 @@ abstract class AbstractPayment
      *
      * @return Payment
      */
-    public function setDatePayment($date)
+    public function setDate($date)
     {
         $this->date = $date;
 
@@ -137,7 +137,7 @@ abstract class AbstractPayment
      *
      * @return \DateTime
      */
-    public function getDatePayment()
+    public function getDate()
     {
         return $this->date;
     }
@@ -188,5 +188,29 @@ abstract class AbstractPayment
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * Set typeMaintenance
+     *
+     * @param \CoreBundle\Entity\File $File
+     *
+     * @return AbstractPayment
+     */
+    public function setFile(\CoreBundle\Entity\File $file = null)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return \AppBundle\Entity\File
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 }
