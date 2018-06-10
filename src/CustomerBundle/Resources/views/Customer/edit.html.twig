@@ -16,6 +16,14 @@
     </div>
 {% endblock %}
 
+{% block _customer_documents_entry_row %}
+    <div class="col-md-3 block_document">
+        {{ form_widget(form.documentType) }}
+        {{ form_row(form.file.file) }}
+        {{ form_widget(form.file.fileChanged) }}
+    </div>
+{% endblock %}
+
  {% if form.vars.value.id is null %}
      {% set title = 'Ajouter un nouveau client' %}
  {% else %}
@@ -50,6 +58,8 @@
             </div>
             <fieldset>
                 <legend>Pièce d'identité</legend>
+                {{ form_widget(form.documents) }}
+                {{ form_errors(form.documents) }}
             </fieldset>
             <hr>
             <button type="reset" class="btn btn-danger"><i
@@ -67,7 +77,7 @@
     <script src="{{ asset('vendors/intlTelInput/js/intlTelInput.min.js') }}"></script>
 {% endblock %}
 
-{% block customJS %}
+{% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/customer/js/edit.js') }}"></script>
 {% endblock %}

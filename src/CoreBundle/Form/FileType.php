@@ -3,6 +3,7 @@
 namespace CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType as SfFileType;
@@ -14,8 +15,13 @@ class FileType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('file', SfFileType::class);
-    }/**
+        $builder->add('file', SfFileType::class, ['required' => false])
+            ->add('fileChanged', HiddenType::class, [
+                'attr' => ['class' => 'file_changed']
+            ]);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -32,6 +38,5 @@ class FileType extends AbstractType
     {
         return 'corebundle_file';
     }
-
-
 }
+

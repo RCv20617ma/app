@@ -6,10 +6,6 @@ customer:
     resource: '@CustomerBundle/Controller/'
     type: annotation
 
-car:
-    resource: '@CarBundle/Controller/'
-    type: annotation
-
 ben_user:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /

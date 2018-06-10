@@ -33,7 +33,6 @@ class FileUploadListener
 
     private function uploadFile($entity)
     {
-        echo 33;die;
         if (!$entity instanceof File) {
             return;
         }
@@ -42,12 +41,11 @@ class FileUploadListener
 
         if ($file instanceof UploadedFile) {
             $fileName = $this->uploader->upload($file);
-            $entity->setDirectotPath($this->uploader->getTargetDirectory());
+            $entity->setDirectoryPath($this->uploader->getTargetDirectory());
             $entity->setMimeType($file->getClientMimeType());
-            $entity->setSize($file->getSize());
             $entity->setOriginalName($file->getClientOriginalName());
             $entity->setUuid($fileName);
-            $entity->setFullPath($entity->getDirectotPath() . '/' . $entity->getUuid());
+            $entity->setFullPath($entity->getDirectoryPath() . '/' . $entity->getUuid());
         }
     }
 }

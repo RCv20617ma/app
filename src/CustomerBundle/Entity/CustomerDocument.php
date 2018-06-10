@@ -76,11 +76,11 @@ class CustomerDocument
     /**
      * Set documentType
      *
-     * @param \CustomerBundle\Entity\AbstractDocumentType $documentType
+     * @param \CustomerBundle\Entity\CustomerDocumentType $documentType
      *
      * @return CustomerDocument
      */
-    public function setDocumentType(\CustomerBundle\Entity\AbstractDocumentType $documentType = null)
+    public function setDocumentType(\CustomerBundle\Entity\CustomerDocumentType $documentType = null)
     {
         $this->documentType = $documentType;
 

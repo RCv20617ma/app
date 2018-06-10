@@ -2,6 +2,9 @@ CustomerBundle\Entity\PhysicalCustomer:
     physical_customer_{1..200}:
         agency: '@agency_*'
         gender: '@reference_gender_*'
+        identityNumber: <numberBetween(9999, 999999)>
+        drivingLicenceNumber: <numberBetween(9999, 999999)>
+        nationality: 'MA'
         firstname: <firstname()>
         lastName: <lastname()>
         birthDate: <dateTime()>

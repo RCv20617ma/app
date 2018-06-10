@@ -3,9 +3,8 @@
 namespace CoreBundle\Entity;
 
 use CoreBundle\Entity\Traits\CreatedByTrait;
-use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -32,26 +31,37 @@ class File
      * @Assert\NotBlank
      */
     private $originalName;
+
     /**
-     * @ORM\Column(type="string", name="directoty_path", length=128, nullable=true)
+     * @ORM\Column(type="string", name="directory_path", length=128, nullable=true)
      */
-    private $directotPath;
+    private $directoryPath;
+
     /**
      * @ORM\Column(type="string", name="uuid", length=128, nullable=true)
      */
     private $uuid;
+
     /**
      * @ORM\Column(type="string", name="full_path", length=128, nullable=true)
      */
     private $fullPath;
+
     /**
      * @ORM\Column(type="string", name="mime_type", length=128, nullable=true)
      */
     private $mimeType;
+
     /**
      * @ORM\Column(type="integer", name="size")
      */
     private $size;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $fileChanged;
 
     /**
      * @Assert\File(
@@ -87,27 +97,22 @@ class File
     }
 
     /**
-     * Set directotPath
-     *
-     * @param string $directotPath
-     *
-     * @return File
+     * @return mixed
      */
-    public function setDirectotPath($directotPath)
+    public function getDirectoryPath()
     {
-        $this->directotPath = $directotPath;
-
-        return $this;
+        return $this->directoryPath;
     }
 
     /**
-     * Get directotPath
-     *
-     * @return string
+     * @param $directoryPath
+     * @return File
      */
-    public function getDirectotPath()
+    public function setDirectoryPath($directoryPath)
     {
-        return $this->directotPath;
+        $this->directoryPath = $directoryPath;
+
+        return $this;
     }
 
     /**
@@ -214,5 +219,29 @@ class File
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set fileChanged
+     *
+     * @param boolean $fileChanged
+     *
+     * @return File
+     */
+    public function setFileChanged($fileChanged)
+    {
+        $this->fileChanged = $fileChanged;
+
+        return $this;
+    }
+
+    /**
+     * Get fileChanged
+     *
+     * @return boolean
+     */
+    public function getFileChanged()
+    {
+        return $this->fileChanged;
     }
 }

@@ -52,7 +52,7 @@ class PhysicalCustomerManager extends AbstractManager
 
         $physicalCustomer->addDocument(new CustomerDocument($documentTypeCin));
         $physicalCustomer->addDocument(new CustomerDocument($documentTypeDrivingLicence));
-        $physicalCustomer->addDocument(new CustomerDocument($documentTypePassPort));
+        $physicalCustomer->addDocument(new CustomerDocument());
 
         return $physicalCustomer;
     }
