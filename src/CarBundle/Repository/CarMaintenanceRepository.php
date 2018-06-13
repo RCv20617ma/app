@@ -10,4 +10,32 @@ namespace CarBundle\Repository;
  */
 class CarMaintenanceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function counter() {
+        $qb = $this->createQueryBuilder('p')->select('COUNT(p)');
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    /* advanced search */
+    public function search($searchParam) {
+        extract($searchParam);
+var_dump($searchParam);die();
+        $qb = $this->createQueryBuilder('cm')
+            ->leftJoin('cm.car', 'c')
+            ->addSelect('c')
+            ->leftJoin(cm.typeMaintenance,tm)
+            ->addSelect('tm');
+            return $qb
+                ->getQuery()
+                ->getResult()
+                ;
+
+       /* if(!empty($sortBy)){
+            $sortBy = in_array($sortBy, array('firstname', 'familyname', 'birthday')) ? $sortBy : 'id';
+            $sortDir = ($sortDir == 'DESC') ? 'DESC' : 'ASC';
+            $qb->orderBy('p.' . $sortBy, $sortDir);
+        }
+        if(!empty($perPage)) $qb->setFirstResult(($page - 1) * $perPage)->setMaxResults($perPage);
+
+        return new Paginator($qb->getQuery());*/
+    }
 }

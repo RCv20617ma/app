@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * CarMaintenance
  *
  * @ORM\Table(name="car_maintenance")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="CarBundle\Repository\CarMaintenanceRepository")
  */
 class CarMaintenance implements EntityCrudInterface
 {
