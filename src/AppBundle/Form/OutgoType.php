@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\Outgo;
+use CoreBundle\Entity\ReferenceModePayment;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
@@ -22,7 +23,7 @@ class OutgoType extends AbstractType
         $builder->add('amount' , MoneyType::class, [
                         'currency' => 'MAD',
                         'attr' => [
-                            'placeholder' => '500.00'
+                            'placeholder' => 'Montant à Payé'
                         ]
                     ])
 
@@ -34,7 +35,9 @@ class OutgoType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'datepicker', 'autocomplete' => 'off']
             ])
-            ->add('modePayment')
+            ->add('modePayment',NULL, array(
+                'placeholder' => "Mode de Paiement"
+            ))
             ->add('number')
             ->add('note');
     }

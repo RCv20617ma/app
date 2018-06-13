@@ -54,6 +54,7 @@ class CarMaintenance implements EntityCrudInterface
      *
      * @Assert\NotBlank()
      * @Assert\Range(min = 0)
+     * @Assert\Type(type="decimal", message="Le montant à payé doit être un nombre.")
      * @ORM\Column(name="amount", type="decimal",precision=10, scale=2)
      */
     private $amount;
