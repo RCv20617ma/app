@@ -3,6 +3,7 @@
 namespace CoreBundle\Entity;
 
 use CoreBundle\Entity\Traits\CreatedByTrait;
+use CoreBundle\Entity\Traits\UpdatedByTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,12 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * File
  *
  * @ORM\Table(name="file")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\FileRepository")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity()
  */
 class File
 {
-    use TimestampableEntity, CreatedByTrait;
+    use TimestampableEntity, CreatedByTrait, UpdatedByTrait;
 
     /** @var int
      *
@@ -27,33 +27,33 @@ class File
     private $id;
 
     /**
-     * @ORM\Column(type="string", name="original_name", length=128)
+     * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
     private $originalName;
 
     /**
-     * @ORM\Column(type="string", name="directory_path", length=128, nullable=true)
+     * @ORM\Column(type="string", length=128)
      */
     private $directoryPath;
 
     /**
-     * @ORM\Column(type="string", name="uuid", length=128, nullable=true)
+     * @ORM\Column(type="string", length=128)
      */
     private $uuid;
 
     /**
-     * @ORM\Column(type="string", name="full_path", length=128, nullable=true)
+     * @ORM\Column(type="string")
      */
     private $fullPath;
 
     /**
-     * @ORM\Column(type="string", name="mime_type", length=128, nullable=true)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $mimeType;
 
     /**
-     * @ORM\Column(type="integer", name="size", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $size;
 

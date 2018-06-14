@@ -43,7 +43,7 @@ class FileType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'corebundle_file';
+        return 'file';
     }
 }
 

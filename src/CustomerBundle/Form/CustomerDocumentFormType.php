@@ -47,7 +47,7 @@ class CustomerDocumentFormType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'customerdocument';
+        return 'customer_document';
     }
 
 

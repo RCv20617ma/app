@@ -6,8 +6,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
+    /**
+     * @var string
+     */
     private $targetDirectory;
 
+    /**
+     * FileUploader constructor.
+     * @param $targetDirectory
+     */
     public function __construct($targetDirectory)
     {
         $this->targetDirectory = $targetDirectory;
