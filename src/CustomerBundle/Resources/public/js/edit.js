@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    /*
      function intlTelInput($selector) {
          $($selector).intlTelInput({
              nationalMode: false,
@@ -71,11 +70,4 @@ $(document).ready(function () {
              $formBlock.remove();
          });
      }
- */
-
-    $('#customer_documents').on('change', 'input[type=file]', function () {
-        $fileChanged = $(this).parents('.block_document').find('.file_changed');
-        $fileChanged.val(0);
-    });
-
 });

@@ -20,7 +20,12 @@
     <div class="col-md-3 block_document">
         {{ form_widget(form.documentType) }}
         {{ form_row(form.file.file) }}
-        {{ form_widget(form.file.fileChanged) }}
+
+        {% if form.vars.value %}
+            {% set object = form.vars.value.file %}
+            <object width="100%" data="{{ asset(object.fullPath) }}" type="{{ object.mimeType }}"></object>
+        {% endif %}
+
     </div>
 {% endblock %}
 
@@ -72,12 +77,10 @@
 {% endblock %}
 
 
-{% block pluginsJS %}
-    {{ parent() }}
-    <script src="{{ asset('vendors/intlTelInput/js/intlTelInput.min.js') }}"></script>
-{% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
+    {#
+    <script src="{{ asset('vendors/intlTelInput/js/intlTelInput.min.js') }}"></script>
     <script src="{{ asset('bundles/customer/js/edit.js') }}"></script>
+        #}
 {% endblock %}

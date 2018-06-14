@@ -53,7 +53,7 @@ class File
     private $mimeType;
 
     /**
-     * @ORM\Column(type="integer", name="size")
+     * @ORM\Column(type="integer", name="size", nullable=true)
      */
     private $size;
 
