@@ -2,11 +2,16 @@
 
 namespace CarBundle\Entity;
 
+use CoreBundle\Entity\Traits\AgencyTrait;
+use CoreBundle\Entity\Traits\CreatedByTrait;
+use CoreBundle\Entity\Traits\UpdatedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use CoreBundle\Entity\EntityCrudInterface;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use CarBundle\Form\CarMaintenanceType;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * CarMaintenance
  *
@@ -15,6 +20,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CarMaintenance implements EntityCrudInterface
 {
+
+    use CreatedByTrait, UpdatedByTrait, TimestampableEntity, AgencyTrait;
+
     /**
      * @var int
      *
@@ -22,7 +30,7 @@ class CarMaintenance implements EntityCrudInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected  $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypeMaintenance")
@@ -69,8 +77,7 @@ class CarMaintenance implements EntityCrudInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Outgo", cascade={"persist"} )
-     * @ORM\JoinTable(name="carmaintenance_outgo")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Outgo", cascade={"all"} )
      */
     private $outgo;
 
@@ -279,7 +286,7 @@ class CarMaintenance implements EntityCrudInterface
      */
     public function getSlug()
     {
-        return 'carMaintenance';
+        return 'car_maintenance';
     }
 
     /**
