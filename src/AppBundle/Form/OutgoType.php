@@ -36,8 +36,7 @@ class OutgoType extends AbstractType
             ])
             ->add('modePayment')
             ->add('number')
-            ->add('note')
-            ->add('file',FileType::class);
+            ->add('note');
     }
 
     /**

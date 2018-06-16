@@ -15,7 +15,7 @@ class EntityCrud
         return [
             'customer' => PhysicalCustomerManager::class,
             'car' => CarManager::class,
-            'carMaintenance' => CarMaintenanceManager::class,
+            'car_maintenance' => CarMaintenanceManager::class,
         ];
     }
 
