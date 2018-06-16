@@ -4,6 +4,8 @@ namespace CustomerBundle\Manager;
 use AppBundle\Entity\User;
 use CoreBundle\Entity\Agency;
 use CoreBundle\Manager\AbstractManager;
+use CustomerBundle\Entity\CustomerDocument;
+use CustomerBundle\Entity\CustomerDocumentType;
 use CustomerBundle\Entity\CustomerEmail;
 use CustomerBundle\Entity\CustomerPhone;
 use CustomerBundle\Entity\PhysicalCustomer;
@@ -42,6 +44,15 @@ class PhysicalCustomerManager extends AbstractManager
         $physicalCustomer->addPhone(new CustomerPhone());
         $physicalCustomer->addEmail(new CustomerEmail());
         $physicalCustomer->setNationality('MA');
+
+        $customerDocumentRepo = $this->entityManager->getRepository(CustomerDocumentType::class);
+        $documentTypeCin = $customerDocumentRepo->findOneByCode(CustomerDocumentType::CIN_CODE);
+        $documentTypePassPort = $customerDocumentRepo->findOneByCode(CustomerDocumentType::PASSPORT_CODE);
+        $documentTypeDrivingLicence = $customerDocumentRepo->findOneByCode(CustomerDocumentType::DRIVING_LICENCE_CODE);
+
+        $physicalCustomer->addDocument(new CustomerDocument($documentTypeCin));
+        $physicalCustomer->addDocument(new CustomerDocument($documentTypeDrivingLicence));
+        $physicalCustomer->addDocument(new CustomerDocument());
 
         return $physicalCustomer;
     }

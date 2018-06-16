@@ -67,7 +67,7 @@ abstract class AbstractCustomer
     public $archived = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerDocument", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="CustomerDocument", mappedBy="customer", cascade={"all"})
      */
     public $documents;
 
@@ -84,8 +84,9 @@ abstract class AbstractCustomer
      */
     public function __construct()
     {
-        $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->emails = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->phones = new ArrayCollection();
+        $this->emails = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
 
     /**
@@ -229,8 +230,10 @@ abstract class AbstractCustomer
      */
     public function addDocument(\CustomerBundle\Entity\CustomerDocument $document)
     {
-        $this->documents[] = $document;
-
+        if (!$this->documents->contains($document)) {
+            $document->setCustomer($this);
+            $this->documents[] = $document;
+        }
         return $this;
     }
 
@@ -262,22 +265,24 @@ abstract class AbstractCustomer
     /**
      * @return null|string
      */
-    public function getMainEmail(){
-        foreach ($this->getEmails() as $ec){
-            if($ec->isMain())
+    public function getMainEmail()
+    {
+        foreach ($this->getEmails() as $ec) {
+            if ($ec->isMain())
                 return $ec->getEmail();
         }
-       return $this->getEmails()->isEmpty() ? null : $this->getEmails()->first()->getEmail();
+        return $this->getEmails()->isEmpty() ? null : $this->getEmails()->first()->getEmail();
     }
 
     /**
      * @return null|string
      */
-    public function getMainPhone(){
+    public function getMainPhone()
+    {
         /** @var CustomerPhone $pc */
-        foreach ($this->getPhones() as $pc){
-            if($pc->getMain())
-               return $pc->getPhone();
+        foreach ($this->getPhones() as $pc) {
+            if ($pc->getMain())
+                return $pc->getPhone();
         }
         return $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();
 

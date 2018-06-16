@@ -3,6 +3,7 @@
 namespace CoreBundle\Entity;
 
 use CoreBundle\Entity\MappedSuperClass\AbstractReference;
+use CoreBundle\Entity\Traits\CodeIntTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,4 +22,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class AbstractDocumentType extends AbstractReference
 {
+    use CodeIntTrait;
 }
