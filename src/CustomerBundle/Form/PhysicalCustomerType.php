@@ -68,6 +68,13 @@ class PhysicalCustomerType extends AbstractType
             ->add('address', null, [
                 'label' => 'customer.address'
             ])
+            ->add('documents', CollectionType::class, [
+                'entry_type' => CustomerDocumentFormType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+            ])
         ;
     }
 
