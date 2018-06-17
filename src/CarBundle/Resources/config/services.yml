@@ -6,6 +6,10 @@ services:
 
     #------------Mangers
     CarBundle\Manager\CarManager: ~
+    CarBundle\Manager\CarMaintenanceManager: ~
 
     #------------Controllers
     CarBundle\Controller\CarMaintenanceController: ~
+
+    #------------Form Type
+    CarBundle\Form\CarMaintenanceType: ~

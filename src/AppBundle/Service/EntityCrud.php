@@ -4,6 +4,8 @@ namespace AppBundle\Service;
 
 use CustomerBundle\Manager\PhysicalCustomerManager;
 use CarBundle\Manager\CarManager;
+use CarBundle\Manager\CarMaintenanceManager;
+
 
 class EntityCrud
 {
@@ -13,6 +15,7 @@ class EntityCrud
         return [
             'customer' => PhysicalCustomerManager::class,
             'car' => CarManager::class,
+            'car_maintenance' => CarMaintenanceManager::class,
         ];
     }
 

@@ -66,7 +66,7 @@ class Agency
     /**
      * @var string
      *
-     * @ORM\Column(name="website", type="string", length=32, nullable=true)
+     * @ORM\Column(name="website", type="string", length=255, nullable=true)
      */
     private $website;
 

@@ -1,0 +1,14 @@
+CarBundle\Entity\Car:
+    car_{1..40}:
+        agency: '@agency_*'
+        model: '@car_model_*'
+        brand: '@car_brand_*'
+        fuelType: '@reference_fuel_type_*'
+        gearbox: '@reference_gear_box_*'
+        carNumber: <numberBetween(1111111, 99999999)>
+        carNumberWW: <numberBetween(1111111, 99999999)>
+        currentKm: <numberBetween(10000, 99999)>
+        purchaseDate: <datetime()>
+        saleDatePlanned: <datetime()>
+        horsePower: <numberBetween(6, 20)>
+        priceDay: <numberBetween(250, 800)>
