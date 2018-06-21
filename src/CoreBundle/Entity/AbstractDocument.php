@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorMap(
  *   {
  *     CarBundle\Entity\CarDocument::DISCRIMINATOR = CarBundle\Entity\CarDocument::class,
- *     CustomerBundle\Entity\CustomerDocument::DISCRIMINATOR = CustomerBundle\Entity\CustomerDocument::class,
  *   }
  * )
  * @ORM\HasLifecycleCallbacks()

@@ -20,6 +20,7 @@ customer:
 reference_gender.MALE: Homme
 reference_gender.FEMALE: Femme
 customer_document_type.CIN: C.I.N
+customer_document_type.DRIVING_LICENCE: Permis de conduire
 customer_document_type.PASSPORT: Passeport
 
 # General translation

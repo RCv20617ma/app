@@ -5,16 +5,15 @@ app:
 customer:
     resource: '@CustomerBundle/Controller/'
     type: annotation
-
+    
 car:
     resource: '@CarBundle/Controller/'
     type: annotation
 
-ben_doctors:
+carmaintenance:
     resource: "@CarBundle/Resources/config/routing.yml"
     prefix:   /
-
-
+    
 ben_user:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /

@@ -18,7 +18,6 @@ class CarMaintenanceRepository extends \Doctrine\ORM\EntityRepository
     /* advanced search */
     public function search($searchParam) {
         extract($searchParam);
-var_dump($searchParam);die();
         $qb = $this->createQueryBuilder('cm')
             ->leftJoin('cm.car', 'c')
             ->addSelect('c')
@@ -38,4 +37,5 @@ var_dump($searchParam);die();
 
         return new Paginator($qb->getQuery());*/
     }
+
 }

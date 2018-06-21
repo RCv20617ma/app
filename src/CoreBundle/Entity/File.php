@@ -2,21 +2,23 @@
 
 namespace CoreBundle\Entity;
 
+use CoreBundle\Entity\Traits\CreatedByTrait;
+use CoreBundle\Entity\Traits\UpdatedByTrait;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * File
  *
  * @ORM\Table(name="file")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\FileRepository")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity()
  */
 class File
 {
-    /**
-     * @var int
+    use TimestampableEntity, CreatedByTrait, UpdatedByTrait;
+
+    /** @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -25,26 +27,194 @@ class File
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
-    private $name;
+    private $originalName;
 
     /**
-     * @ORM\Column(type="string", length=128, nullable=true)
+     * @ORM\Column(type="string", length=128)
      */
-    private $path;
+    private $directoryPath;
 
     /**
-     * @var UploadedFile
-     * @Assert\File(maxSize="6000000")
+     * @ORM\Column(type="string", length=128)
      */
-    private $file;
+    private $uuid;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $fullPath;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $mimeType;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $size;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $fileChanged;
+
+    /**
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf", "image/*"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     */
+    public $file;
+
+    /**
+     * Set originalName
+     *
+     * @param string $originalName
+     *
+     * @return File
+     */
+    public function setOriginalName($originalName)
+    {
+        $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * Get originalName
+     *
+     * @return string
+     */
+    public function getOriginalName()
+    {
+        return $this->originalName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDirectoryPath()
+    {
+        return $this->directoryPath;
+    }
+
+    /**
+     * @param $directoryPath
+     * @return File
+     */
+    public function setDirectoryPath($directoryPath)
+    {
+        $this->directoryPath = $directoryPath;
+
+        return $this;
+    }
+
+    /**
+     * Set uuid
+     *
+     * @param string $uuid
+     *
+     * @return File
+     */
+    public function setUuid($uuid)
+    {
+        $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    /**
+     * Get uuid
+     *
+     * @return string
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * Set fullPath
+     *
+     * @param string $fullPath
+     *
+     * @return File
+     */
+    public function setFullPath($fullPath)
+    {
+        $this->fullPath = $fullPath;
+
+        return $this;
+    }
+
+    /**
+     * Get fullPath
+     *
+     * @return string
+     */
+    public function getFullPath()
+    {
+        return $this->fullPath;
+    }
+
+    /**
+     * Set mimeType
+     *
+     * @param string $mimeType
+     *
+     * @return File
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+
+        return $this;
+    }
+
+    /**
+     * Get mimeType
+     *
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * Set size
+     *
+     * @param integer $size
+     *
+     * @return File
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -52,113 +222,26 @@ class File
     }
 
     /**
-     * Set name
+     * Set fileChanged
      *
-     * @param string $name
+     * @param boolean $fileChanged
      *
      * @return File
      */
-    public function setName($name)
+    public function setFileChanged($fileChanged)
     {
-        $this->name = $name;
+        $this->fileChanged = $fileChanged;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get fileChanged
      *
-     * @return string
+     * @return boolean
      */
-    public function getName()
+    public function getFileChanged()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set path
-     *
-     * @param string $path
-     *
-     * @return File
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get path
-     *
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    public function getAbsolutePath()
-    {
-        return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path ? null : $this->getUploadDir() . '/' . $this->path;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/documents';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-        if (null !== $this->file) {
-            // do whatever you want to generate a unique name
-            $this->path = uniqid() . '.' . $this->file->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        if (null === $this->file) {
-            return;
-        }
-
-        // if there is an error when moving the file, an exception will
-        // be automatically thrown by move(). This will properly prevent
-        // the entity from being persisted to the database on error
-        $this->file->move($this->getUploadRootDir(), $this->path);
-
-        unset($this->file);
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        $file = $this->getAbsolutePath();
-        if ($file) {
-            unlink($file);
-        }
+        return $this->fileChanged;
     }
 }
