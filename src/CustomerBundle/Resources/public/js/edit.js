@@ -1,10 +1,10 @@
 $(document).ready(function () {
     function intlTelInput($selector) {
         $($selector).intlTelInput({
-            utilsScript: vendorDir+"/intl-tel-input/build/js/utils.js?13",
+            utilsScript: vendorDir + "/intl-tel-input/build/js/utils.js?13",
             nationalMode: false,
             hiddenInput: "full_number",
-            preferredCountries: ['ma', 'fr', 'es', 'us','it'],
+            preferredCountries: ['ma', 'fr', 'es', 'us', 'it'],
         });
     }
 

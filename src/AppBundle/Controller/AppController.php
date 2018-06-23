@@ -27,7 +27,7 @@ class AppController extends Controller
      * @Route("/{entity}/edit/{id}", name="entity_edit", defaults={"id" = null }, requirements={"id"="\d+"})
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request,TranslatorInterface $translator, EntityCrud $entityCrud, $entity, $id = null)
+    public function editAction(Request $request, TranslatorInterface $translator, EntityCrud $entityCrud, $entity, $id = null)
     {
         /** @var AbstractManager $entityManager */
         $entityManager = $this->get($entityCrud->getEntityManagerClassName($entity));
@@ -41,7 +41,6 @@ class AppController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->entityManager->merge($entity);
             $entityManager->persist($entity, true);
             $this->addFlash('success', $translator->trans('msg.success_operation'));
             return $this->redirectToRoute('entity_edit', ['id' => $entity->getId(), 'entity' => $entity->getSlug()]);
