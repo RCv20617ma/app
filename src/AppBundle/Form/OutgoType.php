@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
-
 class OutgoType extends AbstractType
 {
     /**
@@ -19,14 +18,12 @@ class OutgoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('amount' , MoneyType::class, [
-                        'currency' => 'MAD',
-                        'attr' => [
-                            'placeholder' => 'Montant à Payé'
-                        ]
-                    ])
-
-
+        $builder->add('amount', MoneyType::class, [
+            'currency' => 'MAD',
+            'attr' => [
+                'placeholder' => 'Montant à Payé'
+            ]
+        ])
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 'input' => 'datetime',
@@ -34,11 +31,12 @@ class OutgoType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'datepicker', 'autocomplete' => 'off']
             ])
-            ->add('modePayment',NULL, array(
+            ->add('modePayment', NULL, array(
                 'placeholder' => "Mode de Paiement"
             ))
             ->add('number')
-            ->add('note')->add('file', FileType::class);
+            ->add('note')
+            ->add('file', FileType::class);
     }
 
     /**
