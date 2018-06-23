@@ -37,7 +37,6 @@ class CarMaintenance implements EntityCrudInterface
      */
     private $typeMaintenance;
 
-
     /**
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Car")
@@ -45,7 +44,7 @@ class CarMaintenance implements EntityCrudInterface
     private $car;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File")
+     * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File", cascade={"all"})
      */
     protected $file;
 
@@ -61,7 +60,7 @@ class CarMaintenance implements EntityCrudInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text")
+     * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;
 

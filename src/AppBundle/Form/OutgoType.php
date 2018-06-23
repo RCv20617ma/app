@@ -2,8 +2,8 @@
 
 namespace AppBundle\Form;
 
+use CoreBundle\Form\FileType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\Outgo;
@@ -38,7 +38,7 @@ class OutgoType extends AbstractType
                 'placeholder' => "Mode de Paiement"
             ))
             ->add('number')
-            ->add('note');
+            ->add('note')->add('file', FileType::class);
     }
 
     /**
