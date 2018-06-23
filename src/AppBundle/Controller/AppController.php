@@ -41,6 +41,7 @@ class AppController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->entityManager->merge($entity);
             $entityManager->persist($entity, true);
             $this->addFlash('success', $translator->trans('msg.success_operation'));
             return $this->redirectToRoute('entity_edit', ['id' => $entity->getId(), 'entity' => $entity->getSlug()]);

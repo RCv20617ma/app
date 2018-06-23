@@ -29,7 +29,7 @@ class CustomerDocumentFormType extends AbstractType
                     $disabled = ($document and !empty($document->getDocumentType()));
                     $form->add('documentType', null, ['disabled' => $disabled]);
                 }
-            );;
+            );
     }
 
     /**

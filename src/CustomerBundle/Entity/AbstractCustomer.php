@@ -48,7 +48,7 @@ abstract class AbstractCustomer
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="CustomerPhone", mappedBy="customer", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="CustomerPhone", mappedBy="customer", cascade={"persist", "remove"})
      */
     public $phones;
 
@@ -147,6 +147,7 @@ abstract class AbstractCustomer
      */
     public function removePhone(\CustomerBundle\Entity\CustomerPhone $phone)
     {
+
         $this->phones->removeElement($phone);
     }
 
@@ -281,7 +282,7 @@ abstract class AbstractCustomer
     {
         /** @var CustomerPhone $pc */
         foreach ($this->getPhones() as $pc) {
-            if ($pc->getMain())
+            if ($pc->isMain())
                 return $pc->getPhone();
         }
         return $this->getPhones()->isEmpty() ? null : $this->getPhones()->first()->getPhone();

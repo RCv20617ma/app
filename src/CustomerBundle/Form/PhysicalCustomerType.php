@@ -2,8 +2,10 @@
 
 namespace CustomerBundle\Form;
 
+use CustomerBundle\Entity\AbstractCustomer;
 use CustomerBundle\Entity\CustomerDocumentType;
 use CustomerBundle\Entity\ReferenceGender;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -11,10 +13,19 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PhysicalCustomerType extends AbstractType
 {
+
+    private $originalPhones;
+
+    public function __construct()
+    {
+        $this->originalPhones = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -37,8 +48,8 @@ class PhysicalCustomerType extends AbstractType
                 'class' => CustomerDocumentType::class,
                 'expanded' => true,
             ])
-            ->add('nationality', CountryType::class,[
-                'preferred_choices' => ['MA','CA','DZ','US', 'FR', 'TN', 'ES']
+            ->add('nationality', CountryType::class, [
+                'preferred_choices' => ['MA', 'CA', 'DZ', 'US', 'FR', 'TN', 'ES']
             ])
             ->add('identityNumber')
             ->add('drivingLicenceNumber')
@@ -75,7 +86,31 @@ class PhysicalCustomerType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
             ])
-        ;
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                function (FormEvent $event) {
+                    /** @var AbstractCustomer $abstractCustomer */
+                    $abstractCustomer = $event->getData();
+                    foreach ($abstractCustomer->getPhones() as $phone) {
+                        $this->originalPhones->add($phone);
+                    }
+                    dump($this->originalPhones);
+                }
+            )
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                function (FormEvent $event) {
+                    /** @var AbstractCustomer $abstractCustomer */
+                    $abstractCustomer = $event->getData();
+                    foreach ($this->originalPhones as $phone) {
+                        if (false === $abstractCustomer->getPhones()->contains($phone)) {
+                            $abstractCustomer->removePhone($phone);
+                        }
+                    }
+                    $event->setData($abstractCustomer);
+                    dump($event->getData());die;
+                }
+            );
     }
 
     /**
