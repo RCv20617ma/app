@@ -1,21 +1,22 @@
 {% extends '::form.html.twig' %}
-    {% form_theme form _self %}
+{% form_theme form _self %}
 
 
-    {% block _customer_phones_entry_row %}
-        <div class="fieldRow">
-            <div class="col-lg-10">
-                <div class="form-group input-group {% if not form.vars.valid %} has-error {% endif %}">
-                    <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
-                    {{ form_widget(form.phone) }}
-                </div>
-                {{ form_errors(form.phone) }}
-            </div>
-            <div class="col-lg-2">
-                <a href="#" class="btn btn-danger pull-right btnDelete"><i class="fa fa-trash"></i></a>
+{% block _customer_phones_entry_row %}
+    <div class="fieldRow">
+        <div class="col-lg-10">
+            <div class="form-group {% if not form.vars.valid %} has-error {% endif %}" >
+            {{ form_widget(form.phone) }}
+            {{ form_errors(form.phone) }}
             </div>
         </div>
-    {% endblock %}
+        <div class="col-lg-2">
+            {% if not form.vars.value %}
+                <a href="#" class="btn btn-danger pull-right btnDelete"><i class="fa fa-trash"></i></a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
 
 {% block _customer_emails_entry_row %}
     <div class="fieldRow">
@@ -27,7 +28,9 @@
             </div>
         </div>
         <div class="col-lg-2">
-            <a href="#" class="btn btn-danger pull-right btnDelete"><i class="fa fa-trash"></i></a>
+            {% if not form.vars.value %}
+                <a href="#" class="btn btn-danger pull-right btnDelete"><i class="fa fa-trash"></i></a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
@@ -104,10 +107,13 @@
     {{ form_end(form) }}
 {% endblock %}
 
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('vendor/intl-tel-input/build/css/intlTelInput.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-
-    {#<script src="{{ asset('vendors/intlTelInput/js/intlTelInput.min.js') }}"></script>#}
+    <script src="{{ asset('vendor/intl-tel-input/build/js/intlTelInput.min.js') }}"></script>
     <script src="{{ asset('bundles/customer/js/edit.js') }}"></script>
 {% endblock %}

@@ -25,7 +25,7 @@
                                 {{ c.identityNumber }}
                             </td>
                             <td>{{ c.mainEmail }}</td>
-                            <td>{% if c.mainPhone is not empty %} {{ c.mainPhone|phone_number_format('NATIONAL') }} {% endif %}</td>
+                            <td>{% if c.mainPhone is not empty %} <a href="tel:{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}" >{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}</a> {% endif %}</td>
                             <td>
                                 <a class="btn btn-warning btn-xs" href="{{ path('entity_edit', {'entity': c.slug, 'id': c.id}) }}" ><i class="fa fa-edit" ></i></a>
                             </td>

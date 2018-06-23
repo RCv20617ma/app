@@ -39,7 +39,8 @@
     "datatables-responsive": "1.0.6",
     "bootstrap-social": "~4.8.0",
     "flot.tooltip": "~0.8.4",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "intl-tel-input": "^12.3.0"
   },
   "resolutions": {
     "font-awesome": "~4.6.3"

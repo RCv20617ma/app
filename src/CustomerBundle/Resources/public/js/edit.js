@@ -1,13 +1,14 @@
 $(document).ready(function () {
-    // function intlTelInput($selector) {
-    //     $($selector).intlTelInput({
-    //         nationalMode: false,
-    //         hiddenInput: "full_number",
-    //         preferredCountries: ['ma', 'fr', 'es', 'us','it'],
-    //     });
-    // }
-    //
-    // intlTelInput("input[type=tel]");
+    function intlTelInput($selector) {
+        $($selector).intlTelInput({
+            utilsScript: vendorDir+"/intl-tel-input/build/js/utils.js?13",
+            nationalMode: false,
+            hiddenInput: "full_number",
+            preferredCountries: ['ma', 'fr', 'es', 'us','it'],
+        });
+    }
+
+    intlTelInput("input[type=tel]");
 
     var phone_container = $('div#customer_phones');
     var index = phone_container.find(':input').length;
@@ -26,19 +27,17 @@ $(document).ready(function () {
     });
 
     function addField($container) {
-        alert(index);
         var template = $container.attr('data-prototype')
             .replace(/__name__/g, index)
         ;
         var $prototype = $(template);
         $container.append($prototype);
+        intlTelInput("input[type=tel]");
         index++;
     }
-
 
     $('body').on('click', '.btnDelete', function (e) {
         e.preventDefault();
         $(this).parents(".fieldRow").remove();
     });
-
 });
