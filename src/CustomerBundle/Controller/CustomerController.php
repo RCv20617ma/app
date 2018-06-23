@@ -2,6 +2,7 @@
 
 namespace CustomerBundle\Controller;
 
+use CustomerBundle\Manager\PhysicalCustomerManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
@@ -21,29 +22,18 @@ class CustomerController extends Controller
 
     /**
      * @param Request $request
-     * @param AbstractCustomerManager $abstractCustomerManager
+     * @param PhysicalCustomerManager $physicalCustomerManager
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/", name="customer_index")
      */
-    public function indexAction(Request $request, AbstractCustomerManager $abstractCustomerManager)
+    public function indexAction(Request $request, PhysicalCustomerManager $physicalCustomerManager)
     {
-        /** @var User $userConnected */
-        $userConnected = $this->getUser();
-        $allCustomers = $abstractCustomerManager->getAllByAgency($userConnected->getAgency(), $request->query->get('key', null));
-
-        /** @var $paginator Paginator */
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $allCustomers,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 10)
-        );
+        $customers = $physicalCustomerManager->findBy(['agency' => $this->getUser()->getAgency()], ['id' => 'DESC']);
 
         return $this->render('CustomerBundle::index.html.twig', array(
-            'pagination' => $pagination
+            'customers' => $customers
         ));
     }
 
 }
-

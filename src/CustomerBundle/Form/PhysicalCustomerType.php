@@ -37,8 +37,8 @@ class PhysicalCustomerType extends AbstractType
                 'class' => CustomerDocumentType::class,
                 'expanded' => true,
             ])
-            ->add('nationality', CountryType::class,[
-                'preferred_choices' => ['MA','CA','DZ','US', 'FR', 'TN', 'ES']
+            ->add('nationality', CountryType::class, [
+                'preferred_choices' => ['MA', 'CA', 'DZ', 'US', 'FR', 'TN', 'ES']
             ])
             ->add('identityNumber')
             ->add('drivingLicenceNumber')
@@ -74,8 +74,7 @@ class PhysicalCustomerType extends AbstractType
                 'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
-            ])
-        ;
+            ]);
     }
 
     /**

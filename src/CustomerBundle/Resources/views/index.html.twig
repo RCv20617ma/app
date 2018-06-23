@@ -1,88 +1,49 @@
 {% extends "layout.html.twig" %}
 {% block title %}{{ 'customer.customers_list'|trans }}{% endblock %}
-
-
-
- {% block breadcrumb %}
-     <li><a href="{{ path('app_dashboard') }}">{{ 'app.dashboard'|trans }}</a></li><li class="active">{{ 'customer.customers_list'|trans }}</li>
- {% endblock %}
+{% block header %}{{ 'customer.customers_list'|trans }}{% endblock %}
 
 {% block content %}
-
-
-    <div class="x_panel">
-        <div class="x_title">
-            <h2><i class="fa fa-list" aria-hidden="true"></i> {{ 'customer.customers_list'|trans }}</h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <form method="get">
-                        <div style="max-width: 250px;" class="input-group">
-                            <input value="{{ app.request.query.get('key',null) }}" name="key" type="text" class="form-control" placeholder="{{ 'app.search'|trans }}">
-                            <span class="input-group-btn">
-                      <button title="{{ 'app.search'|trans }}" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </span>
-                        </div>
-                    </form>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                    <tr class="headings">
-                        <th>{{ 'customer.full_name'|trans }}</th>
-                        <th>{{ 'customer.email'|trans }}</th>
-                        <th>{{ 'customer.phone'|trans }}</th>
-                        <th>{{ 'customer.gender'|trans }}</th>
-                        <th>{{ 'customer.web_site'|trans }}</th>
-                        <th>{{ 'app.created_at'|trans }}</th>
-                        <th>{{ 'app.updated_at'|trans }}</th>
-                        <th>{{ 'app.action'|trans }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if pagination is not empty %}
-                        {% for c in pagination %}
-                            <tr>
-                                <td {% if c.socialReason is defined %}data-toggle="tooltip" data-placement="top" data-original-title="{{ 'customer.manager'|trans }} : {{ c.socialReason }}"{% endif %}>{{ c.fullName }}</td>
-                                <td>{{ c.mainEmail }}</td>
-                                <td>{% if c.mainPhone is not empty %} {{ c.mainPhone|phone_number_format('NATIONAL') }} {% endif %}</td>
-                                <td>{{ c.gender|trans }}</td>
-                                <td>{{ c.webSite is defined ? c.webSite : '' }}</td>
-                                <td>{{ c.createdAt|date() }}</td>
-                                <td>{{ c.updatedAt|date() }}</td>
-                                <td></td>
-                            </tr>
-                        {% endfor %}
-                    {% else %}
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr class="headings">
+                    <th>{{ 'customer.full_name'|trans }}</th>
+                    <th>Carte d'identité</th>
+                    <th>{{ 'customer.email'|trans }}</th>
+                    <th>{{ 'customer.phone'|trans }}</th>
+                    <th>{{ 'app.action'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if customers is not empty %}
+                    {% for c in customers %}
                         <tr>
-                            <td class="msg" colspan="8">
-                                {{ 'msg.no_data'|trans|format('customer.label'|trans) }}
+                            <td>{{ c.fullName }}</td>
+                            <td>
+                                {{ c.identityDocumentType }}
+                                {{ c.identityNumber }}
+                            </td>
+                            <td>{{ c.mainEmail }}</td>
+                            <td>{% if c.mainPhone is not empty %} <a href="tel:{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}" >{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}</a> {% endif %}</td>
+                            <td>
+                                <a class="btn btn-warning btn-xs" href="{{ path('entity_edit', {'entity': c.slug, 'id': c.id}) }}" ><i class="fa fa-edit" ></i></a>
                             </td>
                         </tr>
-                    {% endif %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <p>{{ "app.list_info"|trans|format(pagination.paginationData.firstItemNumber, pagination.paginationData.lastItemNumber, pagination.paginationData.totalCount) }}</p>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div style="margin-top: -25px;" class="pull-right" >
-                        {{ knp_pagination_render(pagination) }}
-                    </div>
-                </div>
-            </div>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td class="msg" colspan="8">
+                            {{ 'msg.no_data'|trans|format('customer.label'|trans) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
 
-{% block customJS %}
-    <script type="text/javascript" src="{{ asset('bundles/customer/js/list.js') }}"></script>
-{% endblock %}
 
 
 

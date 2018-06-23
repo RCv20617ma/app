@@ -1,74 +1,43 @@
-$(document).ready(function(){
+$(document).ready(function () {
     function intlTelInput($selector) {
         $($selector).intlTelInput({
+            utilsScript: vendorDir + "/intl-tel-input/build/js/utils.js?13",
             nationalMode: false,
             hiddenInput: "full_number",
-            preferredCountries: ['ma', 'fr', 'es', 'us','it'],
+            preferredCountries: ['ma', 'fr', 'es', 'us', 'it'],
         });
     }
 
     intlTelInput("input[type=tel]");
 
-
-    // RealEstate translation collection management
-    var $addcustomerPhoneLink = $('<a href="#" class="btn btn-primary" role="button"><i class="fa fa-plus" ></i></a>');
-    var $newcustomerPhoneLink = $('<div class="text-center"></div>').append($addcustomerPhoneLink);
-    var $collectionCustomerPhoneHolder = $('#customer_phones');
-
-    // add the "add a tag" anchor and li to the tags ul
-    $collectionCustomerPhoneHolder.append($newcustomerPhoneLink);
-
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-    $collectionCustomerPhoneHolder.data('index', $collectionCustomerPhoneHolder.find(':input').length);
-
-    $addcustomerPhoneLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
+    var phone_container = $('div#customer_phones');
+    var index = phone_container.find(':input').length;
+    $('#add_phone').click(function (e) {
+        addField(phone_container);
         e.preventDefault();
-        // add a new tag form (see next code block)
-        addcustomerPhoneForm($collectionCustomerPhoneHolder, $newcustomerPhoneLink);
+        return false;
     });
 
-    // add a delete link to all of the existing tag form li elements
-    $collectionCustomerPhoneHolder.find('div.customer-phone-block').each(function() {
-        addcustomerPhoneFormDeleteLink($(this));
+    var email_container = $('div#customer_emails');
+    var index = email_container.find(':input').length;
+    $('#add_email').click(function (e) {
+        addField(email_container);
+        e.preventDefault();
+        return false;
     });
 
-    function addcustomerPhoneForm() {
-        // Get the data-prototype explained earlier
-        var prototype = $collectionCustomerPhoneHolder.data('prototype');
-
-        // get the new index
-        var index = $collectionCustomerPhoneHolder.data('index');
-
-        // Replace '__name__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        var newForm = prototype.replace(/__name__/g, index);
-
-        // increase the index with one for the next item
-        $collectionCustomerPhoneHolder.data('index', index + 1);
-
-        // Display the form in the page, before the "Add" button
-        var $newFormBlock = $('<div class="customer-phone-block"></div>').append(newForm);
-        intlTelInput($newFormBlock.find("input[type=tel]"));
-
-        $newcustomerPhoneLink.before($newFormBlock);
-
-        // add a delete link to the new form
-        addcustomerPhoneFormDeleteLink($newFormBlock);
+    function addField($container) {
+        var template = $container.attr('data-prototype')
+            .replace(/__name__/g, index)
+        ;
+        var $prototype = $(template);
+        $container.append($prototype);
+        intlTelInput("input[type=tel]");
+        index++;
     }
 
-    function addcustomerPhoneFormDeleteLink($formBlock) {
-        var $removeFormLink = $('<a href="#" ><i class="fa fa-minus" ></i></a>');
-
-        $formBlock.find('.button-container').html($removeFormLink);
-
-        $removeFormLink.on('click', function(e) {
-            // prevent the link from creating a "#" on the URL
-            e.preventDefault();
-
-            $formBlock.remove();
-        });
-    }
-
+    $('body').on('click', '.btnDelete', function (e) {
+        e.preventDefault();
+        $(this).parents(".fieldRow").remove();
+    });
 });

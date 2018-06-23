@@ -13,7 +13,7 @@ abstract class AbstractManager
     /**
      * @var EntityManagerInterface $entityManager
      */
-    protected $entityManager;
+    public $entityManager;
 
     /**
      * Returns the name of the class of an object managed by the manager
