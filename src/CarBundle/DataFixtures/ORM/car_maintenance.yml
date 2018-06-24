@@ -1,0 +1,13 @@
+CarBundle\Entity\CarMaintenance:
+    car_maintenance{1..100}:
+        agency: '@agency_*'
+        car: 'car_car_*'
+        type_maintenance: '@type_maintenance_*'
+        amount: <numberBetween(250, 800)>
+        comment: 'comment'
+        date: <datetime()>
+        createdAt: <datetime()>
+        updatedAt: <datetime()>
+        createdBy: '@user_*'
+        updatedBy: '@user_*'
+
