@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "datatable.html.twig" %}
 {% block title %}{{ 'customer.customers_list'|trans }}{% endblock %}
 {% block header %}{{ 'customer.customers_list'|trans }}{% endblock %}
 
@@ -36,28 +36,4 @@
                 </tbody>
             </table>
     </div>
-
 {% endblock %}
-{% block stylesheet %}
-    {{ parent() }}
-    <link href="{{ asset('vendor/datatables/media/css/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vendor/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables-responsive/js/dataTables.responsive.js') }}"></script>
-
-    <script>
-        $('.datatable').DataTable({
-            responsive: true,
-        });
-    </script>
-{% endblock %}
-
-
-
-
-

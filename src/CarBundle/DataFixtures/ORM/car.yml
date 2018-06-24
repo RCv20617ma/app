@@ -1,5 +1,5 @@
 CarBundle\Entity\Car:
-    car_{1..40}:
+    car_car_{1..40}:
         agency: '@agency_*'
         model: '@car_model_*'
         brand: '@car_brand_*'

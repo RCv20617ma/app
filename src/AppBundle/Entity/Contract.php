@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use CoreBundle\Entity\Traits\AgencyTrait;
+use CoreBundle\Entity\Traits\CreatedByTrait;
+use CoreBundle\Entity\Traits\UpdatedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -15,7 +17,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Contract
 {
-    use AgencyTrait,TimestampableEntity;
+    use AgencyTrait, TimestampableEntity, CreatedByTrait, UpdatedByTrait;
 
     /**
      * @var int
@@ -38,7 +40,7 @@ class Contract
 
     /**
      * @ORM\ManyToMany(targetEntity="CustomerBundle\Entity\PhysicalCustomer")
-     *  @ORM\JoinTable(name="contract_drivers",
+     * @ORM\JoinTable(name="contract_drivers",
      *      joinColumns={@JoinColumn(name="contract_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="driver_id", referencedColumnName="id")}
      *      )
@@ -48,21 +50,28 @@ class Contract
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_date", type="datetimetz")
+     * @ORM\Column(type="datetime")
      */
     private $startDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end_date", type="datetimetz")
+     * @ORM\Column(type="datetime")
      */
     private $endDate;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $numberDays;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $originalPriceDay;
 
@@ -73,13 +82,6 @@ class Contract
      */
     private $priceDay;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="number_days", type="integer")
-     */
-    private $numberDays;
-    
     /**
      * @var string
      *
@@ -192,6 +194,7 @@ class Contract
     {
         return $this->car;
     }
+
     /**
      * Constructor
      */

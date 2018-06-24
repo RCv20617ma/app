@@ -3,6 +3,7 @@
 namespace CoreBundle\EventListener;
 
 use AppBundle\Entity\User;
+use CarBundle\Entity\AbstractCar;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -38,7 +39,7 @@ class EntityPermissionListener
         if (!empty($entity->getAgency())) {
             /** @var User $user */
             $user = $this->tokenStorage->getToken()->getUser();
-            if ($user->getAgency()->getId() != $entity->getAgency()->getId()) {
+            if ($user->getAgency()->getId() != $entity->getAgency()->getId() && !$user->hasRole(User::ROLE_IT)) {
                 throw new AccessDeniedException();
             }
         }

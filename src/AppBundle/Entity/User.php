@@ -16,6 +16,8 @@ class User extends BaseUser
 {
     use AgencyTrait;
 
+    const ROLE_IT = 'ROLE_IT';
+
     /**
      * @var int
      *
@@ -135,7 +137,8 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getFullName() {
-        return ucfirst($this->getFirstName()).' '.strtoupper($this->getLastName());
+    public function getFullName()
+    {
+        return ucfirst($this->getFirstName()) . ' ' . strtoupper($this->getLastName());
     }
 }

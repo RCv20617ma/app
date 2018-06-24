@@ -1,0 +1,15 @@
+AppBundle\Entity\Contract:
+    contract_{1..10000}:
+        agency: '@agency_*'
+        customer: '@physical_customer_*'
+        car: '@car_car_*'
+        startDate: <dateTime()>
+        endDate: <dateTime()>
+        numberDays: <numberBetween(3, 30)>
+        originalPriceDay: <numberBetween(300, 1000)>
+        priceDay: <numberBetween(200, 1200)>
+        total: <numberBetween(1800, 6200)>
+        createdAt: <datetime()>
+        updatedAt: <datetime()>
+        createdBy: '@user_*'
+        updatedBy: '@user_*'

@@ -10,7 +10,8 @@ services:
 
     AppBundle\Service\EntityCrud: ~
     #------------Mangers
-
+    AppBundle\Manager\ContractManager: ~
     #------------Controllers
 
     AppBundle\Controller\AppController: ~
+    AppBundle\Controller\ContractController: ~

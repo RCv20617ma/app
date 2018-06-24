@@ -4,7 +4,7 @@ namespace CustomerBundle\Entity;
 
 use CoreBundle\Entity\EntityCrudInterface;
 use CustomerBundle\Form\PhysicalCustomerType;
-use CustomerBundle\Manager\PhysicalCustomerManager;
+use CustomerBundle\Manager\ContractManager;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -195,7 +195,7 @@ class PhysicalCustomer extends AbstractCustomer implements EntityCrudInterface
      */
     public function getEntityManagerClassName()
     {
-        return PhysicalCustomerManager::class;
+        return ContractManager::class;
     }
 
     /**
