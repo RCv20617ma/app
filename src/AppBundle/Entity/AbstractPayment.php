@@ -40,7 +40,7 @@ abstract class AbstractPayment
     protected $modePayment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File")
+     * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File", cascade={"all"})
      */
     protected $file;
 

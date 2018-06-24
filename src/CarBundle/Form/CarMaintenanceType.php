@@ -5,6 +5,7 @@ namespace CarBundle\Form;
 use AppBundle\Entity\User;
 use AppBundle\Form\OutgoType;
 use CarBundle\Entity\Car;
+use CoreBundle\Form\FileType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -68,6 +69,7 @@ class CarMaintenanceType extends AbstractType
                         ->setParameter('agency', $this->getUser()->getAgency());
                 },
             ])
+            ->add('file', FileType::class)
             ->add('outgo', CollectionType::class, [
                 'label' => 'Outgo',
                 'entry_type' => OutgoType::class,
