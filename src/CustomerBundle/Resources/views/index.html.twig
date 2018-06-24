@@ -4,8 +4,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover datatable">
                 <thead>
                 <tr class="headings">
                     <th>{{ 'customer.full_name'|trans }}</th>
@@ -16,32 +15,46 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% if customers is not empty %}
-                    {% for c in customers %}
-                        <tr>
-                            <td>{{ c.fullName }}</td>
-                            <td>
-                                {{ c.identityDocumentType }}
-                                {{ c.identityNumber }}
-                            </td>
-                            <td>{{ c.mainEmail }}</td>
-                            <td>{% if c.mainPhone is not empty %} <a href="tel:{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}" >{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}</a> {% endif %}</td>
-                            <td>
-                                <a class="btn btn-warning btn-xs" href="{{ path('entity_edit', {'entity': c.slug, 'id': c.id}) }}" ><i class="fa fa-edit" ></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
+                {% for c in customers %}
                     <tr>
-                        <td class="msg" colspan="8">
-                            {{ 'msg.no_data'|trans|format('customer.label'|trans) }}
+                        <td>{{ c.fullName }}</td>
+                        <td>
+                            {{ c.identityDocumentType }}
+                            {{ c.identityNumber }}
+                        </td>
+                        <td>{{ c.mainEmail }}</td>
+                        <td>{% if c.mainPhone is not empty %} <a
+                                    href="tel:{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}">{{ c.mainPhone|phone_number_format('INTERNATIONAL') }}</a> {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-warning btn-xs"
+                               href="{{ path('entity_edit', {'entity': c.slug, 'id': c.id}) }}"><i
+                                        class="fa fa-edit"></i></a>
                         </td>
                     </tr>
-                {% endif %}
+                {% endfor %}
                 </tbody>
             </table>
-        </div>
     </div>
+
+{% endblock %}
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('vendor/datatables/media/css/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables-responsive/js/dataTables.responsive.js') }}"></script>
+
+    <script>
+        $('.datatable').DataTable({
+            responsive: true,
+        });
+    </script>
 {% endblock %}
 
 
