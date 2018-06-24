@@ -38,7 +38,7 @@ class EntityPermissionListener
         if (!empty($entity->getAgency())) {
             /** @var User $user */
             $user = $this->tokenStorage->getToken()->getUser();
-            if ($user->getAgency()->getId() != $entity->getAgency()->getId()) {
+            if ($user->getAgency()->getId() != $entity->getAgency()->getId() && !$user->hasRole(User::ROLE_IT)) {
                 throw new AccessDeniedException();
             }
         }

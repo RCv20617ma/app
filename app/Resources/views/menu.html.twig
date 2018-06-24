@@ -26,6 +26,17 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><i class="fa fa-folder-open fa-fw"></i> Contrats de location<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ path("contract_index") }}">Liste des contrats</a>
+                    </li>
+                    <li>
+                        <a href="{{ path("entity_edit", {"entity":"contract"}) }}">Nouveau contrat</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-car fa-fw"></i> Voitures<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -37,7 +48,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-car fa-fw"></i> Entretiens<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Entretiens<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="#">Liste des entretiens</a>
@@ -48,7 +59,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa- fa-fw"></i> Administration<span
+                <a href="#"><i class="fa fa-gears fa-fw"></i> Administration<span
                             class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
