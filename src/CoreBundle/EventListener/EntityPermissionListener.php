@@ -3,7 +3,6 @@
 namespace CoreBundle\EventListener;
 
 use AppBundle\Entity\User;
-use CarBundle\Entity\AbstractCar;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
