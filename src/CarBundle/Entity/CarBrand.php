@@ -11,8 +11,20 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="car_brand")
  * @ORM\Entity()
  */
-class CarBrand extends AbstractReference
+class CarBrand
 {
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @ORM\column(type="string", length=64)
+     */
+    protected $label;
+
     /**
      * @ORM\OneToMany(targetEntity="CarModel", mappedBy="brand")
      */
@@ -59,5 +71,47 @@ class CarBrand extends AbstractReference
     public function getModels()
     {
         return $this->models;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return CarBrand
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getLabel();
     }
 }
