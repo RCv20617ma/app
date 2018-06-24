@@ -8,8 +8,8 @@
 
 namespace CarBundle\Manager;
 
-use CarBundle\Entity\Charge;
 use CoreBundle\Manager\AbstractManager;
+use CarBundle\Entity\Charge;
 
 
 class ChargeManager extends AbstractManager
@@ -19,6 +19,6 @@ class ChargeManager extends AbstractManager
      */
     public function getClass()
     {
-        return ChargeManager::class;
+        return Charge::class;
     }
 }

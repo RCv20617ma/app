@@ -19,11 +19,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 class CarMaintenance extends AbstractCharge implements EntityCrudInterface
 {
 
+    const DISCRIMINATOR = 'cm';
+
     /**
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Car")
      */
     private $car;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeMaintenance")
+     */
+    private $typeMaintenance;
 
     /**
      * Set car
@@ -47,6 +55,30 @@ class CarMaintenance extends AbstractCharge implements EntityCrudInterface
     public function getCar()
     {
         return $this->car;
+    }
+
+    /**
+     * Set typeMaintenance
+     *
+     * @param \CarBundle\Entity\TypeMaintenance $typeMaintenance
+     *
+     * @return CarMaintenance
+     */
+    public function setTypeMaintenance(\CarBundle\Entity\TypeMaintenance $typeMaintenance = null)
+    {
+        $this->typeMaintenance = $typeMaintenance;
+
+        return $this;
+    }
+
+    /**
+     * Get typeMaintenance
+     *
+     * @return \CarBundle\Entity\TypeMaintenance
+     */
+    public function getTypeMaintenance()
+    {
+        return $this->typeMaintenance;
     }
 
     /**

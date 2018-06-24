@@ -1,0 +1,30 @@
+{% extends "datatable.html.twig" %}
+
+{% block content %}
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover datatable">
+            <thead>
+            <tr class="headings">
+                <th>lebelle </th>
+                <th>amount</th>
+                <th>date</th>
+                <th>comment</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in charges %}
+                <tr>
+                    <td>{{ c.lebelle  }}</td>
+                    <td>{{ c.amount }}</td>
+                    <td>{{ c.date|date('d/m/Y  H:i') }}</td>
+                    <td>{{ c.comment }}</td>
+                    <td>
+                        <a class="btn btn-warning btn-xs" href=""><i class="fa fa-edit"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

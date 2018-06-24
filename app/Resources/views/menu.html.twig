@@ -51,10 +51,21 @@
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Entretiens<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Liste des entretiens</a>
+                        <a href="{{ path("carMaintenance_index") }}">Liste des entretiens</a>
                     </li>
                     <li>
                         <a href="{{ path("entity_edit", {"entity":"car_maintenance"}) }}">Ajouter un entretien</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Charge<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ path("charge_index") }}">Liste des charges</a>
+                    </li>
+                    <li>
+                        <a href="{{ path("entity_edit", {"entity":"charge"}) }}">Ajouter une charge</a>
                     </li>
                 </ul>
             </li>

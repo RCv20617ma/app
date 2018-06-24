@@ -20,8 +20,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorMap(
  *   {
- *     Car::DISCRIMINATOR = CarMaintenance::class,
- *     SlCar::DISCRIMINATOR = Charge::class,
+ *     CarMaintenance::DISCRIMINATOR = CarMaintenance::class,
+ *     Charge::DISCRIMINATOR = Charge::class,
  *   }
  * )
  * @ORM\HasLifecycleCallbacks()
@@ -38,11 +38,6 @@ Abstract class AbstractCharge
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="TypeMaintenance")
-     */
-    private $typeMaintenance;
 
     /**
      * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File", cascade={"all"})
@@ -168,29 +163,7 @@ Abstract class AbstractCharge
         return $this->date;
     }
 
-    /**
-     * Set typeMaintenance
-     *
-     * @param \CarBundle\Entity\TypeMaintenance $typeMaintenance
-     *
-     * @return CarMaintenance
-     */
-    public function setTypeMaintenance(\CarBundle\Entity\TypeMaintenance $typeMaintenance = null)
-    {
-        $this->typeMaintenance = $typeMaintenance;
 
-        return $this;
-    }
-
-    /**
-     * Get typeMaintenance
-     *
-     * @return \CarBundle\Entity\TypeMaintenance
-     */
-    public function getTypeMaintenance()
-    {
-        return $this->typeMaintenance;
-    }
 
     /**
      * Set typeMaintenance

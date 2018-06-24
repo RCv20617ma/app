@@ -1,10 +1,9 @@
-CarBundle\Entity\CarMaintenance:
-    car_maintenance{1..300}:
+CarBundle\Entity\Charge:
+    charge{1..100}:
         agency: '@agency_*'
-        car: '@car_car_*'
-        type_maintenance: '@type_maintenance_*'
         amount: <numberBetween(250, 800)>
         comment: <text()>
+        lebelle: <text()>
         date: <datetime()>
         createdAt: <datetime()>
         updatedAt: <datetime()>

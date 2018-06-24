@@ -1,0 +1,88 @@
+{% extends '::form.html.twig' %}
+ {% form_theme form _self %}
+ {% if form.vars.value.id is null %}
+     {% set title = 'Créer une charge' %}
+ {% else %}
+     {% set title = 'Modification : '~ form.vars.value %}
+ {% endif %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block header %}
+    {{ title }}
+{% endblock %}
+
+{% block _charge_outgo_entry_row %}
+    <div class="col-lg-12 well">
+        <div class="col-md-6">{{ form_row(form.modePayment) }}</div>
+        <div class="col-md-6">{{ form_row(form.amount) }}</div>
+        <div class="col-md-6">{{ form_row(form.number) }}</div>
+        <div class="col-md-6">{{ form_row(form.date) }}</div>
+        <div class="col-md-12">{{ form_row(form.note) }}</div>
+        <div class="col-md-6">{{ form_row(form.file.file) }}</div>
+        {% if form.vars.value and form.vars.value.file %}
+            <div class="col-md-6">
+                {% set object = form.vars.value.file %}
+                <object width="100%" data="{{ asset(object.fullPath) }}" type="{{ object.mimeType }}"></object>
+            </div>
+        {% endif %}
+        <div class="col-md-12 button-container"></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form._token) }}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Information générale
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3">{{ form_row(form.date) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.amount) }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">{{ form_row(form.comment) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.file.file) }}</div>
+                        {% if form.vars.value.file %}
+                            <div class="col-lg-3">
+                                {% set object = form.vars.value.file %}
+                                <object width="100%" data="{{ asset(object.fullPath) }}"
+                                        type="{{ object.mimeType }}"></object>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-9">
+                            {{ form_row(form.outgo) }}
+                            <div class="col-lg-12">
+                                <a href="#" id="add_outgo" class="btn btn-default pull-right">Ajouter un paiement</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="reset" class="btn btn-danger"><i
+                                class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
+                    <button type="submit" class="btn btn-success pull-right"><i
+                                class="fa fa-save"></i> {{ 'btn.save'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/car/js/charge_edit.js') }}"></script>
+{% endblock %}

@@ -33,7 +33,4 @@ class CarMaintenanceManager extends  AbstractManager
         $carmaintenance->addOutgo(new Outgo());
         return $carmaintenance;
     }
-
-
-
 }
