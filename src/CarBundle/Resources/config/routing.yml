@@ -1,0 +1,4 @@
+carmaintenance_ajax:
+    path:     /ajaxlist
+    defaults: { _controller: "CarBundle:CarMaintenance:ajaxList" }
+    requirements: { _method: post }
