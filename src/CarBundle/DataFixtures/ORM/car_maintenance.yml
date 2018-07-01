@@ -1,5 +1,6 @@
 CarBundle\Entity\CarMaintenance:
-    car_maintenance{1..300}:
+
+        car_maintenance{1..2000}:
         agency: '@agency_*'
         car: '@car_car_*'
         type_maintenance: '@type_maintenance_*'
