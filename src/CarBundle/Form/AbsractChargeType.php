@@ -36,7 +36,7 @@ class AbsractChargeType  extends AbstractType
                 'input' => 'datetime',
                 'format' => 'dd/MM/yyyy',
                 'required' => false,
-                'placeholder' => 'Date d\'entretien',
+                'placeholder' => 'Date',
                 'attr' => ['class' => 'datepicker', 'autocomplete' => 'off']
             ])
             ->add('amount', MoneyType::class, [
