@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: noureddine
- * Date: 24/06/2018
- * Time: 19:22
- */
 
-namespace CarBundle\Controller;
+namespace AppBundle\Controller;
 
-use CarBundle\Manager\ChargeManager;
+use AppBundle\Manager\ChargeManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -16,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * Class ChargeController
- * @package CarBundle\Controller
+ * @package AppBundle\Controller
  * @Route("/charge")
  */
 class ChargeController extends Controller
@@ -32,7 +26,7 @@ class ChargeController extends Controller
     {
         $charges = $chargeManager->findBy(['agency' => $this->getUser()->getAgency()]);
 
-        return $this->render('CarBundle::Charge/index.html.twig', ['charges' => $charges]);
+        return $this->render('AppBundle::Charge/index.html.twig', ['charges' => $charges]);
     }
 
 }

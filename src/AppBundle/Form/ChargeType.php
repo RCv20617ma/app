@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: noureddine
- * Date: 24/06/2018
- * Time: 19:20
- */
 
-namespace CarBundle\Form;
+namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
 use CarBundle\Entity\CarMaintenance;
+use CarBundle\Form\AbsractChargeType;
 use CoreBundle\Form\FileType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
@@ -48,7 +43,7 @@ class ChargeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CarBundle\Entity\Charge'
+            'data_class' => 'AppBundle\Entity\Charge'
         ));
     }
 

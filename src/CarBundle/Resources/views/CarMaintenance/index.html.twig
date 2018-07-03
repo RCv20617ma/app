@@ -8,10 +8,10 @@
             <thead>
             <tr class="headings">
                 <th>type Maintenance</th>
-                <th>car</th>
-                <th>amount</th>
-                <th>date</th>
-                <th>comment</th>
+                <th>Modèle voiture</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Commentaire</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -24,7 +24,7 @@
                     <td>{{ c.date|date('d/m/Y  H:i') }}</td>
                     <td>{{ c.comment }}</td>
                     <td>
-                        <a class="btn btn-warning btn-xs" href=""><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-warning btn-xs" href="{{ path("entity_edit", {"entity":"car_maintenance","id":c.id}) }}"><i class="fa fa-edit"></i></a>
                     </td>
                 </tr>
             {% endfor %}

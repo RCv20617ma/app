@@ -1,15 +1,16 @@
 <?php
 
-namespace CarBundle\Entity;
+namespace AppBundle\Entity;
 
 
 use CoreBundle\Entity\EntityCrudInterface;
-use CarBundle\Form\ChargeType;
+use AppBundle\Form\ChargeType;
+use CarBundle\Entity\AbstractCharge;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Car
+ * Charge
  *
  * @ORM\Table(name="charge")
  * @ORM\Entity()
@@ -26,11 +27,11 @@ class Charge extends AbstractCharge implements EntityCrudInterface
     /**
      * Set typeCharge
      *
-     * @param \CarBundle\Entity\TypeCharge $typeCharge
+     * @param \AppBundle\Entity\TypeCharge $typeCharge
      *
      * @return Charge
      */
-    public function setTypeCharge(\CarBundle\Entity\TypeCharge $typeCharge = null)
+    public function setTypeCharge(\AppBundle\Entity\TypeCharge $typeCharge = null)
     {
         $this->typeCharge = $typeCharge;
 
@@ -40,7 +41,7 @@ class Charge extends AbstractCharge implements EntityCrudInterface
     /**
      * Get typeCharge
      *
-     * @return \CarBundle\Entity\TypeCharge
+     * @return \AppBundle\Entity\TypeCharge
      */
     public function getTypeCharge()
     {
@@ -76,7 +77,11 @@ class Charge extends AbstractCharge implements EntityCrudInterface
      */
     public function getPreFixView()
     {
-        return 'CarBundle:Charge';
+        return 'AppBundle:Charge';
+    }
+    public function __toString()
+    {
+        return sprintf('%s', $this->getTypeCharge());
     }
 
 }

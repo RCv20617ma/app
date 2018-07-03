@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: noureddine
- * Date: 24/06/2018
- * Time: 19:16
- */
 
-namespace CarBundle\Manager;
+namespace AppBundle\Manager;
 
 use AppBundle\Entity\Outgo;
 use CoreBundle\Manager\AbstractManager;
-use CarBundle\Entity\Charge;
+use AppBundle\Entity\Charge;
 
 
 class ChargeManager extends AbstractManager

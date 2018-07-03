@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: noureddine
- * Date: 03/07/2018
- * Time: 23:31
- */
 
-namespace CarBundle\Entity;
+namespace AppBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;

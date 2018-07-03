@@ -4,7 +4,7 @@ namespace AppBundle\Service;
 
 use CustomerBundle\Manager\PhysicalCustomerManager;
 use CarBundle\Manager\CarManager;
-use CarBundle\Manager\ChargeManager;
+use AppBundle\Manager\ChargeManager;
 use CarBundle\Manager\CarMaintenanceManager;
 
 

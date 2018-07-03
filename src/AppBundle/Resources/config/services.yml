@@ -11,7 +11,9 @@ services:
     AppBundle\Service\EntityCrud: ~
     #------------Mangers
     AppBundle\Manager\ContractManager: ~
+    AppBundle\Manager\ChargeManager: ~
     #------------Controllers
 
     AppBundle\Controller\AppController: ~
     AppBundle\Controller\ContractController: ~
+    AppBundle\Controller\ChargeController: ~
