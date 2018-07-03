@@ -17,35 +17,34 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Charge extends AbstractCharge implements EntityCrudInterface
 {
     const DISCRIMINATOR = 'c';
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="libelle", type="text")
-     */
-    public  $libelle;
 
     /**
-     * Set libelle
+     * @ORM\ManyToOne(targetEntity="TypeCharge")
+     */
+     private $typeCharge;
+
+    /**
+     * Set typeCharge
      *
-     * @param string $libelle
+     * @param \CarBundle\Entity\TypeCharge $typeCharge
      *
      * @return Charge
      */
-    public function setLibelle($libelle)
+    public function setTypeCharge(\CarBundle\Entity\TypeCharge $typeCharge = null)
     {
-        $this->libelle = $libelle;
+        $this->typeCharge = $typeCharge;
 
         return $this;
     }
 
     /**
-     * Get libelle
+     * Get typeCharge
      *
-     * @return string
+     * @return \CarBundle\Entity\TypeCharge
      */
-    public function getLibelle()
+    public function getTypeCharge()
     {
-        return $this->libelle;
+        return $this->typeCharge;
     }
 
     /**

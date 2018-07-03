@@ -3,7 +3,7 @@ CarBundle\Entity\Charge:
         agency: '@agency_*'
         amount: <numberBetween(250, 800)>
         comment: <text()>
-        lebelle: <text()>
+        typeCharge: '@type_charge_*'
         date: <datetime()>
         createdAt: <datetime()>
         updatedAt: <datetime()>
