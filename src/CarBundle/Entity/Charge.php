@@ -20,32 +20,32 @@ class Charge extends AbstractCharge implements EntityCrudInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="lebelle", type="text")
+     * @ORM\Column(name="libelle", type="text")
      */
-    public  $lebelle;
+    public  $libelle;
 
     /**
-     * Set lebelle
+     * Set libelle
      *
-     * @param string $lebelle
+     * @param string $libelle
      *
      * @return Charge
      */
-    public function setLebelle($lebelle)
+    public function setLibelle($libelle)
     {
-        $this->lebelle = $lebelle;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     /**
-     * Get lebelle
+     * Get libelle
      *
      * @return string
      */
-    public function getLebelle()
+    public function getLibelle()
     {
-        return $this->lebelle;
+        return $this->libelle;
     }
 
     /**
