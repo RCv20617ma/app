@@ -1,5 +1,5 @@
 AppBundle\Entity\Contract:
-    contract_{1..10000}:
+    contract_{1..100}:
         agency: '@agency_*'
         customer: '@physical_customer_*'
         car: '@car_car_*'

@@ -1,14 +1,13 @@
 {% extends "datatable.html.twig" %}
-{% block title %}Liste  des entretiens {% endblock %}
-{% block header %}Liste des entretiens {% endblock %}
+{% block title %}Liste des charges {% endblock %}
+{% block header %}Liste des charges {% endblock %}
 
 {% block content %}
     <div class="row">
         <table class="table table-striped table-bordered table-hover datatable">
             <thead>
             <tr class="headings">
-                <th>type Maintenance</th>
-                <th>car</th>
+                <th>Type Charge </th>
                 <th>amount</th>
                 <th>date</th>
                 <th>comment</th>
@@ -16,10 +15,9 @@
             </tr>
             </thead>
             <tbody>
-            {% for c in carMaintenances %}
+            {% for c in charges %}
                 <tr>
-                    <td>{{ c.typeMaintenance.label }}</td>
-                    <td>{{ c.car.model.label }}</td>
+                    <td>{{ c.typeCharge  }}</td>
                     <td>{{ c.amount }}</td>
                     <td>{{ c.date|date('d/m/Y  H:i') }}</td>
                     <td>{{ c.comment }}</td>
