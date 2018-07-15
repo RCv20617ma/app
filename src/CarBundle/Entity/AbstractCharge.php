@@ -9,7 +9,6 @@ use CoreBundle\Entity\Traits\AgencyTrait;
 use CoreBundle\Entity\Traits\CreatedByTrait;
 use CoreBundle\Entity\Traits\UpdatedByTrait;
 use AppBundle\Entity\Charge;
-
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 
