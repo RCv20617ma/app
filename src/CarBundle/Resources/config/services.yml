@@ -7,11 +7,10 @@ services:
     #------------Mangers
     CarBundle\Manager\CarManager: ~
     CarBundle\Manager\CarMaintenanceManager: ~
-    CarBundle\Manager\ChargeManager: ~
 
     #------------Controllers
     CarBundle\Controller\CarMaintenanceController: ~
-    CarBundle\Controller\ChargeController: ~
+    CarBundle\Controller\CarController: ~
 
     #------------Form Type
     CarBundle\Form\CarMaintenanceType: ~
