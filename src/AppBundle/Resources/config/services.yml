@@ -17,3 +17,48 @@ services:
     AppBundle\Controller\AppController: ~
     AppBundle\Controller\ContractController: ~
     AppBundle\Controller\ChargeController: ~
+
+     #------------Mangers
+    AppBundle\Manager\CarManager: ~
+    AppBundle\Manager\CarMaintenanceManager: ~
+
+    #------------Controllers
+    AppBundle\Controller\CarMaintenanceController: ~
+    AppBundle\Controller\CarController: ~
+
+    #------------Form Type
+    AppBundle\Form\CarMaintenanceType: ~
+
+    #------------Services
+    AppBundle\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%upload_directory%'
+
+    #------------Listeners
+    AppBundle\EventListener\ReferenceTranslatorListener:
+        tags:
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
+    AppBundle\EventListener\EntitySetAgencyListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+
+    AppBundle\EventListener\EntityPermissionListener:
+        tags:
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
+    AppBundle\EventListener\FileUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    #------------Mangers
+    AppBundle\Manager\AbstractManager: ~
+
+    #------------Controllers
+        #------------Mangers
+    AppBundle\Manager\AbstractCustomerManager: ~
+    AppBundle\Manager\PhysicalCustomerManager: ~
+
+    #------------Controllers
+    AppBundle\Controller\CustomerController: ~

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form;
 
-use CoreBundle\Form\FileType;
+use AppBundle\Form\FileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

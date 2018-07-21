@@ -2,9 +2,9 @@
 
 namespace AppBundle\Entity;
 
-use CoreBundle\Entity\Traits\AgencyTrait;
-use CoreBundle\Entity\Traits\CreatedByTrait;
-use CoreBundle\Entity\Traits\UpdatedByTrait;
+use AppBundle\Entity\Traits\AgencyTrait;
+use AppBundle\Entity\Traits\CreatedByTrait;
+use AppBundle\Entity\Traits\UpdatedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -29,17 +29,17 @@ class Contract
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\AbstractCustomer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AbstractCustomer")
      */
     private $customer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CarBundle\Entity\AbstractCar")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AbstractCar")
      */
     private $car;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CustomerBundle\Entity\PhysicalCustomer")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\PhysicalCustomer")
      * @ORM\JoinTable(name="contract_drivers",
      *      joinColumns={@JoinColumn(name="contract_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="driver_id", referencedColumnName="id")}
@@ -150,11 +150,11 @@ class Contract
     /**
      * Set customer
      *
-     * @param \CustomerBundle\Entity\AbstractCustomer $customer
+     * @param \AppBundle\Entity\AbstractCustomer $customer
      *
      * @return Contract
      */
-    public function setCustomer(\CustomerBundle\Entity\AbstractCustomer $customer = null)
+    public function setCustomer(\AppBundle\Entity\AbstractCustomer $customer = null)
     {
         $this->customer = $customer;
 
@@ -164,7 +164,7 @@ class Contract
     /**
      * Get customer
      *
-     * @return \CustomerBundle\Entity\AbstractCustomer
+     * @return \AppBundle\Entity\AbstractCustomer
      */
     public function getCustomer()
     {
@@ -174,11 +174,11 @@ class Contract
     /**
      * Set car
      *
-     * @param \CarBundle\Entity\Car $car
+     * @param \AppBundle\Entity\Car $car
      *
      * @return Contract
      */
-    public function setCar(\CarBundle\Entity\Car $car = null)
+    public function setCar(\AppBundle\Entity\Car $car = null)
     {
         $this->car = $car;
 
@@ -188,7 +188,7 @@ class Contract
     /**
      * Get car
      *
-     * @return \CarBundle\Entity\Car
+     * @return \AppBundle\Entity\Car
      */
     public function getCar()
     {
@@ -254,11 +254,11 @@ class Contract
     /**
      * Add driver
      *
-     * @param \CustomerBundle\Entity\PhysicalCustomer $driver
+     * @param \AppBundle\Entity\PhysicalCustomer $driver
      *
      * @return Contract
      */
-    public function addDriver(\CustomerBundle\Entity\PhysicalCustomer $driver)
+    public function addDriver(\AppBundle\Entity\PhysicalCustomer $driver)
     {
         $this->drivers[] = $driver;
 
@@ -268,9 +268,9 @@ class Contract
     /**
      * Remove driver
      *
-     * @param \CustomerBundle\Entity\PhysicalCustomer $driver
+     * @param \AppBundle\Entity\PhysicalCustomer $driver
      */
-    public function removeDriver(\CustomerBundle\Entity\PhysicalCustomer $driver)
+    public function removeDriver(\AppBundle\Entity\PhysicalCustomer $driver)
     {
         $this->drivers->removeElement($driver);
     }

@@ -3,11 +3,11 @@ app:
     type: annotation
 
 customer:
-    resource: '@CustomerBundle/Controller/'
+    resource: '@AppBundle/Controller/'
     type: annotation
 
 car:
-    resource: '@CarBundle/Controller/'
+    resource: '@AppBundle/Controller/'
     type: annotation
 
 ben_user:

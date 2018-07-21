@@ -3,12 +3,12 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Contract;
-use CoreBundle\Entity\Agency;
-use CoreBundle\Manager\AbstractManager;
+use AppBundle\Entity\Agency;
+use AppBundle\Manager\AbstractManager;
 
 /**
  * Class ContractManager
- * @package CustomerBundle\Manager
+ * @package AppBundle\Manager
  */
 class ContractManager extends AbstractManager
 {

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use CoreBundle\Entity\Traits\AgencyTrait;
+use AppBundle\Entity\Traits\AgencyTrait;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -42,7 +42,7 @@ class User extends BaseUser
     private $lastName;
 
     /**
-     * @ORM\OneToOne(targetEntity="CoreBundle\Entity\File")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\File")
      */
     private $avatar;
 
@@ -113,11 +113,11 @@ class User extends BaseUser
     /**
      * Set avatar
      *
-     * @param \CoreBundle\Entity\File $avatar
+     * @param \AppBundle\Entity\File $avatar
      *
      * @return User
      */
-    public function setAvatar(\CoreBundle\Entity\File $avatar = null)
+    public function setAvatar(\AppBundle\Entity\File $avatar = null)
     {
         $this->avatar = $avatar;
 
@@ -127,7 +127,7 @@ class User extends BaseUser
     /**
      * Get avatar
      *
-     * @return \CoreBundle\Entity\File
+     * @return \AppBundle\Entity\File
      */
     public function getAvatar()
     {

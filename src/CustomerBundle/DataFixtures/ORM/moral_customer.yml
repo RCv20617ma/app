@@ -1,9 +1,0 @@
-CustomerBundle\Entity\MoralCustomer:
-    moral_customer_{1..200}:
-        agency: '@agency_*'
-        socialReason: <name()>
-        managerName: <name()>
-        archived: <boolean()>
-        webSite: <url()>
-        createdAt: <datetime()>
-        updatedAt: <datetime()>

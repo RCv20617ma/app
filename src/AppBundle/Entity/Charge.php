@@ -3,14 +3,13 @@
 namespace AppBundle\Entity;
 
 
-use CoreBundle\Entity\EntityCrudInterface;
+use AppBundle\Entity\EntityCrudInterface;
 use AppBundle\Form\ChargeType;
-use CarBundle\Entity\AbstractCharge;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Charge
+ * Car
  *
  * @ORM\Table(name="charge")
  * @ORM\Entity()
@@ -78,10 +77,6 @@ class Charge extends AbstractCharge implements EntityCrudInterface
     public function getPreFixView()
     {
         return 'AppBundle:Charge';
-    }
-    public function __toString()
-    {
-        return sprintf('%s', $this->getTypeCharge());
     }
 
 }

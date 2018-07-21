@@ -1,0 +1,24 @@
+AppBundle\Entity\ReferenceFuelType:
+    reference_fuel_type_{GASOLINE, DIESEL}:
+        label: reference.fuel_type.<current()>
+
+AppBundle\Entity\ReferenceCarOption:
+    reference_car_option_{GPS_NAVIGATOR,AIR_CONDITIONING,GPS_LOCATION}:
+        label: reference.car_option.<current()>
+
+AppBundle\Entity\ReferenceGearBox:
+    reference_gear_box_{MANUAL, AUTOMATIC}:
+        label: reference.gear_box.<current()>
+
+AppBundle\Entity\CarBrand:
+    car_brand_{1..10}:
+        label: <text(10)>
+
+AppBundle\Entity\CarModel:
+    car_model_{1..40}:
+        label: <text(10)>
+        brand: '@car_brand_*'
+
+AppBundle\Entity\CarDocumentType:
+    car_docuement_type_{INSURANCE,TECHNICAL_VISIT,GRAY_CARD,TRAFFIC_AUTHORIZATION,PURCHASE,TAX_STICKER,GREEN_CARD}:
+        label: car_document_type.<current()>

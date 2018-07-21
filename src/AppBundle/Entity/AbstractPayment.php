@@ -35,12 +35,12 @@ abstract class AbstractPayment
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\ReferenceModePayment")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ReferenceModePayment")
      */
     protected $modePayment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\CoreBundle\Entity\File", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\File", cascade={"all"})
      */
     protected $file;
 
@@ -73,11 +73,11 @@ abstract class AbstractPayment
     /**
      * Set modePayment
      *
-     * @param \CoreBundle\Entity\ReferenceModePayment $modePayment
+     * @param \AppBundle\Entity\ReferenceModePayment $modePayment
      *
      * @return Payment
      */
-    public function setModePayment(\CoreBundle\Entity\ReferenceModePayment $modePayment = null)
+    public function setModePayment(\AppBundle\Entity\ReferenceModePayment $modePayment = null)
     {
         $this->modePayment = $modePayment;
 
@@ -87,7 +87,7 @@ abstract class AbstractPayment
     /**
      * Get modePayment
      *
-     * @return \CoreBundle\Entity\ReferenceModePayment
+     * @return \AppBundle\Entity\ReferenceModePayment
      */
     public function getModePayment()
     {
@@ -193,11 +193,11 @@ abstract class AbstractPayment
     /**
      * Set typeMaintenance
      *
-     * @param \CoreBundle\Entity\File $File
+     * @param \AppBundle\Entity\File $File
      *
      * @return AbstractPayment
      */
-    public function setFile(\CoreBundle\Entity\File $file = null)
+    public function setFile(\AppBundle\Entity\File $file = null)
     {
         $this->file = $file;
 

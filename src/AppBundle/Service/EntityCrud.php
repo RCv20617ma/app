@@ -2,10 +2,10 @@
 
 namespace AppBundle\Service;
 
-use CustomerBundle\Manager\PhysicalCustomerManager;
-use CarBundle\Manager\CarManager;
+use AppBundle\Manager\PhysicalCustomerManager;
+use AppBundle\Manager\CarManager;
 use AppBundle\Manager\ChargeManager;
-use CarBundle\Manager\CarMaintenanceManager;
+use AppBundle\Manager\CarMaintenanceManager;
 
 
 class EntityCrud
