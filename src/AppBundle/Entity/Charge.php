@@ -79,4 +79,12 @@ class Charge extends AbstractCharge implements EntityCrudInterface
         return 'AppBundle:Charge';
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+       return (string) $this->getTypeCharge();
+    }
+
 }
