@@ -3,7 +3,6 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Contract;
-use AppBundle\Entity\Agency;
 use AppBundle\Manager\AbstractManager;
 
 /**

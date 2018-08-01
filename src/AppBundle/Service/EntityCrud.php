@@ -6,6 +6,7 @@ use AppBundle\Manager\PhysicalCustomerManager;
 use AppBundle\Manager\CarManager;
 use AppBundle\Manager\ChargeManager;
 use AppBundle\Manager\CarMaintenanceManager;
+use AppBundle\Manager\ContractManager;
 
 
 class EntityCrud
@@ -18,6 +19,7 @@ class EntityCrud
             'car' => CarManager::class,
             'car_maintenance' => CarMaintenanceManager::class,
             'charge' => ChargeManager::class,
+            'contract' => ContractManager::class,
         ];
     }
 

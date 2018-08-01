@@ -1,0 +1,129 @@
+{% extends '::form.html.twig' %}
+
+{% block content %}
+{{ form_start(form, {'attr': {'id': 'form_contract_edit'}}) }}
+    {{ form_widget(form._token) }}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Information générale
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3">{{ form_row(form.car) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.priceDay) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.originalPriceDay) }}</div> 
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">{{ form_row(form.startKms) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.fuelLevel) }}</div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group {% if not form.startDate.vars.valid %} has-error {% endif %}">
+                                {{ form_label(form.startDate) }}
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    {{ form_widget(form.startDate) }}
+                                </div>{{ form_errors(form.startDate) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group {% if not form.endDate.vars.valid %} has-error {% endif %}">
+                                {{ form_label(form.endDate) }}
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                    {{ form_widget(form.endDate) }}
+                                </div>{{ form_errors(form.endDate) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-3">{{ form_row(form.numberDays) }}</div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-lg-3">{{ form_row(form.customer) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.drivers) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.avance) }}</div> 
+                                               
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="reset" class="btn btn-danger"><i
+                                class="fa fa-times"></i> {{ 'btn.cancel_post'|trans }}</button>
+                    <button type="submit" class="btn btn-success pull-right"><i
+                                class="fa fa-save"></i> {{ 'btn.save'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+  $(function () {
+
+    $("#contract_endDate").on("dp.change", function() {
+        var form = $('#form_contract_edit'),
+            endDate = form.find('#contract_endDate'),
+            startDate = form.find('#contract_startDate');
+            startDate = startDate.val();
+            endDate = endDate.val();
+            date1 = startDate.split('/');
+            date2 = endDate.split('/');
+            var date1 = date1[1]+'/'+date1[0]+'/'+date1[2];
+            var date2 = date2[1]+'/'+date2[0]+'/'+date2[2];
+            var date1 = new Date(date1);
+            var date2 = new Date(date2);
+        if(date1 <=  date2){
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            $('#contract_numberDays').val(diffDays);
+        }else{
+            $('#contract_endDate').val('');
+            alert('La date de fin doit être après la date de début');
+        }
+        });
+
+    $("#contract_startDate").on("dp.change", function() {
+        var form = $('#form_contract_edit'),
+            endDate = form.find('#contract_endDate'),
+            startDate = form.find('#contract_startDate');
+            startDate = startDate.val();
+            endDate = endDate.val();
+            date1 = startDate.split('/');
+            date2 = endDate.split('/');
+            var date1 = date1[1]+'/'+date1[0]+'/'+date1[2];
+            var date2 = date2[1]+'/'+date2[0]+'/'+date2[2];
+            var date1 = new Date(date1);
+            var date2 = new Date(date2);
+        if(date1 <=  date2){
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            $('#contract_numberDays').val(diffDays);
+        }else if(date1 >  date2){
+            $('#contract_startDate').val('');
+            alert('La date de fin doit être après la date de début');
+        }
+        });
+
+        $('select[data-select="true"]').select2({});
+        $('select[data-select-multiple="true"]').select2({multiple: true,});
+        
+                
+
+
+
+
+  });
+        </script>
+
+    {% endblock %}

@@ -9,22 +9,23 @@ services:
             - { name: form.type, alias: app_user_registration }
 
     AppBundle\Service\EntityCrud: ~
+    AppBundle\Service\Calculator: ~
     #------------Mangers
     AppBundle\Manager\ContractManager: ~
     AppBundle\Manager\ChargeManager: ~
+    AppBundle\Manager\CarManager: ~
+    AppBundle\Manager\CarMaintenanceManager: ~
+    AppBundle\Manager\AbstractManager: ~
+    AppBundle\Manager\AbstractCustomerManager: ~
+    AppBundle\Manager\PhysicalCustomerManager: ~
+    AppBundle\Manager\ContractManager: ~
     #------------Controllers
-
     AppBundle\Controller\AppController: ~
     AppBundle\Controller\ContractController: ~
     AppBundle\Controller\ChargeController: ~
-
-     #------------Mangers
-    AppBundle\Manager\CarManager: ~
-    AppBundle\Manager\CarMaintenanceManager: ~
-
-    #------------Controllers
     AppBundle\Controller\CarMaintenanceController: ~
     AppBundle\Controller\CarController: ~
+    AppBundle\Controller\CustomerController: ~
 
     #------------Form Type
     AppBundle\Form\CarMaintenanceType: ~
@@ -51,14 +52,10 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
-
-    #------------Mangers
-    AppBundle\Manager\AbstractManager: ~
-
-    #------------Controllers
-        #------------Mangers
-    AppBundle\Manager\AbstractCustomerManager: ~
-    AppBundle\Manager\PhysicalCustomerManager: ~
-
-    #------------Controllers
-    AppBundle\Controller\CustomerController: ~
+    AppBundle\EventListener\EntitySetContractListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate ,lazy: true}
+    AppBundle\EventListener\EntitySetPaymentListener:
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }

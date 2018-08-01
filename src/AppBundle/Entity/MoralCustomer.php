@@ -135,4 +135,9 @@ class MoralCustomer extends AbstractCustomer
     {
         return $this->getSocialReason();
     }
+
+    public function __toString()
+    {
+        return sprintf('%s', $this->getFullName());
+    }
 }

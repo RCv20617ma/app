@@ -39,7 +39,7 @@ class AppController extends Controller
         }
         $form = $this->createForm($entity->getFormTypeClassName(), $entity);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($entity, true);
             $this->addFlash('success', $translator->trans('msg.success_operation'));

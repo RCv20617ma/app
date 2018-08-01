@@ -8,6 +8,8 @@ use AppBundle\Entity\Traits\UpdatedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use AppBundle\Form\ContractType;
+use AppBundle\Manager\ContractManager;
 
 /**
  * Contract
@@ -15,7 +17,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  * @ORM\Table(name="contract")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContractRepository")
  */
-class Contract
+class Contract implements EntityCrudInterface
 {
     use AgencyTrait, TimestampableEntity, CreatedByTrait, UpdatedByTrait;
 
@@ -46,6 +48,20 @@ class Contract
      *      )
      */
     private $drivers;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $startKms;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $fuelLevel;
 
     /**
      * @var \DateTime
@@ -82,12 +98,35 @@ class Contract
      */
     private $priceDay;
 
+    
     /**
      * @var string
      *
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
+     */
+    private $totalOptions;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
      */
     private $total;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
+     */
+    private $avance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
+     */
+    private $reste;
 
     /**
      * Get id
@@ -331,5 +370,157 @@ class Contract
     public function getTotal()
     {
         return $this->total;
+    }
+
+     /**
+     * @return string
+     */
+    public function getFormTypeClassName()
+    {
+        return ContractType::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return 'contract';
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerClassName()
+    {
+        return ContractManager::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreFixView()
+    {
+        return 'AppBundle:Contract';
+    }
+
+    /**
+     * Set startKms
+     *
+     * @param integer $startKms
+     *
+     * @return Contract
+     */
+    public function setStartKms($startKms)
+    {
+        $this->startKms = $startKms;
+
+        return $this;
+    }
+
+    /**
+     * Get startKms
+     *
+     * @return integer
+     */
+    public function getStartKms()
+    {
+        return $this->startKms;
+    }
+
+    /**
+     * Set fuelLevel
+     *
+     * @param integer $fuelLevel
+     *
+     * @return Contract
+     */
+    public function setFuelLevel($fuelLevel)
+    {
+        $this->fuelLevel = $fuelLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get fuelLevel
+     *
+     * @return integer
+     */
+    public function getFuelLevel()
+    {
+        return $this->fuelLevel;
+    }
+
+    /**
+     * Set totalOptions
+     *
+     * @param string $totalOptions
+     *
+     * @return Contract
+     */
+    public function setTotalOptions($totalOptions)
+    {
+        $this->totalOptions = $totalOptions;
+
+        return $this;
+    }
+
+    /**
+     * Get totalOptions
+     *
+     * @return string
+     */
+    public function getTotalOptions()
+    {
+        return $this->totalOptions;
+    }
+
+    /**
+     * Set avance
+     *
+     * @param string $avance
+     *
+     * @return Contract
+     */
+    public function setAvance($avance)
+    {
+        $this->avance = $avance;
+
+        return $this;
+    }
+
+    /**
+     * Get avance
+     *
+     * @return string
+     */
+    public function getAvance()
+    {
+        return $this->avance;
+    }
+
+    /**
+     * Set reste
+     *
+     * @param string $reste
+     *
+     * @return Contract
+     */
+    public function setReste($reste)
+    {
+        $this->reste = $reste;
+
+        return $this;
+    }
+
+    /**
+     * Get reste
+     *
+     * @return string
+     */
+    public function getReste()
+    {
+        return $this->reste;
     }
 }

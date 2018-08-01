@@ -31,7 +31,7 @@ class CustomerController extends Controller
     {
         $customers = $physicalCustomerManager->findBy(['agency' => $this->getUser()->getAgency()], ['id' => 'DESC']);
 
-        return $this->render('AppBundle::index.html.twig', array(
+        return $this->render('AppBundle::index_customer.html.twig', array(
             'customers' => $customers
         ));
     }
