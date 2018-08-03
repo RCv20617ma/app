@@ -2,12 +2,14 @@
 
 namespace AppBundle\Entity;
 
-use CoreBundle\Entity\Traits\AgencyTrait;
-use CoreBundle\Entity\Traits\CreatedByTrait;
-use CoreBundle\Entity\Traits\UpdatedByTrait;
+use AppBundle\Entity\Traits\AgencyTrait;
+use AppBundle\Entity\Traits\CreatedByTrait;
+use AppBundle\Entity\Traits\UpdatedByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use AppBundle\Form\ContractType;
+use AppBundle\Manager\ContractManager;
 
 /**
  * Contract
@@ -15,7 +17,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  * @ORM\Table(name="contract")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContractRepository")
  */
-class Contract
+class Contract implements EntityCrudInterface
 {
     use AgencyTrait, TimestampableEntity, CreatedByTrait, UpdatedByTrait;
 
@@ -29,23 +31,37 @@ class Contract
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\AbstractCustomer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AbstractCustomer")
      */
     private $customer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CarBundle\Entity\AbstractCar")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AbstractCar")
      */
     private $car;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CustomerBundle\Entity\PhysicalCustomer")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\PhysicalCustomer")
      * @ORM\JoinTable(name="contract_drivers",
      *      joinColumns={@JoinColumn(name="contract_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="driver_id", referencedColumnName="id")}
      *      )
      */
     private $drivers;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $startKms;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $fuelLevel;
 
     /**
      * @var \DateTime
@@ -82,12 +98,35 @@ class Contract
      */
     private $priceDay;
 
+    
     /**
      * @var string
      *
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
+     */
+    private $totalOptions;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
      */
     private $total;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
+     */
+    private $avance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
+     */
+    private $reste;
 
     /**
      * Get id
@@ -150,11 +189,11 @@ class Contract
     /**
      * Set customer
      *
-     * @param \CustomerBundle\Entity\AbstractCustomer $customer
+     * @param \AppBundle\Entity\AbstractCustomer $customer
      *
      * @return Contract
      */
-    public function setCustomer(\CustomerBundle\Entity\AbstractCustomer $customer = null)
+    public function setCustomer(\AppBundle\Entity\AbstractCustomer $customer = null)
     {
         $this->customer = $customer;
 
@@ -164,7 +203,7 @@ class Contract
     /**
      * Get customer
      *
-     * @return \CustomerBundle\Entity\AbstractCustomer
+     * @return \AppBundle\Entity\AbstractCustomer
      */
     public function getCustomer()
     {
@@ -174,11 +213,11 @@ class Contract
     /**
      * Set car
      *
-     * @param \CarBundle\Entity\Car $car
+     * @param \AppBundle\Entity\Car $car
      *
      * @return Contract
      */
-    public function setCar(\CarBundle\Entity\Car $car = null)
+    public function setCar(\AppBundle\Entity\Car $car = null)
     {
         $this->car = $car;
 
@@ -188,7 +227,7 @@ class Contract
     /**
      * Get car
      *
-     * @return \CarBundle\Entity\Car
+     * @return \AppBundle\Entity\Car
      */
     public function getCar()
     {
@@ -254,11 +293,11 @@ class Contract
     /**
      * Add driver
      *
-     * @param \CustomerBundle\Entity\PhysicalCustomer $driver
+     * @param \AppBundle\Entity\PhysicalCustomer $driver
      *
      * @return Contract
      */
-    public function addDriver(\CustomerBundle\Entity\PhysicalCustomer $driver)
+    public function addDriver(\AppBundle\Entity\PhysicalCustomer $driver)
     {
         $this->drivers[] = $driver;
 
@@ -268,9 +307,9 @@ class Contract
     /**
      * Remove driver
      *
-     * @param \CustomerBundle\Entity\PhysicalCustomer $driver
+     * @param \AppBundle\Entity\PhysicalCustomer $driver
      */
-    public function removeDriver(\CustomerBundle\Entity\PhysicalCustomer $driver)
+    public function removeDriver(\AppBundle\Entity\PhysicalCustomer $driver)
     {
         $this->drivers->removeElement($driver);
     }
@@ -331,5 +370,157 @@ class Contract
     public function getTotal()
     {
         return $this->total;
+    }
+
+     /**
+     * @return string
+     */
+    public function getFormTypeClassName()
+    {
+        return ContractType::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return 'contract';
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerClassName()
+    {
+        return ContractManager::class;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPreFixView()
+    {
+        return 'AppBundle:Contract';
+    }
+
+    /**
+     * Set startKms
+     *
+     * @param integer $startKms
+     *
+     * @return Contract
+     */
+    public function setStartKms($startKms)
+    {
+        $this->startKms = $startKms;
+
+        return $this;
+    }
+
+    /**
+     * Get startKms
+     *
+     * @return integer
+     */
+    public function getStartKms()
+    {
+        return $this->startKms;
+    }
+
+    /**
+     * Set fuelLevel
+     *
+     * @param integer $fuelLevel
+     *
+     * @return Contract
+     */
+    public function setFuelLevel($fuelLevel)
+    {
+        $this->fuelLevel = $fuelLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get fuelLevel
+     *
+     * @return integer
+     */
+    public function getFuelLevel()
+    {
+        return $this->fuelLevel;
+    }
+
+    /**
+     * Set totalOptions
+     *
+     * @param string $totalOptions
+     *
+     * @return Contract
+     */
+    public function setTotalOptions($totalOptions)
+    {
+        $this->totalOptions = $totalOptions;
+
+        return $this;
+    }
+
+    /**
+     * Get totalOptions
+     *
+     * @return string
+     */
+    public function getTotalOptions()
+    {
+        return $this->totalOptions;
+    }
+
+    /**
+     * Set avance
+     *
+     * @param string $avance
+     *
+     * @return Contract
+     */
+    public function setAvance($avance)
+    {
+        $this->avance = $avance;
+
+        return $this;
+    }
+
+    /**
+     * Get avance
+     *
+     * @return string
+     */
+    public function getAvance()
+    {
+        return $this->avance;
+    }
+
+    /**
+     * Set reste
+     *
+     * @param string $reste
+     *
+     * @return Contract
+     */
+    public function setReste($reste)
+    {
+        $this->reste = $reste;
+
+        return $this;
+    }
+
+    /**
+     * Get reste
+     *
+     * @return string
+     */
+    public function getReste()
+    {
+        return $this->reste;
     }
 }

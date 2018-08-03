@@ -10,7 +10,7 @@ php bin/console doc:sch:upd --force
 
 ## Lancement des fixtures
 ```
-php bin/console hautelook:fixtures:load -b CoreBundle -b CustomerBundle -b CarBundle -b AppBundle --no-interaction
+php bin/console hautelook:fixtures:load -b AppBundle --no-interaction
 ```
 
 ## assets:install

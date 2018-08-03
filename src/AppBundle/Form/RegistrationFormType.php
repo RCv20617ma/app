@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use CoreBundle\Entity\Agency;
+use AppBundle\Entity\Agency;
 
 class RegistrationFormType extends AbstractType
 {

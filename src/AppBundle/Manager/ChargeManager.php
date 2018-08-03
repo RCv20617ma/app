@@ -1,9 +1,15 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: noureddine
+ * Date: 24/06/2018
+ * Time: 19:16
+ */
 
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Outgo;
-use CoreBundle\Manager\AbstractManager;
+use AppBundle\Manager\AbstractManager;
 use AppBundle\Entity\Charge;
 
 

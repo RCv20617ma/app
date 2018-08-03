@@ -1,0 +1,59 @@
+AppBundle\Entity\ReferenceFuelType:
+    reference_fuel_type_{GASOLINE, DIESEL}:
+        label: reference.fuel_type.<current()>
+
+AppBundle\Entity\ReferenceCarOption:
+    reference_car_option_{GPS_NAVIGATOR,AIR_CONDITIONING,GPS_LOCATION}:
+        label: reference.car_option.<current()>
+
+AppBundle\Entity\ReferenceGearBox:
+    reference_gear_box_{MANUAL, AUTOMATIC}:
+        label: reference.gear_box.<current()>
+
+AppBundle\Entity\CarBrand:
+    car_brand_{1..10}:
+        label: <text(10)>
+
+AppBundle\Entity\CarModel:
+    car_model_{1..40}:
+        label: <text(10)>
+        brand: '@car_brand_*'
+
+AppBundle\Entity\CarDocumentType:
+    car_docuement_type_{INSURANCE,TECHNICAL_VISIT,GRAY_CARD,TRAFFIC_AUTHORIZATION,PURCHASE,TAX_STICKER,GREEN_CARD}:
+        label: car_document_type.<current()>
+AppBundle\Entity\ReferenceModePayment:
+    mode_payment_cash:
+        label: Espèce
+        code: 0
+    mode_payment_check:
+        label: Chèque
+        code: 1
+    mode_payment_bank_transfer:
+        label: Virement bancaire
+        code: 2
+    mode_payment_credit_card:
+        label: Carte de crédit
+        code: 3
+
+AppBundle\Entity\ReferencePhoneType:
+    reference_phone_type_{PERSONAL_PHONE,HOME_PHONE,WORK_PHONE,PERSONAL_FAX,WORK_FAX}:
+        label: reference.phone_type.<current()>
+
+AppBundle\Entity\ReferenceEmailType:
+    reference_email_type_{PERSONAL_EMAIL, PROFESSIONAL_EMAIL}:
+        label: reference.email_type.<current()>
+AppBundle\Entity\ReferenceGender:
+    reference_gender_{MALE,FEMALE}:
+        label: reference_gender.<current()>
+
+AppBundle\Entity\CustomerDocumentType:
+    customer_document_type_CIN:
+        label: customer_document_type.CIN
+        code: 1
+    customer_document_type_DRIVING_LICENCE:
+        label: customer_document_type.DRIVING_LICENCE
+        code: 2
+    customer_document_type_PASSPORT:
+        label: customer_document_type.PASSPORT
+        code: 3

@@ -1,0 +1,3 @@
+AppBundle\Entity\TypeCharge:
+    type_charge_{Assurance, Vignette, Demarreur ,Peinture, Accessoires, Reparation Accident, Essence, Retroviseur, Climatisation, Mecanique ,Pare Brise, Hypotheque}:
+        label: <current()>

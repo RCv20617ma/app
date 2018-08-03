@@ -1,3 +1,0 @@
-CarBundle\Entity\TypeMaintenance:
-    type_maintenance_{Vidange, Bougies, Batterie, Pneus, Ampoules, Plaquettes de frein, Frein a Main, Amortisseurs, Lavage, Equilibrage, Visite Technique, Assurance, Vignette, Demarreur ,Peinture, Accessoires, Reparation Accident, Essence, Retroviseur, Climatisation, Mecanique ,Pare Brise, Hypotheque}:
-        label: <current()>

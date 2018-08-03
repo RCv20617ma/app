@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Service\EntityCrud;
-use CoreBundle\Entity\EntityCrudInterface;
-use CoreBundle\Manager\AbstractManager;
+use AppBundle\Entity\EntityCrudInterface;
+use AppBundle\Manager\AbstractManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -39,7 +39,7 @@ class AppController extends Controller
         }
         $form = $this->createForm($entity->getFormTypeClassName(), $entity);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($entity, true);
             $this->addFlash('success', $translator->trans('msg.success_operation'));

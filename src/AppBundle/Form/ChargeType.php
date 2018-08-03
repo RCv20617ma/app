@@ -1,15 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: noureddine
+ * Date: 24/06/2018
+ * Time: 19:20
+ */
 
 namespace AppBundle\Form;
 
 use AppBundle\Entity\User;
-use CarBundle\Entity\CarMaintenance;
-use CarBundle\Form\AbsractChargeType;
-use CoreBundle\Form\FileType;
+use AppBundle\Entity\CarMaintenance;
+use AppBundle\Form\FileType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use AppBundle\Form\OutgoType;
-use CarBundle\Form\CarMaintenanceType;
+use AppBundle\Form\CarMaintenanceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;

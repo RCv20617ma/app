@@ -1,0 +1,11 @@
+AppBundle\Entity\Charge:
+    charge{1..100}:
+        agency: '@agency_*'
+        amount: <numberBetween(250, 800)>
+        comment: <text()>
+        typeCharge: '@type_charge_*'
+        date: <datetime()>
+        createdAt: <datetime()>
+        updatedAt: <datetime()>
+        createdBy: '@user_*'
+        updatedBy: '@user_*'

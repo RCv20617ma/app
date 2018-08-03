@@ -9,11 +9,53 @@ services:
             - { name: form.type, alias: app_user_registration }
 
     AppBundle\Service\EntityCrud: ~
+    AppBundle\Service\Calculator: ~
     #------------Mangers
     AppBundle\Manager\ContractManager: ~
     AppBundle\Manager\ChargeManager: ~
+    AppBundle\Manager\CarManager: ~
+    AppBundle\Manager\CarMaintenanceManager: ~
+    AppBundle\Manager\AbstractManager: ~
+    AppBundle\Manager\AbstractCustomerManager: ~
+    AppBundle\Manager\PhysicalCustomerManager: ~
+    AppBundle\Manager\ContractManager: ~
     #------------Controllers
-
     AppBundle\Controller\AppController: ~
     AppBundle\Controller\ContractController: ~
     AppBundle\Controller\ChargeController: ~
+    AppBundle\Controller\CarMaintenanceController: ~
+    AppBundle\Controller\CarController: ~
+    AppBundle\Controller\CustomerController: ~
+
+    #------------Form Type
+    AppBundle\Form\CarMaintenanceType: ~
+
+    #------------Services
+    AppBundle\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%upload_directory%'
+
+    #------------Listeners
+    AppBundle\EventListener\ReferenceTranslatorListener:
+        tags:
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
+    AppBundle\EventListener\EntitySetAgencyListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+
+    AppBundle\EventListener\EntityPermissionListener:
+        tags:
+            - { name: doctrine.event_listener, event: postLoad, lazy: true }
+
+    AppBundle\EventListener\FileUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+    AppBundle\EventListener\EntitySetContractListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: preUpdate ,lazy: true}
+    AppBundle\EventListener\EntitySetPaymentListener:
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
