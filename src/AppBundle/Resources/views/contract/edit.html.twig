@@ -68,62 +68,20 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript">
+<script type="text/javascript">
   $(function () {
 
-    $("#contract_endDate").on("dp.change", function() {
-        var form = $('#form_contract_edit'),
-            endDate = form.find('#contract_endDate'),
-            startDate = form.find('#contract_startDate');
-            startDate = startDate.val();
-            endDate = endDate.val();
-            date1 = startDate.split('/');
-            date2 = endDate.split('/');
-            var date1 = date1[1]+'/'+date1[0]+'/'+date1[2];
-            var date2 = date2[1]+'/'+date2[0]+'/'+date2[2];
-            var date1 = new Date(date1);
-            var date2 = new Date(date2);
-        if(date1 <=  date2){
-            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            $('#contract_numberDays').val(diffDays);
-        }else{
-            $('#contract_endDate').val('');
-            alert('La date de fin doit être après la date de début');
-        }
-        });
+    $("#contract_endDate").on("dp.change", function(e) {
+        jQuery('#contract_startDate').data("DateTimePicker").maxDate(e.date);
+    });
 
-    $("#contract_startDate").on("dp.change", function() {
-        var form = $('#form_contract_edit'),
-            endDate = form.find('#contract_endDate'),
-            startDate = form.find('#contract_startDate');
-            startDate = startDate.val();
-            endDate = endDate.val();
-            date1 = startDate.split('/');
-            date2 = endDate.split('/');
-            var date1 = date1[1]+'/'+date1[0]+'/'+date1[2];
-            var date2 = date2[1]+'/'+date2[0]+'/'+date2[2];
-            var date1 = new Date(date1);
-            var date2 = new Date(date2);
-        if(date1 <=  date2){
-            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            $('#contract_numberDays').val(diffDays);
-        }else if(date1 >  date2){
-            $('#contract_startDate').val('');
-            alert('La date de fin doit être après la date de début');
-        }
-        });
+    $("#contract_startDate").on("dp.change", function(e) {
+        jQuery('#contract_endDate').data("DateTimePicker").minDate(e.date);
+    });
 
-        $('select[data-select="true"]').select2({});
-        $('select[data-select-multiple="true"]').select2({multiple: true,});
-        
-                
-
-
-
-
+    $('select[data-select="true"]').select2({});
+    $('select[data-select-multiple="true"]').select2({multiple: true,});
+    
   });
-        </script>
-
-    {% endblock %}
+</script>
+{% endblock %}

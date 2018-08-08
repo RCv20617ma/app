@@ -29,6 +29,7 @@ services:
 
     #------------Form Type
     AppBundle\Form\CarMaintenanceType: ~
+    AppBundle\Form\ContractType: ~
 
     #------------Services
     AppBundle\Service\FileUploader:
