@@ -13,8 +13,6 @@
                     <div class="row">
                         <div class="col-lg-3">{{ form_row(form.car) }}</div>
                         <div class="col-lg-3">{{ form_row(form.priceDay) }}</div>
-                        <div class="col-lg-3">{{ form_row(form.originalPriceDay) }}</div> 
-                        
                     </div>
                     <div class="row">
                         <div class="col-lg-3">{{ form_row(form.startKms) }}</div>
@@ -44,13 +42,11 @@
                                 </div>{{ form_errors(form.endDate) }}
                             </div>
                         </div>
-                        <div class="col-lg-3">{{ form_row(form.numberDays) }}</div>
+                        <div class="col-lg-3">{{ form_row(form.numberDays,{ 'attr':{'disabled':'disabled'} }) }}</div>
                     </div>
                     <div class="row">
                     	<div class="col-lg-3">{{ form_row(form.customer) }}</div>
                         <div class="col-lg-3">{{ form_row(form.drivers) }}</div>
-                        <div class="col-lg-3">{{ form_row(form.avance) }}</div> 
-                                               
                     </div>
                 </div>
 
@@ -63,7 +59,6 @@
             </div>
         </div>
     </div>
-    {{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}
@@ -72,15 +67,68 @@
   $(function () {
 
     $("#contract_endDate").on("dp.change", function(e) {
-        jQuery('#contract_startDate').data("DateTimePicker").maxDate(e.date);
+        var form = $('#form_contract_edit'),
+        endDate = form.find('#contract_endDate'),
+        startDate = form.find('#contract_startDate');
+        startDate = startDate.val();
+        endDate = endDate.val();
+
+        startDate = startDate.split('/');
+        endDate = endDate.split('/');
+        var startDate = startDate[1]+'/'+startDate[0]+'/'+startDate[2];
+        var endDate = endDate[1]+'/'+endDate[0]+'/'+endDate[2];
+        var startDate = new Date(startDate);
+        var endDate = new Date(endDate);
+        $('#contract_startDate').data("DateTimePicker").maxDate(e.date);
+         diffDate(startDate,endDate);
     });
 
     $("#contract_startDate").on("dp.change", function(e) {
-        jQuery('#contract_endDate').data("DateTimePicker").minDate(e.date);
+       var form = $('#form_contract_edit'),
+        endDate = form.find('#contract_endDate'),
+        startDate = form.find('#contract_startDate');
+        startDate = startDate.val();
+        endDate = endDate.val();
+
+        startDate = startDate.split('/');
+        endDate = endDate.split('/');
+        var startDate = startDate[1]+'/'+startDate[0]+'/'+startDate[2];
+        var endDate = endDate[1]+'/'+endDate[0]+'/'+endDate[2];
+        var startDate = new Date(startDate);
+        var endDate = new Date(endDate);
+
+        $('#contract_endDate').data("DateTimePicker").minDate(e.date);
+        diffDate(startDate,endDate);
     });
 
     $('select[data-select="true"]').select2({});
     $('select[data-select-multiple="true"]').select2({multiple: true,});
+
+    function ajaxPost(fk_id) {
+        $.ajax({ 
+          type: "POST", 
+          data: {id : fk_id},
+          url: '{{ path('car_ajax') }}', 
+          success: function(data){ 
+            $('#contract_startKms').val (data.current_km);
+            $('#contract_priceDay').val (data.price_day);
+          },
+          error:function(){
+              
+          }
+        });
+        return false;
+      }
+
+    $( "#contract_car" ).change(function() {
+       ajaxPost($( "#contract_car" ).val());
+    });
+
+    function diffDate(startDate,EndDate){
+        var timeDiff = Math.abs(startDate.getTime() - EndDate.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        $('#contract_numberDays').val(diffDays);
+    }
     
   });
 </script>

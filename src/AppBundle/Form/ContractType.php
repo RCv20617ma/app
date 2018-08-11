@@ -105,12 +105,12 @@ class ContractType extends AbstractType
                  'attr' => ['data-select-multiple' => 'true'],
                 ])
                 ->add('numberDays')
-                ->add('avance')
-                ->add('originalPriceDay')
+                
                 ;
 
               /* champs calculé
                 ->add('originalPriceDay')
+                ->add('avance')
                 ->add('total')
                 ->add('createdAt')
                 ->add('updatedAt')

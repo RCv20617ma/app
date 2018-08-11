@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use AppBundle\Entity\Traits\AgencyTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class AbstractCar
@@ -23,6 +23,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *   }
  * )
  * @ORM\HasLifecycleCallbacks()
+ * @Serializer\ExclusionPolicy("ALL")
  */
 Abstract class AbstractCar
 {
