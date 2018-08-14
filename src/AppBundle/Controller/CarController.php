@@ -34,4 +34,5 @@ class CarController extends Controller
 
         return $this->render('AppBundle::Car/index.html.twig', ['cars' => $cars]);
     }
+
 }

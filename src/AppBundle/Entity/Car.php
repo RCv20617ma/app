@@ -5,15 +5,16 @@ namespace AppBundle\Entity;
 use AppBundle\Form\CarType;
 use AppBundle\Manager\CarManager;
 use AppBundle\Entity\EntityCrudInterface;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Car
  *
  * @ORM\Table(name="car")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CarRepository")
+ * @Serializer\ExclusionPolicy("ALL")
  */
 class Car extends AbstractCar implements EntityCrudInterface
 {
@@ -39,6 +40,7 @@ class Car extends AbstractCar implements EntityCrudInterface
      *
      * @Assert\NotBlank()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose
      */
     private $currentKm;
 
@@ -69,6 +71,7 @@ class Car extends AbstractCar implements EntityCrudInterface
      * @var string
      * @Assert\Range(min = 0)
      * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @Serializer\Expose
      */
     private $priceDay;
 

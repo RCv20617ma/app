@@ -10,12 +10,14 @@ use Doctrine\ORM\Mapping\JoinColumn as JoinColumn;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use AppBundle\Form\ContractType;
 use AppBundle\Manager\ContractManager;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Contract
  *
  * @ORM\Table(name="contract")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContractRepository")
+ * 
  */
 class Contract implements EntityCrudInterface
 {
