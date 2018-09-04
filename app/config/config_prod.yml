@@ -10,12 +10,26 @@ imports:
 monolog:
     handlers:
         main:
-            type: fingers_crossed
-            action_level: error
-            handler: nested
-        nested:
-            type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            type:         fingers_crossed
+            action_level: critical
+            handler:      grouped
+        grouped:
+            type:    group
+            members: [streamed, deduplicated]
+        streamed:
+            type:  stream
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
-        console:
-            type: console
+        deduplicated:
+            type:    deduplication
+            handler: swift
+        swift:
+            type:       swift_mailer
+            from_email: 'noureddinenajem7@gmail.com'
+            # Or multiple receivers:
+            # to_email:   ['to_email1@ourcodeworld.com', 'to_email2@ourcodeworld.com']
+            to_email:   'noureddinenajem7@gmail.com'
+            subject:    'An Error Occurred! %%message%%'
+            level:      debug
+            formatter:  monolog.formatter.html
+            content_type: text/html
