@@ -33,6 +33,13 @@ class Contract implements EntityCrudInterface
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $number;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\AbstractCustomer")
      */
     private $customer;
@@ -61,9 +68,9 @@ class Contract implements EntityCrudInterface
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $fuelLevel;
+    private $fuelLevel = 0;
 
     /**
      * @var \DateTime
@@ -106,7 +113,7 @@ class Contract implements EntityCrudInterface
      *
      * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
      */
-    private $totalOptions;
+    private $totalOptions = 0;
 
     /**
      * @var string
@@ -114,21 +121,6 @@ class Contract implements EntityCrudInterface
      * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
      */
     private $total;
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
-     */
-    private $avance;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="decimal", precision=10, scale=2,options={"default" : 0})
-     */
-    private $reste;
 
     /**
      * Get id
@@ -138,6 +130,25 @@ class Contract implements EntityCrudInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param string $number
+     * @return Contract
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
     }
 
     /**
@@ -479,50 +490,10 @@ class Contract implements EntityCrudInterface
     }
 
     /**
-     * Set avance
-     *
-     * @param string $avance
-     *
-     * @return Contract
-     */
-    public function setAvance($avance)
-    {
-        $this->avance = $avance;
-
-        return $this;
-    }
-
-    /**
-     * Get avance
-     *
      * @return string
      */
-    public function getAvance()
+    public function __toString()
     {
-        return $this->avance;
-    }
-
-    /**
-     * Set reste
-     *
-     * @param string $reste
-     *
-     * @return Contract
-     */
-    public function setReste($reste)
-    {
-        $this->reste = $reste;
-
-        return $this;
-    }
-
-    /**
-     * Get reste
-     *
-     * @return string
-     */
-    public function getReste()
-    {
-        return $this->reste;
+        return $this->getId()."";
     }
 }

@@ -30,7 +30,7 @@
                     <td>{{ c.priceDay }}</td>
                     <td>{{ c.total }}</td>
                     <td>
-                        <a class="btn btn-warning btn-xs" href=""><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-warning btn-xs" href="{{ path('entity_edit', {'entity': c.slug, 'id': c.id}) }}"><i class="fa fa-edit"></i></a>
                     </td>
                 </tr>
             {% endfor %}

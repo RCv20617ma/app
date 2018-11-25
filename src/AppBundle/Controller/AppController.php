@@ -31,7 +31,6 @@ class AppController extends Controller
     {
         /** @var AbstractManager $entityManager */
         $entityManager = $this->get($entityCrud->getEntityManagerClassName($entity));
-
         /** @var EntityCrudInterface $entity */
         $entity = $id != null ? $entityManager->find($id) : null;
         if (empty($entity)) {

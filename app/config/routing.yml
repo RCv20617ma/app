@@ -2,13 +2,13 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-customer:
-    resource: '@AppBundle/Controller/'
+app_api:
+    resource: '@AppBundle/Controller/Api/'
     type: annotation
+    prefix: /api
 
-car:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 ben_user:
     resource: "@AppBundle/Resources/config/routing.yml"
