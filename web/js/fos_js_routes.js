@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"api_car_get":{"tokens":[["variable","\/","[^\/]++","id"],["text","\/api\/car"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","scheme":"http"});

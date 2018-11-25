@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Agency;
 
 /**
  * ContractRepository
@@ -10,4 +11,19 @@ namespace AppBundle\Repository;
  */
 class ContractRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getLastNumberForAgency(Agency $agency)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c.number')
+            ->orderBy('c.id', 'DESC')
+            ->where('c.agency = :agency')
+            ->andWhere('c.createdAt between :startYear and :andYear')
+            ->setParameter('agency', $agency)
+            ->setParameter('startYear', (new \DateTime('first day of january'))->setTime(0,0))
+            ->setParameter('andYear', (new \DateTime('1st January Next Year'))->setTime(0,0))
+        ;
+
+        return $qb->getQuery()->getFirstResult();
+    }
 }

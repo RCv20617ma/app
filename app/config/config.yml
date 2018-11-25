@@ -44,6 +44,7 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
+        server_version: 5.6.35
         driver: pdo_mysql
         host: '%database_host%'
         port: '%database_port%'
@@ -103,6 +104,40 @@ stof_doctrine_extensions:
             softdeleteable: true
             sluggable: true
             blameable: true
+
+# FOSRest Configuration
+fos_rest:
+    param_fetcher_listener: true
+    body_listener:
+        array_normalizer: fos_rest.normalizer.camel_keys
+    format_listener:
+        rules:
+            -
+                path: /api
+                priorities: [json]
+                fallback_format: json
+            -
+                path: /
+                stop: true
+    view:
+        view_response_listener: force
+        formats:
+            xml: true
+            json: true
+            xlsx: true
+        templating_formats:
+            html: false
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        mime_types:
+            jsonp: ['application/javascript+jsonp']
+            xlsx: ['application/vnd.ms-excel']
+    routing_loader:
+        default_format: json
+        include_format: false
+
 
 # Knp Paginator Bundle
 knp_paginator:

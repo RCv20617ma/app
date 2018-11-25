@@ -21,7 +21,6 @@ class CarType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $formModifier = function (FormInterface $form, CarBrand $brand = null) {
             $models = null === $brand ? array() : $brand->getModels();
 
@@ -32,7 +31,9 @@ class CarType extends AbstractType
         };
 
         $builder
-            ->add('brand')
+            ->add('brand', null, [
+                'attr' => ['class' => 'select2']
+                ])
             ->add('carNumber', null, [
                 'attr' => [
                     'placeholder' => '12345 H 1'

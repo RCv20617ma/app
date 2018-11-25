@@ -26,7 +26,7 @@ class CarModel
     protected $label;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CarBrand")
+     * @ORM\ManyToOne(targetEntity="CarBrand", inversedBy="models")
      */
     private $brand;
 

@@ -62,7 +62,7 @@
     {{ form_start(form) }}
     {{ form_widget(form._token) }}
     <div class="row">
-        <div class="well">
+        <fieldset class="well">
             <div class="row">
                 <div class="col-lg-3">{{ form_row(form.nationality) }}</div>
                 <div class="col-lg-3">{{ form_row(form.gender) }}</div>
@@ -74,7 +74,8 @@
                 <div class="col-lg-3">{{ form_row(form.identityNumber) }}</div>
                 <div class="col-lg-3">{{ form_row(form.drivingLicenceNumber) }}</div>
                 <div class="col-lg-3">{{ form_row(form.birthDate) }}</div>
-            </div>
+            </div> <fieldset>
+                <legend>Contact & Adresse</legend>
             <div class="row">
                 <div class="col-lg-4">
                     {{ form_row(form.phones) }}
@@ -92,6 +93,7 @@
                 </div>
                 <div class="col-lg-4">{{ form_row(form.address) }}</div>
             </div>
+        </fieldset>
             <fieldset>
                 <legend>Pièce d'identité</legend>
                 {{ form_widget(form.documents) }}
@@ -115,5 +117,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('vendor/intl-tel-input/build/js/intlTelInput.min.js') }}"></script>
-    <script src="{{ asset('bundles/customer/js/edit.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/customer/edit.js') }}"></script>
 {% endblock %}

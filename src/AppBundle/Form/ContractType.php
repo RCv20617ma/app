@@ -2,8 +2,9 @@
 
 namespace AppBundle\Form;
 
-
+use AppBundle\Entity\PhysicalCustomer;
 use AppBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -48,75 +49,67 @@ class ContractType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('car',EntityType::class, [
-                  'choices_as_values' => true,               
-                  'class' => Car::class,
-                  'query_builder' => function (EntityRepository $er) {
+        $builder->add('car', EntityType::class, [
+            'choices_as_values' => true,
+            'class' => Car::class,
+            'placeholder' => 'Sélectionner une voiture.',
+            'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('c')
-                          ->where('c.agency = :agency')
-                          ->setParameter('agency', $this->getUser()->getAgency());
-                    },
-                 'attr' => ['data-select' => 'true'],
-                ])
-
-
-            ->add('fuelLevel',IntegerType::class)
-            ->add('startKms',IntegerType::class)
+                    ->where('c.agency = :agency')
+                    ->setParameter('agency', $this->getUser()->getAgency());
+            },
+            'attr' => ['class' => 'select2'],
+        ])
+            ->add('fuelLevel', IntegerType::class,[
+                'attr' => ['class' => 'hidden']
+            ])
+            ->add('startKms', IntegerType::class)
             ->add('priceDay', MoneyType::class, [
                 'currency' => 'MAD',
                 'attr' => [
                     'placeholder' => '500.00'
                 ]
-                ])
-                ->add('startDate', DateType::class, [
+            ])
+            ->add('startDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'input' => 'datetime',
-                'format' => 'dd/MM/yyyy',
+                'format' => "dd/MM/yyyy HH:mm",
                 'required' => false,
-                'attr' => ['class' => 'datepicker', 'autocomplete' => 'off']
-                ])
-                ->add('endDate', DateType::class, [
+                'attr' => ['class' => '', 'autocomplete' => 'off']
+            ])
+            ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'input' => 'datetime',
-                'format' => 'dd/MM/yyyy',
+                'format' => "dd/MM/yyyy HH:mm",
                 'required' => false,
-                'attr' => ['class' => 'datepicker', 'autocomplete' => 'off']
-                 ])                
-                
-                ->add('customer',EntityType::class, [
-                  'choices_as_values' => true,               
-                  'class' => AbstractCustomer::class,
-                   'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('c')
-                          ->where('c.agency = :agency')
-                          ->setParameter('agency', $this->getUser()->getAgency());
-                    },
-                  'attr' => ['data-select' => 'true'],
-                ])
-                
-                ->add('drivers',EntityType::class, [
-                 'choices_as_values' => true,  
-                 'class' => MoralCustomer::class,
-                  'query_builder' => function (EntityRepository $er) {
-                  return $er->createQueryBuilder('d')
-                          ->where('d.agency = :agency')
-                          ->setParameter('agency', $this->getUser()->getAgency());
-                    },
-                 'attr' => ['data-select-multiple' => 'true'],
-                ])
-                ->add('numberDays')
-                
-                ;
+                'attr' => ['class' => '', 'autocomplete' => 'off']
+            ])
+            ->add('customer', EntityType::class, [
+                'choices_as_values' => true,
+                'class' => AbstractCustomer::class,
+                'placeholder' => 'Sélectionner un client.',
+                'attr' => ['class' => 'select2'],
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.agency = :agency')
+                        ->setParameter('agency', $this->getUser()->getAgency());
+                },
+            ])
+            ->add('drivers', EntityType::class, [
+                'class' => PhysicalCustomer::class,
+                'placeholder' => 'Selectionner un conducteur....',
+                'multiple'  => true,
+                'attr' => ['class' => 'select2'],
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('d')
+                        ->where('d.agency = :agency')
+                        ->setParameter('agency', $this->getUser()->getAgency());
+                },
+            ])
+            ->add('numberDays');
+    }
 
-              /* champs calculé
-                ->add('originalPriceDay')
-                ->add('avance')
-                ->add('total')
-                ->add('createdAt')
-                ->add('updatedAt')
-                ->add('createdBy')
-                ->add('updatedBy');*/
-    }/**
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
